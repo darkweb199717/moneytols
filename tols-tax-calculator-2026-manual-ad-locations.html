@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico">
+<title>US Federal Income Tax Calculator 2026 | TOLS</title>
+<meta name="description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with TOLS' free tax calculator.'s free tax calculator.">
+<link rel="canonical" href="https://www.tols.com/us-federal-income-tax-calculator">
+<meta property="og:type" content="website">
+<meta property="og:title" content="US Federal Income Tax Calculator 2026 | TOLS">
+<meta property="og:description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with TOLS' free tax calculator.'s free tax calculator.">
+<meta property="og:url" content="https://www.tols.com/us-federal-income-tax-calculator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="US Federal Income Tax Calculator 2026 | TOLS">
+<meta name="twitter:description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with TOLS' free tax calculator.'s free tax calculator.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is the difference between marginal and effective tax rate?","acceptedAnswer":{"@type":"Answer","text":"Your marginal rate is the rate applied to your last dollar of taxable income — useful for deciding whether to contribute more to a 401(k). Your effective federal rate is federal income tax after modeled credits divided by gross income. It is not a complete measure of total payroll and state taxes, and it may not always be lower than the marginal rate in every simplified scenario."}},
+    {"@type":"Question","name":"Should I take the standard deduction or itemize?","acceptedAnswer":{"@type":"Answer","text":"In general, compare your eligible itemized deductions with the standard deduction and use the applicable rules for your filing situation. This simplified tool lets you enter either a standard or itemized amount but does not determine full itemization eligibility. Itemizing usually only wins if you have a large mortgage interest, state and local tax, medical or charitable total."}},
+    {"@type":"Question","name":"Does this include Social Security and Medicare taxes?","acceptedAnswer":{"@type":"Answer","text":"Yes. Social Security is 6.2% of wages up to the 2026 wage base of $184,500. Medicare is 1.45% on all wages, plus an Additional Medicare Tax of 0.9% on wages above $200,000 (single/HOH), $250,000 (joint) or $125,000 (married filing separately)."}},
+    {"@type":"Question","name":"Why is my state tax only an estimate?","acceptedAnswer":{"@type":"Answer","text":"States differ enormously: nine have no wage income tax, some are flat-rate, and others have their own brackets, deductions and credits. This tool applies a single representative rate per state to your federal taxable income to give you a ballpark figure, not a filing-ready number."}},
+    {"@type":"Question","name":"How do pre-tax deductions reduce my tax bill?","acceptedAnswer":{"@type":"Answer","text":"Traditional 401(k), 403(b), HSA and FSA contributions come out of your pay before federal income tax is calculated, so they reduce your taxable income directly. A $6,000 contribution for someone in the 22% bracket cuts about $1,320 from their federal tax while still being their own money."}},
+    {"@type":"Question","name":"Which tax year does this calculator use?","acceptedAnswer":{"@type":"Answer","text":"The 2026 tax year, using the inflation-adjusted brackets, standard deductions and credit amounts published by the IRS in Revenue Procedure 2025-32. Some newer deductions, special situations, and eligibility rules are not fully modeled. These are the numbers for income earned during 2026 and reported on the return you file in 2027."}}
+  ]
+}
+</script>
+<style>
+.ftc-wrap *,.ftc-wrap *::before,.ftc-wrap *::after{box-sizing:border-box}
+.ftc-wrap{
+  --ftc-bg:#0d1026;--ftc-card:#ffffff;--ftc-ink:#131735;--ftc-muted:#5c6280;
+  --ftc-line:#e6e8f3;--ftc-brand:#5b4bff;--ftc-brand2:#ff4d8d;--ftc-teal:#00c2a8;
+  --ftc-amber:#ffb020;--ftc-red:#ff5470;--ftc-radius:20px;
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ftc-ink);line-height:1.55;max-width:1120px;margin:0 auto;padding:18px;
+}
+.ftc-wrap h1,.ftc-wrap h2,.ftc-wrap h3{line-height:1.2;margin:0 0 .5em}
+.ftc-hero{background:linear-gradient(135deg,#5b4bff 0%,#9b3bff 45%,#ff4d8d 100%);
+  color:#fff;border-radius:calc(var(--ftc-radius) + 8px);padding:28px 24px;box-shadow:0 18px 40px rgba(91,75,255,.28)}
+.ftc-hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;letter-spacing:-.02em}
+.ftc-hero p{margin:0;opacity:.92;max-width:62ch}
+.ftc-badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+  padding:4px 12px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px}
+.ftc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:18px}
+@media(max-width:860px){.ftc-grid{grid-template-columns:1fr}}
+.ftc-card{background:var(--ftc-card);border:1px solid var(--ftc-line);border-radius:var(--ftc-radius);
+  padding:20px;box-shadow:0 8px 24px rgba(19,23,53,.06)}
+.ftc-card h2{font-size:1.05rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ftc-muted);font-weight:800}
+.ftc-field{margin-bottom:14px}
+.ftc-field label{display:block;font-weight:700;font-size:.86rem;margin-bottom:6px}
+.ftc-hint{font-weight:400;color:var(--ftc-muted);font-size:.78rem}
+.ftc-wrap input[type=number],.ftc-wrap select{width:100%;padding:11px 12px;border:1.5px solid var(--ftc-line);
+  border-radius:12px;font:inherit;background:#fbfbff;color:inherit}
+.ftc-wrap input[type=number]:focus,.ftc-wrap select:focus{outline:none;border-color:var(--ftc-brand);box-shadow:0 0 0 4px rgba(91,75,255,.12)}
+.ftc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.ftc-row{grid-template-columns:1fr}}
+.ftc-seg{display:flex;background:#f1f2fa;border-radius:12px;padding:4px;gap:4px}
+.ftc-seg button{flex:1;border:0;background:transparent;padding:9px 6px;border-radius:9px;font:inherit;
+  font-weight:700;font-size:.85rem;color:var(--ftc-muted);cursor:pointer}
+.ftc-seg button[aria-pressed=true]{background:linear-gradient(135deg,var(--ftc-brand),var(--ftc-brand2));color:#fff;box-shadow:0 4px 12px rgba(91,75,255,.3)}
+.ftc-wrap input[type=range]{width:100%;accent-color:var(--ftc-brand);margin-top:6px}
+.ftc-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
+.ftc-kpi{border-radius:16px;padding:14px;color:#fff}
+.ftc-kpi span{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;opacity:.9;font-weight:700}
+.ftc-kpi strong{display:block;font-size:clamp(1.15rem,3.2vw,1.5rem);font-weight:800;margin-top:2px}
+.ftc-k1{background:linear-gradient(135deg,#00c2a8,#12a7d8)}
+.ftc-k2{background:linear-gradient(135deg,#5b4bff,#9b3bff)}
+.ftc-k3{background:linear-gradient(135deg,#ff8a00,#ffb020)}
+.ftc-k4{background:linear-gradient(135deg,#ff4d8d,#ff5470)}
+.ftc-lines{list-style:none;margin:0;padding:0;font-size:.92rem}
+.ftc-lines li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--ftc-line)}
+.ftc-lines li:last-child{border-bottom:0;font-weight:800}
+.ftc-wrap table{width:100%;border-collapse:collapse;font-size:.88rem}
+.ftc-wrap th,.ftc-wrap td{padding:9px 8px;text-align:right;border-bottom:1px solid var(--ftc-line)}
+.ftc-wrap th:first-child,.ftc-wrap td:first-child{text-align:left}
+.ftc-wrap thead th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ftc-muted)}
+.ftc-wrap tbody tr.active{background:linear-gradient(90deg,rgba(91,75,255,.09),rgba(255,77,141,.06))}
+.ftc-scroll{overflow-x:auto}
+.ftc-btn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;font:inherit;font-weight:800;
+  padding:12px 18px;border-radius:999px;color:#fff;background:linear-gradient(135deg,var(--ftc-brand),var(--ftc-brand2));
+  box-shadow:0 10px 22px rgba(255,77,141,.28)}
+.ftc-btn:active{transform:translateY(1px)}
+.ftc-chartbox{position:relative;height:280px}
+.ftc-note{font-size:.78rem;color:var(--ftc-muted)}
+.ftc-content{margin-top:26px;display:grid;gap:18px}
+.ftc-content h2{font-size:1.4rem}
+.ftc-faq details{border:1px solid var(--ftc-line);border-radius:14px;padding:12px 14px;margin-bottom:10px;background:#fbfbff}
+.ftc-faq summary{cursor:pointer;font-weight:700}
+.ftc-faq p{margin:8px 0 0;color:#3c415f}
+.ftc-disclaimer{background:#fff7e8;border:1px solid #ffd894;border-radius:16px;padding:16px;font-size:.88rem}
+.ftc-topnav{display:flex;flex-wrap:wrap;gap:18px;padding:12px 4px;margin-bottom:14px;border-bottom:1px solid var(--ftc-line);font-size:.9rem;font-weight:700}
+.ftc-topnav a{color:var(--ftc-ink);text-decoration:none}
+.ftc-topnav a:hover{color:var(--ftc-brand)}
+.ftc-updated{font-size:.78rem;color:var(--ftc-muted);margin:-8px 0 18px}
+.ftc-footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--ftc-line);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.82rem;color:var(--ftc-muted)}
+.ftc-footer a{color:var(--ftc-muted);text-decoration:none;margin-right:16px}
+.ftc-footer a:hover{color:var(--ftc-brand)}
+/* Refined Tols header */
+.ftc-topnav{
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:14px 18px;
+  margin-bottom:22px;
+  border:1px solid var(--ftc-line);
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(91,75,255,.08),rgba(255,77,141,.08));
+  box-shadow:0 8px 24px rgba(35,32,80,.06);
+}
+.ftc-topnav::before{
+  content:"TOLS";
+  font-size:1.15rem;
+  font-weight:900;
+  letter-spacing:.12em;
+  color:var(--ftc-ink);
+  margin-right:auto;
+}
+.ftc-topnav a{
+  padding:8px 11px;
+  border-radius:10px;
+  transition:background .2s,color .2s;
+}
+.ftc-topnav a:hover{
+  background:rgba(91,75,255,.10);
+  color:var(--ftc-brand);
+}
+.ftc-hero{
+  position:relative;
+  overflow:hidden;
+  padding:34px 30px 32px;
+  border:1px solid var(--ftc-line);
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 92% 8%,rgba(255,77,141,.18),transparent 34%),
+    radial-gradient(circle at 8% 0%,rgba(91,75,255,.16),transparent 38%),
+    linear-gradient(135deg,#ffffff,#f7f6ff);
+  box-shadow:0 16px 38px rgba(35,32,80,.08);
+}
+.ftc-hero::after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-70px;
+  bottom:-100px;
+  border-radius:50%;
+  background:rgba(91,75,255,.10);
+}
+.ftc-hero .ftc-badge{
+  display:inline-flex;
+  align-items:center;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(91,75,255,.10);
+  color:var(--ftc-brand);
+  font-size:.78rem;
+  font-weight:800;
+}
+.ftc-hero h1{
+  position:relative;
+  z-index:1;
+  max-width:760px;
+  margin:16px 0 10px;
+  font-size:clamp(2rem,4.5vw,3.4rem);
+  line-height:1.08;
+  letter-spacing:-.045em;
+}
+.ftc-hero p{
+  position:relative;
+  z-index:1;
+  max-width:700px;
+  margin:0;
+  font-size:1rem;
+  line-height:1.7;
+  color:var(--ftc-muted);
+}
+@media (max-width:560px){
+  .ftc-topnav{padding:12px;gap:4px}
+  .ftc-topnav::before{font-size:1rem}
+  .ftc-topnav a{padding:7px 6px;font-size:.78rem}
+  .ftc-hero{padding:26px 20px 24px;border-radius:20px}
+}
+
+.ftc-page{display:none}
+.ftc-page.active{display:block}
+
+/* TOLS manual advertising locations */
+.tols-ad-slot {
+  width: 100%;
+  min-height: 90px;
+  margin: 24px auto;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 12px;
+  overflow: hidden;
+}
+.tols-ad-slot span { pointer-events: none; }
+@media (max-width: 640px) {
+  .tols-ad-slot {
+    min-height: 70px;
+    margin: 18px auto;
+    padding: 8px;
+  }
+}
+
+</style>
+
+<style id="tols-theme-switcher">
+  :root {
+    color-scheme: light;
+    --tols-mode-bg: #f6f8fc;
+    --tols-mode-text: #172033;
+    --tols-mode-card: #ffffff;
+    --tols-mode-border: #dce3ef;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --tols-mode-bg: #0d1424;
+    --tols-mode-text: #e8eefc;
+    --tols-mode-card: #151f33;
+    --tols-mode-border: #2c3a52;
+  }
+
+  html[data-theme="dark"] body {
+    background: var(--tols-mode-bg) !important;
+    color: var(--tols-mode-text) !important;
+  }
+
+  html[data-theme="dark"] .ftc-card,
+  html[data-theme="dark"] .ftc-panel,
+  html[data-theme="dark"] .ftc-section,
+  html[data-theme="dark"] .ftc-table-wrap,
+  html[data-theme="dark"] .ftc-result,
+  html[data-theme="dark"] .ftc-topnav {
+    background: var(--tols-mode-card) !important;
+    border-color: var(--tols-mode-border) !important;
+  }
+
+  html[data-theme="dark"] input,
+  html[data-theme="dark"] select,
+  html[data-theme="dark"] textarea {
+    background: #10192b !important;
+    color: #edf3ff !important;
+    border-color: #3b4b66 !important;
+  }
+
+  html[data-theme="dark"] a {
+    color: #8db8ff;
+  }
+
+  .tols-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    padding: 9px 13px;
+    border: 1px solid var(--ftc-border, #dce3ef);
+    border-radius: 999px;
+    background: var(--ftc-card, #fff);
+    color: var(--ftc-text, #172033);
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+
+  .tols-theme-toggle:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 16px rgba(0,0,0,.10);
+  }
+
+  @media (max-width: 640px) {
+    .tols-theme-toggle {
+      margin-left: 0;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+
+<style id="tols-dark-contrast-fix">
+html[data-theme="dark"] {
+  --ftc-bg: #0b1220 !important;
+  --ftc-card: #14213a !important;
+  --ftc-surface: #1a2b49 !important;
+  --ftc-text: #f3f7ff !important;
+  --ftc-muted: #b9c9e3 !important;
+  --ftc-border: #35547e !important;
+  --ftc-brand: #70b7ff !important;
+  --ftc-brand-dark: #a8d4ff !important;
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] main,
+html[data-theme="dark"] section,
+html[data-theme="dark"] article,
+html[data-theme="dark"] p,
+html[data-theme="dark"] li,
+html[data-theme="dark"] label,
+html[data-theme="dark"] small {
+  color: #f3f7ff !important;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] strong,
+html[data-theme="dark"] b {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .ftc-muted,
+html[data-theme="dark"] .ftc-help,
+html[data-theme="dark"] .ftc-subtitle,
+html[data-theme="dark"] .ftc-description,
+html[data-theme="dark"] .ftc-hero p {
+  color: #c5d5ed !important;
+}
+
+html[data-theme="dark"] .ftc-card,
+html[data-theme="dark"] .ftc-panel,
+html[data-theme="dark"] .ftc-section,
+html[data-theme="dark"] .ftc-result,
+html[data-theme="dark"] .ftc-table-wrap,
+html[data-theme="dark"] .ftc-topnav,
+html[data-theme="dark"] .ftc-footer {
+  background: #14213a !important;
+  color: #f3f7ff !important;
+  border-color: #35547e !important;
+}
+
+html[data-theme="dark"] .ftc-topnav a,
+html[data-theme="dark"] .ftc-footer a,
+html[data-theme="dark"] a {
+  color: #8bc4ff !important;
+}
+
+html[data-theme="dark"] .ftc-topnav a:hover,
+html[data-theme="dark"] .ftc-footer a:hover,
+html[data-theme="dark"] a:hover {
+  color: #c1e1ff !important;
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  background: #0e1b30 !important;
+  color: #ffffff !important;
+  border-color: #41658f !important;
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: #9db3d1 !important;
+}
+
+html[data-theme="dark"] button,
+html[data-theme="dark"] .tols-theme-toggle {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .ftc-badge,
+html[data-theme="dark"] .ftc-pill,
+html[data-theme="dark"] .ftc-tag {
+  background: #1e4775 !important;
+  color: #d9edff !important;
+  border-color: #4c83b9 !important;
+}
+
+html[data-theme="dark"] .ftc-hero {
+  background: linear-gradient(135deg, #102746 0%, #173d67 100%) !important;
+  border-color: #416d9e !important;
+}
+
+html[data-theme="dark"] .ftc-button,
+html[data-theme="dark"] button[type="submit"] {
+  background: #2676c9 !important;
+  color: #ffffff !important;
+  border-color: #5ca8f2 !important;
+}
+
+html[data-theme="dark"] .ftc-button:hover,
+html[data-theme="dark"] button[type="submit"]:hover {
+  background: #368ee8 !important;
+}
+
+html[data-theme="dark"] table,
+html[data-theme="dark"] th,
+html[data-theme="dark"] td {
+  color: #f3f7ff !important;
+  border-color: #35547e !important;
+}
+
+html[data-theme="dark"] .ftc-error,
+html[data-theme="dark"] [role="alert"] {
+  color: #ffd0d0 !important;
+  background: #542b3a !important;
+  border-color: #a85a70 !important;
+}
+</style>
+
+
+<style id="tols-final-dark-text-fix">
+html[data-theme="dark"] body * {
+  border-color: #35547e;
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] body * {
+  text-shadow: none !important;
+}
+
+html[data-theme="dark"] .ftc-page,
+html[data-theme="dark"] .ftc-page *,
+html[data-theme="dark"] .ftc-container,
+html[data-theme="dark"] .ftc-container *,
+html[data-theme="dark"] .ftc-content,
+html[data-theme="dark"] .ftc-content * {
+  color: #f1f6ff;
+}
+
+html[data-theme="dark"] .ftc-page p,
+html[data-theme="dark"] .ftc-page span,
+html[data-theme="dark"] .ftc-page li,
+html[data-theme="dark"] .ftc-page label,
+html[data-theme="dark"] .ftc-page dt,
+html[data-theme="dark"] .ftc-page dd {
+  color: #d0def2 !important;
+}
+
+html[data-theme="dark"] .ftc-page h1,
+html[data-theme="dark"] .ftc-page h2,
+html[data-theme="dark"] .ftc-page h3,
+html[data-theme="dark"] .ftc-page h4,
+html[data-theme="dark"] .ftc-page h5,
+html[data-theme="dark"] .ftc-page h6,
+html[data-theme="dark"] .ftc-page strong {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .ftc-page .ftc-value,
+html[data-theme="dark"] .ftc-page .ftc-number,
+html[data-theme="dark"] .ftc-page .ftc-total,
+html[data-theme="dark"] .ftc-page output {
+  color: #8ec7ff !important;
+}
+
+html[data-theme="dark"] .ftc-page input,
+html[data-theme="dark"] .ftc-page select,
+html[data-theme="dark"] .ftc-page textarea {
+  color: #ffffff !important;
+  background-color: #0d1b30 !important;
+}
+
+html[data-theme="dark"] .ftc-page input[type="range"] {
+  accent-color: #66b5ff;
+}
+
+html[data-theme="dark"] .ftc-page .ftc-button,
+html[data-theme="dark"] .ftc-page button {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .ftc-page .ftc-muted,
+html[data-theme="dark"] .ftc-page .ftc-help,
+html[data-theme="dark"] .ftc-page .ftc-note,
+html[data-theme="dark"] .ftc-page .ftc-disclaimer,
+html[data-theme="dark"] .ftc-page .ftc-footnote {
+  color: #b9cce7 !important;
+}
+
+html[data-theme="dark"] .ftc-page a {
+  color: #8ec7ff !important;
+}
+</style>
+
+
+<style id="tols-faq-dark-mode-fix">
+html[data-theme="dark"] .ftc-faq,
+html[data-theme="dark"] .ftc-faq *,
+html[data-theme="dark"] #faq,
+html[data-theme="dark"] #faq *,
+html[data-theme="dark"] [id*="faq"],
+html[data-theme="dark"] [id*="faq"] *,
+html[data-theme="dark"] .faq,
+html[data-theme="dark"] .faq * {
+  color: #eaf3ff !important;
+}
+
+html[data-theme="dark"] .ftc-faq p,
+html[data-theme="dark"] .ftc-faq li,
+html[data-theme="dark"] .ftc-faq span,
+html[data-theme="dark"] .ftc-faq small,
+html[data-theme="dark"] [id*="faq"] p,
+html[data-theme="dark"] [id*="faq"] li,
+html[data-theme="dark"] [id*="faq"] span,
+html[data-theme="dark"] [id*="faq"] small,
+html[data-theme="dark"] .faq p,
+html[data-theme="dark"] .faq li,
+html[data-theme="dark"] .faq span,
+html[data-theme="dark"] .faq small {
+  color: #c9d9ef !important;
+}
+
+html[data-theme="dark"] .ftc-faq h1,
+html[data-theme="dark"] .ftc-faq h2,
+html[data-theme="dark"] .ftc-faq h3,
+html[data-theme="dark"] .ftc-faq h4,
+html[data-theme="dark"] [id*="faq"] h1,
+html[data-theme="dark"] [id*="faq"] h2,
+html[data-theme="dark"] [id*="faq"] h3,
+html[data-theme="dark"] [id*="faq"] h4,
+html[data-theme="dark"] .faq h1,
+html[data-theme="dark"] .faq h2,
+html[data-theme="dark"] .faq h3,
+html[data-theme="dark"] .faq h4 {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .ftc-faq details,
+html[data-theme="dark"] .ftc-faq summary,
+html[data-theme="dark"] [id*="faq"] details,
+html[data-theme="dark"] [id*="faq"] summary,
+html[data-theme="dark"] .faq details,
+html[data-theme="dark"] .faq summary {
+  color: #f4f8ff !important;
+  background: #142b49 !important;
+  border-color: #3e6590 !important;
+}
+
+html[data-theme="dark"] .ftc-faq a,
+html[data-theme="dark"] [id*="faq"] a,
+html[data-theme="dark"] .faq a {
+  color: #8ec7ff !important;
+}
+</style>
+
+
+<style id="tols-mobile-optimization">
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img, canvas, svg, iframe {
+  max-width: 100%;
+}
+
+.ftc-page,
+.ftc-container,
+.ftc-content,
+.ftc-card,
+.ftc-panel,
+.ftc-section {
+  min-width: 0;
+}
+
+.ftc-table-wrap,
+table {
+  max-width: 100%;
+}
+
+.ftc-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  .ftc-page {
+    width: 100%;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .ftc-hero h1 {
+    font-size: clamp(1.65rem, 7vw, 2.35rem) !important;
+    line-height: 1.15 !important;
+  }
+
+  .ftc-hero p {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .ftc-card,
+  .ftc-panel,
+  .ftc-section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  input, select, textarea, button {
+    max-width: 100%;
+  }
+
+  .ftc-button,
+  button[type="submit"] {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ftc-page {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .ftc-card,
+  .ftc-panel,
+  .ftc-section {
+    padding: 14px !important;
+  }
+
+  .ftc-hero {
+    padding: 22px 16px !important;
+  }
+
+  .ftc-topnav a {
+    font-size: 13px !important;
+  }
+}
+</style>
+
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#2563eb">
+<style id="tols-accessibility-seo">
+#tols-skip-link{position:absolute;left:-9999px;top:8px;z-index:9999;padding:10px 14px;background:#2563eb;color:#fff;border-radius:8px}
+#tols-skip-link:focus{left:8px}
+</style>
+<style id="tols-ad-slot-styles">
+.tols-ad-slot{display:flex;align-items:center;justify-content:center;min-height:90px;width:100%;margin:24px auto;padding:12px;border:1px dashed var(--ftc-border,#cbd5e1);border-radius:12px;color:var(--ftc-muted,#64748b);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<a id="tols-skip-link" href="#calculator">Skip to calculator</a>
+
+<div class="ftc-wrap" id="ftc">
+
+  <nav class="ftc-topnav">
+    <a href="#calculator" data-page="calculator">Tax Tools</a>
+    <a href="#about" data-page="about">About</a>
+    <a href="#contact" data-page="contact">Contact</a>
+  <button class="tols-theme-toggle" id="tols-theme-toggle" type="button" aria-label="Switch color theme"><span id="tols-theme-icon">☾</span><span id="tols-theme-label">Dark mode</span></button></nav>
+
+  <div id="page-calculator" class="ftc-page active">
+  <p class="ftc-updated">Last updated: September 2026 · Reviewed by the Tols team</p>
+
+  <header class="ftc-hero">
+    <div class="ftc-badge">Tax year 2026 · IRS Rev. Proc. 2025-32</div>
+    <h1>US Federal Income Tax Calculator</h1>
+    <p>Estimate your federal income tax, FICA, state tax and take-home pay in seconds. Everything updates instantly as you type.</p>
+  </header>
+<!-- TOLS MANUAL AD LOCATION: TOP BANNER -->
+<div class="tols-ad-slot tols-ad-slot--top" id="tols-ad-top" aria-label="Advertisement">
+  <span>Advertisement space — add your provider code here</span>
+</div>
+
+
+  <div class="ftc-grid">
+    <!-- INPUTS -->
+    <section class="ftc-card">
+      <h2>Your details</h2>
+
+      <div class="ftc-field">
+        <label for="ftc-status">Filing status</label>
+        <select id="ftc-status">
+          <option value="single">Single</option>
+          <option value="mfj">Married Filing Jointly</option>
+          <option value="mfs">Married Filing Separately</option>
+          <option value="hoh">Head of Household</option>
+        </select>
+      </div>
+
+      <div class="ftc-field">
+        <label for="ftc-income">Annual gross income (wages) <span class="ftc-hint">— drag the slider or type</span></label>
+        <input type="number" id="ftc-income" min="0" step="1000" value="85000">
+        <input type="range" id="ftc-income-range" min="0" max="500000" step="1000" value="85000" aria-label="Annual gross income slider">
+      </div>
+
+      <div class="ftc-row">
+        <div class="ftc-field">
+          <label for="ftc-pretax">Pre-tax deductions <span class="ftc-hint">(401k, HSA)</span></label>
+          <input type="number" id="ftc-pretax" min="0" step="500" value="6000">
+        </div>
+        <div class="ftc-field">
+          <label for="ftc-dependents">Dependents under 17</label>
+          <input type="number" id="ftc-dependents" min="0" step="1" value="0">
+        </div>
+      </div>
+
+      <div class="ftc-field">
+        <label>Deduction type</label>
+        <div class="ftc-seg" role="group" aria-label="Deduction type">
+          <button type="button" id="ftc-std" aria-pressed="true">Standard</button>
+          <button type="button" id="ftc-item" aria-pressed="false">Itemized</button>
+        </div>
+      </div>
+
+      <div class="ftc-field" id="ftc-itemwrap" hidden>
+        <label for="ftc-itemized">Total itemized deductions</label>
+        <input type="number" id="ftc-itemized" min="0" step="500" value="20000">
+      </div>
+
+      <div class="ftc-field">
+        <label for="ftc-state">State <span class="ftc-hint">(optional, simplified flat-rate estimate)</span></label>
+        <select id="ftc-state"></select>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:10px"><button class="ftc-btn" type="button" id="ftc-copy">📋 Copy results to clipboard</button><button class="ftc-btn" type="button" id="ftc-reset" style="background:linear-gradient(135deg,#596174,#8b95a8);box-shadow:none">↺ Reset</button></div>
+      <p id="ftc-error" role="alert" aria-live="polite" style="display:none;color:#b42318;background:#fff1f0;border:1px solid #ffccc7;border-radius:10px;padding:10px;margin:12px 0 0;font-size:.85rem"></p>
+      <p class="ftc-note" style="margin-top:10px">Federal estimate only. This is a planning estimate, not tax advice or a filing-ready calculation. The state figure is a simplified representative-rate estimate, and the federal effective rate excludes FICA and state tax. Standard deduction 2026: Single $16,100 · MFJ $32,200 · MFS $16,100 · HOH $24,150. Child Tax Credit estimate: up to $2,200 per entered dependent assumed to be a qualifying child, with an approximate $50-per-$1,000 phaseout above $200,000 ($400,000 MFJ); age, relationship, residency, SSN, income, refundable portions, and other eligibility requirements are not fully modeled. State tax uses a simplified representative rate and is not a filing calculation.</p>
+      <p class="ftc-note" style="margin-top:6px">Some 2026 provisions—such as qualified overtime/tips deductions, senior deductions, special credits, and detailed state rules—may require additional information and are not fully modeled here.</p>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="ftc-card">
+      <h2>Your estimate</h2>
+      <div class="ftc-kpis">
+        <div class="ftc-kpi ftc-k1"><span>Take-home / year</span><strong id="ftc-net">—</strong></div>
+        <div class="ftc-kpi ftc-k2"><span>Take-home / month</span><strong id="ftc-netm">—</strong></div>
+        <div class="ftc-kpi ftc-k3"><span>Federal effective rate</span><strong id="ftc-eff">—</strong></div>
+        <div class="ftc-kpi ftc-k4"><span>Marginal rate</span><strong id="ftc-marg">—</strong></div>
+      </div>
+
+      <ul class="ftc-lines">
+        <li><span>Gross income</span><span id="ftc-gross">—</span></li>
+        <li><span>Pre-tax deductions</span><span id="ftc-l-pretax">—</span></li>
+        <li><span id="ftc-dedlabel">Standard deduction</span><span id="ftc-l-ded">—</span></li>
+        <li><span>Taxable income</span><span id="ftc-taxable">—</span></li>
+        <li><span>Federal income tax (after credits)</span><span id="ftc-fed">—</span></li>
+        <li><span>Social Security (6.2%)</span><span id="ftc-ss">—</span></li>
+        <li><span>Medicare (1.45% + 0.9% surtax)</span><span id="ftc-mc">—</span></li>
+        <li><span>State income tax (est.)</span><span id="ftc-state-tax">—</span></li>
+        <li><span>Total tax</span><span id="ftc-total">—</span></li>
+      </ul>
+
+      <div class="ftc-chartbox" style="margin-top:16px"><canvas id="ftc-chart"></canvas></div>
+    </section>
+  </div>
+
+  <section class="ftc-card" style="margin-top:18px">
+    <h2>Bracket-by-bracket breakdown</h2>
+    <div class="ftc-scroll">
+      <table>
+        <thead><tr><th>Bracket</th><th>Income range</th><th>Taxed in bracket</th><th>Tax</th></tr></thead>
+        <tbody id="ftc-brackets"></tbody>
+      </table>
+    </div>
+    <p class="ftc-note" style="margin-top:10px">Highlighted row = your marginal (top) bracket. Figures use 2026 federal brackets; Social Security wage base $184,500.</p>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <div class="ftc-content">
+    <section class="ftc-card">
+      <h2>What this federal income tax calculator does</h2>
+      <p>This free calculator estimates what you will owe the IRS for the <strong>2026 tax year</strong> (returns filed in early 2027). Enter your filing status, gross wages, pre-tax retirement or HSA contributions, dependents and optionally your state, and it instantly shows your taxable income, federal tax bill, Social Security and Medicare (FICA) withholding, an estimated state income tax, and what actually lands in your bank account each month. A bracket table shows exactly how each slice of your income is taxed, and the chart breaks your paycheck into take-home pay versus each tax.</p>
+    </section>
+
+    <section class="ftc-card">
+      <h2>How federal income tax brackets work</h2>
+      <p>The US uses a <strong>progressive</strong> system with seven rates: 10%, 12%, 22%, 24%, 32%, 35% and 37%. A common myth is that moving into a higher bracket taxes all of your income at that higher rate. It does not. Each bracket only applies to the dollars that fall inside its range.</p>
+      <p>For example, a single filer with $60,000 of taxable income in 2026 pays 10% on the first $12,400, 12% on the amount between $12,400 and $50,400, and 22% only on the remaining $9,600. Their top (marginal) rate is 22%, but their effective rate — total tax divided by total income — is far lower.</p>
+      <p>Before brackets apply, you subtract either the standard deduction or your itemized deductions, plus any pre-tax payroll contributions such as a traditional 401(k) or HSA. Eligible tax credits, such as the Child Tax Credit, are subtracted from tax itself. This tool uses a simplified credit assumption and does not verify every eligibility or refundable-credit rule.</p>
+    </section>
+
+    <section class="ftc-card ftc-faq">
+      <h2>Frequently asked questions</h2>
+      <details open><summary>What is the difference between marginal and effective tax rate?</summary>
+        <p>Your marginal rate is the rate applied to your last dollar of taxable income — useful for deciding whether to contribute more to a 401(k). Your effective federal rate is federal income tax after modeled credits divided by gross income. It is not a complete measure of total payroll and state taxes, and it may not always be lower than the marginal rate in every simplified scenario.</p></details>
+      <details><summary>Should I take the standard deduction or itemize?</summary>
+        <p>In general, compare your eligible itemized deductions with the standard deduction and use the applicable rules for your filing situation. This simplified tool lets you enter either a standard or itemized amount but does not determine full itemization eligibility. Itemizing usually only wins if you have a large mortgage interest, state and local tax, medical or charitable total.</p></details>
+      <details><summary>Does this include Social Security and Medicare taxes?</summary>
+        <p>Yes. Social Security is 6.2% of wages up to the 2026 wage base of $184,500. Medicare is 1.45% on all wages, plus an Additional Medicare Tax of 0.9% on wages above $200,000 (single/HOH), $250,000 (joint) or $125,000 (married filing separately). Note that pre-tax items differ for FICA purposes: HSA contributions through payroll avoid FICA, while traditional 401(k) contributions do not.</p></details>
+      <details><summary>Why is my state tax only an estimate?</summary>
+        <p>States differ enormously: nine have no wage income tax, some are flat-rate, and others have their own brackets, deductions and credits. This tool applies a single representative rate per state to your federal taxable income to give you a ballpark figure, not a filing-ready number.</p></details>
+      <details><summary>How do pre-tax deductions reduce my tax bill?</summary>
+        <p>Traditional 401(k), 403(b), HSA and FSA contributions come out of your pay before federal income tax is calculated, so they reduce your taxable income directly. A $6,000 contribution for someone in the 22% bracket cuts about $1,320 from their federal tax while still being their own money.</p></details>
+      <details><summary>Which tax year does this calculator use?</summary>
+        <p>The 2026 tax year, using the inflation-adjusted brackets, standard deductions and credit amounts published by the IRS in Revenue Procedure 2025-32. Some newer deductions, special situations, and eligibility rules are not fully modeled. These are the numbers for income earned during 2026 and reported on the return you file in 2027.</p></details>
+    </section>
+
+    <section class="ftc-disclaimer">
+      <strong>Disclaimer:</strong> This calculator provides a simplified estimate for general information only and is not tax, legal or financial advice. It does not account for capital gains, self-employment tax, AMT, phase-outs, local taxes, or most credits and deductions. Your actual liability may differ. This tool does not model every 2026 provision, including all new deductions, phaseouts, filing-specific limitations, local taxes, or refundable-credit rules. Consult a qualified tax professional or the IRS before making decisions.
+    </section>
+  </div>
+  </div>
+
+  <div id="page-about" class="ftc-page">
+    <header class="ftc-hero">
+      <h1>About Us</h1>
+      <p>Practical, free calculators for the money questions you actually have.</p>
+    </header>
+    <section class="ftc-card" style="margin-top:18px">
+      <p style="color:#3c415f">Tols started with a simple idea: figuring out your taxes, your paycheck, or a loan payment shouldn't mean downloading a spreadsheet or booking a call with someone. It should take thirty seconds, right in your browser.</p>
+      <p style="color:#3c415f">That's what we build — a growing set of calculators covering federal income tax, take-home pay, loans, and more. Type in your numbers and watch the results update live, with a breakdown that actually explains what you're looking at, not just a final figure.</p>
+      <p style="color:#3c415f">We keep every tool current with the latest IRS figures, rates, and thresholds, and we're constantly refining the calculations based on feedback from people using them.</p>
+      <p style="color:#3c415f;margin-bottom:0">One thing we're not: a substitute for a CPA, financial planner, or attorney. Think of Tols as a fast, free first step — the place you get a solid estimate before talking numbers with a professional.</p>
+    </section>
+  </div>
+
+  <div id="page-contact" class="ftc-page">
+    <header class="ftc-hero">
+      <h1>Get in Touch</h1>
+      <p>Spotted a bug, have an idea for a new calculator, or just want to say hi? Send it over.</p>
+    </header>
+    <section class="ftc-card" style="margin-top:18px">
+      <p style="color:#3c415f"><strong>Email us at:</strong> <a href="mailto:support@www.tols.com" style="color:var(--ftc-brand);font-weight:700;text-decoration:none">support@www.tols.com</a></p>
+      <p style="color:#3c415f">We read every message and typically get back to you within 1–2 business days.</p>
+      <p style="color:#3c415f">Quick check first: the FAQ under each calculator usually answers "how is this calculated?" type questions, so take a peek there if that's what's on your mind.</p>
+      <p style="color:#3c415f;margin-bottom:0">Reporting a calculation that looks off? Tell us which calculator, the numbers you entered, and what you expected to see instead — that's the fastest way for us to track it down.</p>
+    </section>
+  </div>
+
+  <div id="page-privacy" class="ftc-page">
+    <header class="ftc-hero">
+      <h1>Privacy Policy</h1>
+<p class="ftc-note" style="margin-top:10px">
+Advertising scripts should be added only through your selected provider's
+official dashboard and instructions. Review consent, privacy, placement,
+and policy requirements before enabling ads on the live website.
+</p>
+      <p>What we collect, why, and the choices you have. Last updated September 2026.</p>
+    </header>
+    <section class="ftc-card" style="margin-top:18px">
+      <h2 style="font-size:1.1rem">The short version</h2>
+      <p style="color:#3c415f">You don't need an account to use Tols, and the figures you type into our calculators are processed right in your browser — they never touch our servers. This policy covers the handful of things we do collect around the edges: basic analytics and, potentially, advertising.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">What we actually collect</h2>
+      <ul style="color:#3c415f;padding-left:20px">
+        <li><strong>Site analytics:</strong> aggregate, anonymized data — page views, rough location (country/city), device type — used to see which tools people find useful.</li>
+        <li><strong>Cookies:</strong> small files that may be set for analytics or ad delivery, covered in more detail below.</li>
+        <li><strong>Anything you email us:</strong> we hold onto that conversation so we can respond and, where relevant, fix or improve a tool.</li>
+      </ul>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">Ads on this site</h2>
+      <p style="color:#3c415f">We may run ads through third-party advertising networks, including Adsterra. These networks may use cookies or similar technologies to display and measure advertisements in accordance with their own privacy policies.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">Other services we use</h2>
+      <p style="color:#3c415f">Behind the scenes we may rely on third parties for hosting, analytics, or advertising delivery. Each of those has its own privacy practices governing the data that passes through them.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">Your control over this</h2>
+      <p style="color:#3c415f">Cookies can be switched off entirely in your browser settings whenever you like. The site — and every calculator on it — still works fine without them.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">If this policy changes</h2>
+      <p style="color:#3c415f">We'll update this page and bump the date at the top whenever something material changes, so it's always worth a glance if it's been a while.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">Questions?</h2>
+      <p style="color:#3c415f;margin-bottom:0">Reach us anytime at <a href="mailto:support@www.tols.com" style="color:var(--ftc-brand)">support@www.tols.com</a>.</p>
+    </section>
+  </div>
+
+  <div id="page-terms" class="ftc-page">
+    <header class="ftc-hero">
+      <h1>Terms of Use</h1>
+      <p>The ground rules for using Tols. Last updated September 2026.</p>
+    </header>
+    <section class="ftc-card" style="margin-top:18px">
+      <h2 style="font-size:1.1rem">By using this site</h2>
+      <p style="color:#3c415f">Using Tols means you're agreeing to these terms. If something here doesn't sit right with you, the best move is simply not to use the site.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">This isn't professional advice</h2>
+      <p style="color:#3c415f">Every calculator and every number on this site exists to give you a quick, general estimate — nothing here is tax, financial, or legal advice. Your real-world numbers can differ once actual filings, credits, or loan terms are involved. When money decisions get real, loop in a CPA, financial advisor, or attorney.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">Accuracy isn't guaranteed</h2>
+      <p style="color:#3c415f">We work hard to keep our tools current with the latest tax brackets and rates, but we can't promise the results are error-free or complete. Use everything on this site with that in mind, at your own discretion.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">Limits on our liability</h2>
+      <p style="color:#3c415f">To the extent the law allows, Tols and the people behind it aren't liable for losses or damages that come from using — or not being able to use — this site or trusting its calculations.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">Who owns what's here</h2>
+      <p style="color:#3c415f">The design, code, and written content on Tols belong to us unless we say otherwise, and shouldn't be copied or reused without permission.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">Links and ads from elsewhere</h2>
+      <p style="color:#3c415f">You may run into links or ads pointing off this site. We don't vouch for what's on the other end of those.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">These terms can change</h2>
+      <p style="color:#3c415f">We may update these terms occasionally. Sticking around and using the site after an update means you're on board with the new version.</p>
+    </section>
+    <section class="ftc-card">
+      <h2 style="font-size:1.1rem">Reach us</h2>
+      <p style="color:#3c415f;margin-bottom:0">Questions about any of this? <a href="mailto:support@www.tols.com" style="color:var(--ftc-brand)">support@www.tols.com</a>.</p>
+    </section>
+  </div>
+
+  <footer class="ftc-footer">
+    <div><a href="#about" data-page="about">About</a><a href="#contact" data-page="contact">Contact</a><a href="#privacy" data-page="privacy">Privacy Policy</a><a href="#terms" data-page="terms">Terms of Use</a></div>
+    <div>&copy; 2026 Tols. All rights reserved.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var pages=["calculator","about","contact","privacy","terms"];
+  function showPage(name){
+    if(pages.indexOf(name)===-1) name="calculator";
+    pages.forEach(function(p){
+      var el=document.getElementById("page-"+p);
+      if(el) el.classList.toggle("active",p===name);
+    });
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll("[data-page]").forEach(function(a){
+    a.addEventListener("click",function(e){
+      e.preventDefault();
+      var name=a.getAttribute("data-page");
+      history.pushState(null,"","#"+name);
+      showPage(name);
+    });
+  });
+  window.addEventListener("popstate",function(){
+    showPage(location.hash.replace("#",""));
+  });
+  showPage(location.hash.replace("#","") || "calculator");
+})();
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var TAX_YEAR = 2026;
+  var BRACKETS = {
+    single:[[0,.10],[12400,.12],[50400,.22],[105700,.24],[201775,.32],[256225,.35],[640600,.37]],
+    mfj:   [[0,.10],[24800,.12],[100800,.22],[211400,.24],[403550,.32],[512450,.35],[768700,.37]],
+    mfs:   [[0,.10],[12400,.12],[50400,.22],[105700,.24],[201775,.32],[256225,.35],[384350,.37]],
+    hoh:   [[0,.10],[17700,.12],[67450,.22],[105700,.24],[201750,.32],[256200,.35],[640600,.37]]
+  };
+  var STD = {single:16100,mfj:32200,mfs:16100,hoh:24150};
+  var MEDICARE_THRESHOLD = {single:200000,mfj:250000,mfs:125000,hoh:200000};
+  var SS_WAGE_BASE = 184500, SS_RATE = .062, MC_RATE = .0145, MC_SURTAX = .009;
+  var CTC = 2200;
+
+  var STATES = [["",'No state tax estimate',0],["AL","Alabama",.05],["AK","Alaska",0],["AZ","Arizona",.025],["AR","Arkansas",.039],["CA","California",.08],["CO","Colorado",.044],["CT","Connecticut",.05],["DE","Delaware",.052],["DC","District of Columbia",.065],["FL","Florida",0],["GA","Georgia",.0519],["HI","Hawaii",.079],["ID","Idaho",.053],["IL","Illinois",.0495],["IN","Indiana",.03],["IA","Iowa",.038],["KS","Kansas",.0558],["KY","Kentucky",.04],["LA","Louisiana",.03],["ME","Maine",.0675],["MD","Maryland",.0475],["MA","Massachusetts",.05],["MI","Michigan",.0425],["MN","Minnesota",.068],["MS","Mississippi",.044],["MO","Missouri",.047],["MT","Montana",.059],["NE","Nebraska",.052],["NV","Nevada",0],["NH","New Hampshire",0],["NJ","New Jersey",.0637],["NM","New Mexico",.049],["NY","New York",.0585],["NC","North Carolina",.0425],["ND","North Dakota",.0195],["OH","Ohio",.035],["OK","Oklahoma",.0475],["OR","Oregon",.0875],["PA","Pennsylvania",.0307],["RI","Rhode Island",.0475],["SC","South Carolina",.062],["SD","South Dakota",0],["TN","Tennessee",0],["TX","Texas",0],["UT","Utah",.0455],["VT","Vermont",.066],["VA","Virginia",.0575],["WA","Washington",0],["WV","West Virginia",.0482],["WI","Wisconsin",.053],["WY","Wyoming",0]];
+
+  var $ = function(id){return document.getElementById(id);};
+  var money = function(n){return n.toLocaleString("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});};
+  var pct = function(n){return (n*100).toFixed(2)+"%";};
+
+  var sel = $("ftc-state");
+  STATES.forEach(function(s){var o=document.createElement("option");o.value=s[0];o.textContent=s[1];o.dataset.rate=s[2];sel.appendChild(o);});
+
+  var itemizing = false;
+  $("ftc-std").addEventListener("click",function(){setMode(false);});
+  $("ftc-item").addEventListener("click",function(){setMode(true);});
+  function setMode(v){
+    itemizing=v;
+    $("ftc-std").setAttribute("aria-pressed",String(!v));
+    $("ftc-item").setAttribute("aria-pressed",String(v));
+    $("ftc-itemwrap").hidden=!v;
+    $("ftc-dedlabel").textContent=v?"Itemized deductions":"Standard deduction";
+    render();
+  }
+
+  var incomeNum=$("ftc-income"), incomeRange=$("ftc-income-range");
+  incomeRange.addEventListener("input",function(){incomeNum.value=incomeRange.value;render();});
+  incomeNum.addEventListener("input",function(){
+    var v=+incomeNum.value||0;
+    incomeRange.value=Math.min(v,+incomeRange.max);
+    render();
+  });
+  ["ftc-status","ftc-pretax","ftc-dependents","ftc-itemized","ftc-state"].forEach(function(id){
+    $(id).addEventListener("input",render);$(id).addEventListener("change",render);
+  });
+
+  function bracketTax(taxable,status){
+    var b=BRACKETS[status], rows=[], tax=0, marginal=0;
+    taxable=Math.max(0,Number(taxable)||0);
+    for(var i=0;i<b.length;i++){
+      var lo=b[i][0], rate=b[i][1], hi=(i+1<b.length)?b[i+1][0]:Infinity;
+      var amt=taxable>lo?Math.max(0,Math.min(taxable,hi)-lo):0;
+      var t=amt*rate; tax+=t;
+      if(amt>0) marginal=rate;
+      rows.push({lo:lo,hi:hi,rate:rate,amt:amt,tax:t,active:false});
+    }
+    for(var j=rows.length-1;j>=0;j--){
+      if(rows[j].amt>0){rows[j].active=true;break;}
+    }
+    return {tax:tax,rows:rows,marginal:marginal};
+  }
+
+  var last=null, chart=null, chartLoading=false;
+
+  function render(){
+    var status=$("ftc-status").value;
+    var grossRaw=$("ftc-income").value;
+    var pretaxRaw=$("ftc-pretax").value;
+    var depsRaw=$("ftc-dependents").value;
+    var itemizedRaw=$("ftc-itemized").value;
+    var gross=Number(grossRaw);
+    var pretax=Number(pretaxRaw);
+    var deps=Number(depsRaw);
+    var itemized=Number(itemizedRaw);
+    var error=[];
+
+    if(grossRaw==="" || !Number.isFinite(gross) || gross<0) error.push("Enter an annual income of $0 or more.");
+    if(pretaxRaw==="" || !Number.isFinite(pretax) || pretax<0) error.push("Pre-tax deductions must be $0 or more.");
+    if(Number.isFinite(gross) && Number.isFinite(pretax) && pretax>gross) error.push("Pre-tax deductions cannot exceed gross income.");
+    if(depsRaw==="" || !Number.isFinite(deps) || !Number.isInteger(deps) || deps<0 || deps>20) error.push("Dependents must be a whole number from 0 to 20.");
+    if(itemizing && (itemizedRaw==="" || !Number.isFinite(itemized) || itemized<0)) error.push("Itemized deductions must be $0 or more.");
+
+    var errorEl=$("ftc-error");
+    if(error.length){
+      errorEl.textContent=error.join(" ");
+      errorEl.style.display="block";
+      return;
+    }
+    errorEl.textContent="";
+    errorEl.style.display="none";
+
+    gross=Math.max(0,gross);
+    pretax=Math.min(Math.max(0,pretax),gross);
+    deps=Math.max(0,Math.min(20,Math.floor(deps)));
+
+    var ded=itemizing?Math.max(0,itemized):STD[status];
+    var afterPretax=gross-pretax;
+    var taxable=Math.max(0,afterPretax-ded);
+
+    var res=bracketTax(taxable,status);
+    var agiApprox=Math.max(0,gross-pretax);
+    var ctcPhaseoutStart=(status==="mfj")?400000:200000;
+    var ctcReduction=Math.max(0,Math.ceil((agiApprox-ctcPhaseoutStart)/1000))*50;
+    var credits=Math.max(0,deps*CTC-ctcReduction);
+    var fed=Math.max(0,res.tax-credits);
+
+    var ss=Math.min(gross,SS_WAGE_BASE)*SS_RATE;
+    var mc=gross*MC_RATE+Math.max(0,gross-MEDICARE_THRESHOLD[status])*MC_SURTAX;
+    var rate=Number(sel.selectedOptions[0].dataset.rate||0);
+    var stateTax=taxable*rate;
+
+    var total=fed+ss+mc+stateTax;
+    var net=Math.max(0,gross-total-pretax);
+    var federalEff=gross>0?fed/gross:0;
+    var totalEff=gross>0?total/gross:0;
+
+    $("ftc-gross").textContent=money(gross);
+    $("ftc-l-pretax").textContent="− "+money(pretax);
+    $("ftc-l-ded").textContent="− "+money(ded);
+    $("ftc-taxable").textContent=money(taxable);
+    $("ftc-fed").textContent=money(fed)+(credits?" (after "+money(credits)+" credits)":"");
+    $("ftc-ss").textContent=money(ss);
+    $("ftc-mc").textContent=money(mc);
+    $("ftc-state-tax").textContent=money(stateTax);
+    $("ftc-total").textContent=money(total);
+    $("ftc-net").textContent=money(net);
+    $("ftc-netm").textContent=money(net/12);
+    $("ftc-eff").textContent=pct(federalEff);
+    $("ftc-marg").textContent=res.marginal>0?pct(res.marginal):"N/A";
+
+    var tb=$("ftc-brackets"); tb.innerHTML="";
+    res.rows.forEach(function(r){
+      var tr=document.createElement("tr");
+      if(r.active) tr.className="active";
+      tr.innerHTML="<td>"+(r.rate*100)+"%</td><td>"+money(r.lo)+" – "+(r.hi===Infinity?"and up":money(r.hi))+
+        "</td><td>"+money(r.amt)+"</td><td>"+money(r.tax)+"</td>";
+      tb.appendChild(tr);
+    });
+
+    last={status:$("ftc-status").selectedOptions[0].text,gross:gross,pretax:pretax,ded:ded,taxable:taxable,
+      fed:fed,ss:ss,mc:mc,state:stateTax,stateName:sel.selectedOptions[0].text,total:total,net:net,
+      eff:federalEff,totalEff:totalEff,marg:res.marginal,credits:credits};
+
+    updateChart([net,fed,ss+mc,stateTax]);
+  }
+
+  function updateChart(data){
+    if(!window.Chart){ loadChart(function(){updateChart(data);}); return; }
+    var ctx=$("ftc-chart");
+    if(!chart){
+      chart=new Chart(ctx,{type:"doughnut",data:{
+        labels:["Take-home pay","Federal tax","FICA (SS + Medicare)","State tax"],
+        datasets:[{data:data,backgroundColor:["#00c2a8","#5b4bff","#ffb020","#ff4d8d"],borderWidth:0,hoverOffset:8}]},
+        options:{responsive:true,maintainAspectRatio:false,cutout:"58%",
+          plugins:{legend:{position:"bottom",labels:{boxWidth:12,usePointStyle:true,pointStyle:"circle",font:{size:12}}},
+          tooltip:{callbacks:{label:function(c){return c.label+": "+c.parsed.toLocaleString("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});}}}}}});
+    } else { chart.data.datasets[0].data=data; chart.update(); }
+  }
+
+  function loadChart(cb){
+    if(chartLoading){document.addEventListener("ftc-chart-ready",cb,{once:true});return;}
+    chartLoading=true;
+    var s=document.createElement("script");
+    s.src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js";
+    s.async=true;
+    s.onload=function(){chartLoading=false;document.dispatchEvent(new Event("ftc-chart-ready"));cb();};
+    s.onerror=function(){
+      chartLoading=false;
+      var chartBox=$("ftc-chart").parentElement;
+      chartBox.innerHTML='<p class="ftc-note" style="padding:20px 0">The chart could not load. Your numerical results are still available above.</p>';
+      document.dispatchEvent(new Event("ftc-chart-ready"));
+    };
+    document.head.appendChild(s);
+  }
+
+  // Lazy-load Chart.js only when the chart scrolls into view
+  var box=$("ftc-chart");
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(e){
+      if(e[0].isIntersecting){io.disconnect();loadChart(function(){render();});}
+    },{rootMargin:"200px"});
+    io.observe(box);
+  } else { loadChart(function(){render();}); }
+
+  $("ftc-copy").addEventListener("click",function(){
+    if(!last)return;
+    var t=["US Federal Income Tax Estimate — Tax Year "+TAX_YEAR,
+      "Filing status: "+last.status,
+      "Gross income: "+money(last.gross),
+      "Pre-tax deductions: "+money(last.pretax),
+      (itemizing?"Itemized":"Standard")+" deduction: "+money(last.ded),
+      "Taxable income: "+money(last.taxable),
+      "Federal income tax: "+money(last.fed),
+      "Social Security: "+money(last.ss),
+      "Medicare: "+money(last.mc),
+      "State tax ("+last.stateName+"): "+money(last.state),
+      "Total tax: "+money(last.total),
+      "Take-home (annual): "+money(last.net),
+      "Take-home (monthly): "+money(last.net/12),
+      "Federal effective rate: "+pct(last.eff),
+      "Total effective rate (including estimated state tax and FICA): "+pct(last.totalEff),
+      "Marginal rate: "+(last.marg>0?pct(last.marg):"N/A"),
+      "Estimate only — not tax advice."].join("\n");
+    var done=function(){var b=$("ftc-copy");var o=b.textContent;b.textContent="✅ Copied!";setTimeout(function(){b.textContent=o;},1800);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,fallback);}else{fallback();}
+    function fallback(){var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done();}catch(e){}document.body.removeChild(ta);}
+  });
+
+  $("ftc-reset").addEventListener("click",function(){
+    $("ftc-status").value="single";
+    $("ftc-income").value="85000";
+    $("ftc-income-range").value="85000";
+    $("ftc-pretax").value="6000";
+    $("ftc-dependents").value="0";
+    $("ftc-itemized").value="20000";
+    $("ftc-state").value="";
+    setMode(false);
+    render();
+  });
+
+  render();
+})();
+</script>
+
+<script id="tols-theme-script">
+(function () {
+  const root = document.documentElement;
+  const toggle = document.getElementById('tols-theme-toggle');
+  const icon = document.getElementById('tols-theme-icon');
+  const label = document.getElementById('tols-theme-label');
+  if (!toggle) return;
+
+  let saved = null;
+  try { saved = localStorage.getItem('tols-theme'); } catch (e) {}
+  const initial = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    const dark = theme === 'dark';
+    icon.textContent = dark ? '☀' : '☾';
+    label.textContent = dark ? 'Light mode' : 'Dark mode';
+    toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    try { localStorage.setItem('tols-theme', theme); } catch (e) {}
+  }
+
+  applyTheme(initial);
+  toggle.addEventListener('click', function () {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+})();
+</script>
+
+</body>
+</html>
