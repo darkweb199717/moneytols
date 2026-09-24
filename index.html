@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/favicon.ico">
 <title>US Federal Income Tax Calculator 2026 | MoneyTols</title>
-<meta name="description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with MoneyTols' free tax calculator.'s free tax calculator.">
-<link rel="canonical" href="moneytols.com/us-federal-income-tax-calculator">
+<meta name="description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with MoneyTols' free tax calculator.">
+<link rel="canonical" href="https://moneytols.com/us-federal-income-tax-calculator">
 <meta property="og:type" content="website">
 <meta property="og:title" content="US Federal Income Tax Calculator 2026 | MoneyTols">
-<meta property="og:description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with MoneyTols' free tax calculator.'s free tax calculator.">
-<meta property="og:url" content="moneytols.com/us-federal-income-tax-calculator">
+<meta property="og:description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with MoneyTols' free tax calculator.">
+<meta property="og:url" content="https://moneytols.com/us-federal-income-tax-calculator">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="US Federal Income Tax Calculator 2026 | MoneyTols">
-<meta name="twitter:description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with MoneyTols' free tax calculator.'s free tax calculator.">
+<meta name="twitter:description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with MoneyTols' free tax calculator.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -23,7 +23,7 @@
     {"@type":"Question","name":"Should I take the standard deduction or itemize?","acceptedAnswer":{"@type":"Answer","text":"In general, compare your eligible itemized deductions with the standard deduction and use the applicable rules for your filing situation. This simplified tool lets you enter either a standard or itemized amount but does not determine full itemization eligibility. Itemizing usually only wins if you have a large mortgage interest, state and local tax, medical or charitable total."}},
     {"@type":"Question","name":"Does this include Social Security and Medicare taxes?","acceptedAnswer":{"@type":"Answer","text":"Yes. Social Security is 6.2% of wages up to the 2026 wage base of $184,500. Medicare is 1.45% on all wages, plus an Additional Medicare Tax of 0.9% on wages above $200,000 (single/HOH), $250,000 (joint) or $125,000 (married filing separately)."}},
     {"@type":"Question","name":"Why is my state tax only an estimate?","acceptedAnswer":{"@type":"Answer","text":"States differ enormously: nine have no wage income tax, some are flat-rate, and others have their own brackets, deductions and credits. This tool applies a single representative rate per state to your federal taxable income to give you a ballpark figure, not a filing-ready number."}},
-    {"@type":"Question","name":"How do pre-tax deductions reduce my tax bill?","acceptedAnswer":{"@type":"Answer","text":"Traditional 401(k), 403(b), HSA and FSA contributions come out of your pay before federal income tax is calculated, so they reduce your taxable income directly. A $6,000 contribution for someone in the 22% bracket cuts about $1,320 from their federal tax while still being their own money."}},
+    {"@type":"Question","name":"How do pre-tax deductions reduce my tax bill?","acceptedAnswer":{"@type":"Answer","text":"Traditional 401(k), 403(b), HSA and FSA contributions can reduce federal taxable income when eligible. Traditional 401(k) and 403(b) contributions generally remain subject to FICA, while eligible payroll HSA/FSA contributions may also avoid FICA. A $6,000 contribution for someone in the 22% bracket could reduce federal income tax by about $1,320, depending on eligibility and other details."}},
     {"@type":"Question","name":"Which tax year does this calculator use?","acceptedAnswer":{"@type":"Answer","text":"The 2026 tax year, using the inflation-adjusted brackets, standard deductions and credit amounts published by the IRS in Revenue Procedure 2025-32. Some newer deductions, special situations, and eligibility rules are not fully modeled. These are the numbers for income earned during 2026 and reported on the return you file in 2027."}}
   ]
 }
@@ -45,6 +45,10 @@
 .ftc-badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
   padding:4px 12px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px}
 .ftc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:18px}
+.ftc-calculator-layout{display:grid;grid-template-columns:minmax(0,1fr) 160px;gap:18px;align-items:start;margin-top:18px}
+.ftc-calculator-layout .ftc-grid{margin-top:0}
+@media(max-width:1100px){.ftc-calculator-layout{grid-template-columns:1fr}.ftc-calculator-layout .tols-ad-slot--sidebar{justify-self:center}}
+
 @media(max-width:860px){.ftc-grid{grid-template-columns:1fr}}
 .ftc-card{background:var(--ftc-card);border:1px solid var(--ftc-line);border-radius:var(--ftc-radius);
   padding:20px;box-shadow:0 8px 24px rgba(19,23,53,.06)}
@@ -213,10 +217,18 @@
     padding: 8px;
   }
 }
+/* Show the 728x90 banner on wider screens only; show the 320x50 banner on narrow screens only */
+.tols-ad-slot--desktop-only { display: block; }
+.tols-ad-slot--mobile { display: none; }
+@media (max-width: 767px) {
+  .tols-ad-slot--desktop-only { display: none; }
+  .tols-ad-slot--mobile { display: flex; }
+}
 
 </style>
 
-<style id="tols-theme-switcher">
+<style id="tols-dark-mode">
+  /* ---- Theme tokens & toggle button ---- */
   :root {
     color-scheme: light;
     --tols-mode-bg: #f6f8fc;
@@ -231,33 +243,14 @@
     --tols-mode-text: #e8eefc;
     --tols-mode-card: #151f33;
     --tols-mode-border: #2c3a52;
-  }
-
-  html[data-theme="dark"] body {
-    background: var(--tols-mode-bg) !important;
-    color: var(--tols-mode-text) !important;
-  }
-
-  html[data-theme="dark"] .ftc-card,
-  html[data-theme="dark"] .ftc-panel,
-  html[data-theme="dark"] .ftc-section,
-  html[data-theme="dark"] .ftc-table-wrap,
-  html[data-theme="dark"] .ftc-result,
-  html[data-theme="dark"] .ftc-topnav {
-    background: var(--tols-mode-card) !important;
-    border-color: var(--tols-mode-border) !important;
-  }
-
-  html[data-theme="dark"] input,
-  html[data-theme="dark"] select,
-  html[data-theme="dark"] textarea {
-    background: #10192b !important;
-    color: #edf3ff !important;
-    border-color: #3b4b66 !important;
-  }
-
-  html[data-theme="dark"] a {
-    color: #8db8ff;
+    --ftc-bg: #0b1220;
+    --ftc-card: #14213a;
+    --ftc-surface: #1a2b49;
+    --ftc-text: #f3f7ff;
+    --ftc-muted: #b9c9e3;
+    --ftc-border: #35547e;
+    --ftc-brand: #70b7ff;
+    --ftc-brand-dark: #a8d4ff;
   }
 
   .tols-theme-toggle {
@@ -289,265 +282,210 @@
       justify-content: center;
     }
   }
-</style>
 
+  /* ---- Base surfaces & text (dark mode) ---- */
+  html[data-theme="dark"] body {
+    background: var(--tols-mode-bg) !important;
+    color: var(--tols-mode-text) !important;
+    text-shadow: none !important;
+  }
 
-<style id="tols-dark-contrast-fix">
-html[data-theme="dark"] {
-  --ftc-bg: #0b1220 !important;
-  --ftc-card: #14213a !important;
-  --ftc-surface: #1a2b49 !important;
-  --ftc-text: #f3f7ff !important;
-  --ftc-muted: #b9c9e3 !important;
-  --ftc-border: #35547e !important;
-  --ftc-brand: #70b7ff !important;
-  --ftc-brand-dark: #a8d4ff !important;
-}
+  html[data-theme="dark"] body * {
+    border-color: #35547e;
+    text-shadow: none !important;
+  }
 
-html[data-theme="dark"] body,
-html[data-theme="dark"] main,
-html[data-theme="dark"] section,
-html[data-theme="dark"] article,
-html[data-theme="dark"] p,
-html[data-theme="dark"] li,
-html[data-theme="dark"] label,
-html[data-theme="dark"] small {
-  color: #f3f7ff !important;
-}
+  html[data-theme="dark"] main,
+  html[data-theme="dark"] section,
+  html[data-theme="dark"] article,
+  html[data-theme="dark"] p,
+  html[data-theme="dark"] li,
+  html[data-theme="dark"] label,
+  html[data-theme="dark"] small,
+  html[data-theme="dark"] .ftc-page,
+  html[data-theme="dark"] .ftc-page *,
+  html[data-theme="dark"] .ftc-container,
+  html[data-theme="dark"] .ftc-container *,
+  html[data-theme="dark"] .ftc-content,
+  html[data-theme="dark"] .ftc-content * {
+    color: #f3f7ff !important;
+  }
 
-html[data-theme="dark"] h1,
-html[data-theme="dark"] h2,
-html[data-theme="dark"] h3,
-html[data-theme="dark"] h4,
-html[data-theme="dark"] strong,
-html[data-theme="dark"] b {
-  color: #ffffff !important;
-}
+  html[data-theme="dark"] h1,
+  html[data-theme="dark"] h2,
+  html[data-theme="dark"] h3,
+  html[data-theme="dark"] h4,
+  html[data-theme="dark"] h5,
+  html[data-theme="dark"] h6,
+  html[data-theme="dark"] strong,
+  html[data-theme="dark"] b {
+    color: #ffffff !important;
+  }
 
-html[data-theme="dark"] .ftc-muted,
-html[data-theme="dark"] .ftc-help,
-html[data-theme="dark"] .ftc-subtitle,
-html[data-theme="dark"] .ftc-description,
-html[data-theme="dark"] .ftc-hero p {
-  color: #c5d5ed !important;
-}
+  html[data-theme="dark"] .ftc-muted,
+  html[data-theme="dark"] .ftc-help,
+  html[data-theme="dark"] .ftc-subtitle,
+  html[data-theme="dark"] .ftc-description,
+  html[data-theme="dark"] .ftc-hero p,
+  html[data-theme="dark"] .ftc-note,
+  html[data-theme="dark"] .ftc-disclaimer,
+  html[data-theme="dark"] .ftc-footnote {
+    color: #c5d5ed !important;
+  }
 
-html[data-theme="dark"] .ftc-card,
-html[data-theme="dark"] .ftc-panel,
-html[data-theme="dark"] .ftc-section,
-html[data-theme="dark"] .ftc-result,
-html[data-theme="dark"] .ftc-table-wrap,
-html[data-theme="dark"] .ftc-topnav,
-html[data-theme="dark"] .ftc-footer {
-  background: #14213a !important;
-  color: #f3f7ff !important;
-  border-color: #35547e !important;
-}
+  html[data-theme="dark"] .ftc-value,
+  html[data-theme="dark"] .ftc-number,
+  html[data-theme="dark"] .ftc-total,
+  html[data-theme="dark"] output {
+    color: #8ec7ff !important;
+  }
 
-html[data-theme="dark"] .ftc-topnav a,
-html[data-theme="dark"] .ftc-footer a,
-html[data-theme="dark"] a {
-  color: #8bc4ff !important;
-}
+  /* ---- Cards, panels, tables ---- */
+  html[data-theme="dark"] .ftc-card,
+  html[data-theme="dark"] .ftc-panel,
+  html[data-theme="dark"] .ftc-section,
+  html[data-theme="dark"] .ftc-table-wrap,
+  html[data-theme="dark"] .ftc-result,
+  html[data-theme="dark"] .ftc-topnav,
+  html[data-theme="dark"] .ftc-footer {
+    background: #14213a !important;
+    color: #f3f7ff !important;
+    border-color: #35547e !important;
+  }
 
-html[data-theme="dark"] .ftc-topnav a:hover,
-html[data-theme="dark"] .ftc-footer a:hover,
-html[data-theme="dark"] a:hover {
-  color: #c1e1ff !important;
-}
+  html[data-theme="dark"] table,
+  html[data-theme="dark"] th,
+  html[data-theme="dark"] td {
+    color: #f3f7ff !important;
+    border-color: #35547e !important;
+  }
 
-html[data-theme="dark"] input,
-html[data-theme="dark"] select,
-html[data-theme="dark"] textarea {
-  background: #0e1b30 !important;
-  color: #ffffff !important;
-  border-color: #41658f !important;
-}
+  html[data-theme="dark"] .ftc-badge,
+  html[data-theme="dark"] .ftc-pill,
+  html[data-theme="dark"] .ftc-tag {
+    background: #1e4775 !important;
+    color: #d9edff !important;
+    border-color: #4c83b9 !important;
+  }
 
-html[data-theme="dark"] input::placeholder,
-html[data-theme="dark"] textarea::placeholder {
-  color: #9db3d1 !important;
-}
+  html[data-theme="dark"] .ftc-hero {
+    background: linear-gradient(135deg, #102746 0%, #173d67 100%) !important;
+    border-color: #416d9e !important;
+  }
 
-html[data-theme="dark"] button,
-html[data-theme="dark"] .tols-theme-toggle {
-  color: #ffffff !important;
-}
+  html[data-theme="dark"] .ftc-error,
+  html[data-theme="dark"] [role="alert"] {
+    color: #ffd0d0 !important;
+    background: #542b3a !important;
+    border-color: #a85a70 !important;
+  }
 
-html[data-theme="dark"] .ftc-badge,
-html[data-theme="dark"] .ftc-pill,
-html[data-theme="dark"] .ftc-tag {
-  background: #1e4775 !important;
-  color: #d9edff !important;
-  border-color: #4c83b9 !important;
-}
+  /* ---- Links ---- */
+  html[data-theme="dark"] a,
+  html[data-theme="dark"] .ftc-topnav a,
+  html[data-theme="dark"] .ftc-footer a {
+    color: #8bc4ff !important;
+  }
 
-html[data-theme="dark"] .ftc-hero {
-  background: linear-gradient(135deg, #102746 0%, #173d67 100%) !important;
-  border-color: #416d9e !important;
-}
+  html[data-theme="dark"] a:hover,
+  html[data-theme="dark"] .ftc-topnav a:hover,
+  html[data-theme="dark"] .ftc-footer a:hover {
+    color: #c1e1ff !important;
+  }
 
-html[data-theme="dark"] .ftc-button,
-html[data-theme="dark"] button[type="submit"] {
-  background: #2676c9 !important;
-  color: #ffffff !important;
-  border-color: #5ca8f2 !important;
-}
+  /* ---- Form controls ---- */
+  html[data-theme="dark"] input,
+  html[data-theme="dark"] select,
+  html[data-theme="dark"] textarea {
+    background: #0e1b30 !important;
+    color: #ffffff !important;
+    border-color: #41658f !important;
+  }
 
-html[data-theme="dark"] .ftc-button:hover,
-html[data-theme="dark"] button[type="submit"]:hover {
-  background: #368ee8 !important;
-}
+  html[data-theme="dark"] input::placeholder,
+  html[data-theme="dark"] textarea::placeholder {
+    color: #9db3d1 !important;
+  }
 
-html[data-theme="dark"] table,
-html[data-theme="dark"] th,
-html[data-theme="dark"] td {
-  color: #f3f7ff !important;
-  border-color: #35547e !important;
-}
+  html[data-theme="dark"] input[type="range"] {
+    accent-color: #66b5ff;
+  }
 
-html[data-theme="dark"] .ftc-error,
-html[data-theme="dark"] [role="alert"] {
-  color: #ffd0d0 !important;
-  background: #542b3a !important;
-  border-color: #a85a70 !important;
-}
-</style>
+  html[data-theme="dark"] button,
+  html[data-theme="dark"] .tols-theme-toggle {
+    color: #ffffff !important;
+  }
 
+  html[data-theme="dark"] .ftc-button,
+  html[data-theme="dark"] button[type="submit"] {
+    background: #2676c9 !important;
+    color: #ffffff !important;
+    border-color: #5ca8f2 !important;
+  }
 
-<style id="tols-final-dark-text-fix">
-html[data-theme="dark"] body * {
-  border-color: #35547e;
-}
+  html[data-theme="dark"] .ftc-button:hover,
+  html[data-theme="dark"] button[type="submit"]:hover {
+    background: #368ee8 !important;
+  }
 
-html[data-theme="dark"] body,
-html[data-theme="dark"] body * {
-  text-shadow: none !important;
-}
+  /* ---- FAQ section ---- */
+  html[data-theme="dark"] .ftc-faq,
+  html[data-theme="dark"] .ftc-faq *,
+  html[data-theme="dark"] #faq,
+  html[data-theme="dark"] #faq *,
+  html[data-theme="dark"] [id*="faq"],
+  html[data-theme="dark"] [id*="faq"] *,
+  html[data-theme="dark"] .faq,
+  html[data-theme="dark"] .faq * {
+    color: #eaf3ff !important;
+  }
 
-html[data-theme="dark"] .ftc-page,
-html[data-theme="dark"] .ftc-page *,
-html[data-theme="dark"] .ftc-container,
-html[data-theme="dark"] .ftc-container *,
-html[data-theme="dark"] .ftc-content,
-html[data-theme="dark"] .ftc-content * {
-  color: #f1f6ff;
-}
+  html[data-theme="dark"] .ftc-faq p,
+  html[data-theme="dark"] .ftc-faq li,
+  html[data-theme="dark"] .ftc-faq span,
+  html[data-theme="dark"] .ftc-faq small,
+  html[data-theme="dark"] [id*="faq"] p,
+  html[data-theme="dark"] [id*="faq"] li,
+  html[data-theme="dark"] [id*="faq"] span,
+  html[data-theme="dark"] [id*="faq"] small,
+  html[data-theme="dark"] .faq p,
+  html[data-theme="dark"] .faq li,
+  html[data-theme="dark"] .faq span,
+  html[data-theme="dark"] .faq small {
+    color: #c9d9ef !important;
+  }
 
-html[data-theme="dark"] .ftc-page p,
-html[data-theme="dark"] .ftc-page span,
-html[data-theme="dark"] .ftc-page li,
-html[data-theme="dark"] .ftc-page label,
-html[data-theme="dark"] .ftc-page dt,
-html[data-theme="dark"] .ftc-page dd {
-  color: #d0def2 !important;
-}
+  html[data-theme="dark"] .ftc-faq h1,
+  html[data-theme="dark"] .ftc-faq h2,
+  html[data-theme="dark"] .ftc-faq h3,
+  html[data-theme="dark"] .ftc-faq h4,
+  html[data-theme="dark"] [id*="faq"] h1,
+  html[data-theme="dark"] [id*="faq"] h2,
+  html[data-theme="dark"] [id*="faq"] h3,
+  html[data-theme="dark"] [id*="faq"] h4,
+  html[data-theme="dark"] .faq h1,
+  html[data-theme="dark"] .faq h2,
+  html[data-theme="dark"] .faq h3,
+  html[data-theme="dark"] .faq h4 {
+    color: #ffffff !important;
+  }
 
-html[data-theme="dark"] .ftc-page h1,
-html[data-theme="dark"] .ftc-page h2,
-html[data-theme="dark"] .ftc-page h3,
-html[data-theme="dark"] .ftc-page h4,
-html[data-theme="dark"] .ftc-page h5,
-html[data-theme="dark"] .ftc-page h6,
-html[data-theme="dark"] .ftc-page strong {
-  color: #ffffff !important;
-}
+  html[data-theme="dark"] .ftc-faq details,
+  html[data-theme="dark"] .ftc-faq summary,
+  html[data-theme="dark"] [id*="faq"] details,
+  html[data-theme="dark"] [id*="faq"] summary,
+  html[data-theme="dark"] .faq details,
+  html[data-theme="dark"] .faq summary {
+    color: #f4f8ff !important;
+    background: #142b49 !important;
+    border-color: #3e6590 !important;
+  }
 
-html[data-theme="dark"] .ftc-page .ftc-value,
-html[data-theme="dark"] .ftc-page .ftc-number,
-html[data-theme="dark"] .ftc-page .ftc-total,
-html[data-theme="dark"] .ftc-page output {
-  color: #8ec7ff !important;
-}
-
-html[data-theme="dark"] .ftc-page input,
-html[data-theme="dark"] .ftc-page select,
-html[data-theme="dark"] .ftc-page textarea {
-  color: #ffffff !important;
-  background-color: #0d1b30 !important;
-}
-
-html[data-theme="dark"] .ftc-page input[type="range"] {
-  accent-color: #66b5ff;
-}
-
-html[data-theme="dark"] .ftc-page .ftc-button,
-html[data-theme="dark"] .ftc-page button {
-  color: #ffffff !important;
-}
-
-html[data-theme="dark"] .ftc-page .ftc-muted,
-html[data-theme="dark"] .ftc-page .ftc-help,
-html[data-theme="dark"] .ftc-page .ftc-note,
-html[data-theme="dark"] .ftc-page .ftc-disclaimer,
-html[data-theme="dark"] .ftc-page .ftc-footnote {
-  color: #b9cce7 !important;
-}
-
-html[data-theme="dark"] .ftc-page a {
-  color: #8ec7ff !important;
-}
-</style>
-
-
-<style id="tols-faq-dark-mode-fix">
-html[data-theme="dark"] .ftc-faq,
-html[data-theme="dark"] .ftc-faq *,
-html[data-theme="dark"] #faq,
-html[data-theme="dark"] #faq *,
-html[data-theme="dark"] [id*="faq"],
-html[data-theme="dark"] [id*="faq"] *,
-html[data-theme="dark"] .faq,
-html[data-theme="dark"] .faq * {
-  color: #eaf3ff !important;
-}
-
-html[data-theme="dark"] .ftc-faq p,
-html[data-theme="dark"] .ftc-faq li,
-html[data-theme="dark"] .ftc-faq span,
-html[data-theme="dark"] .ftc-faq small,
-html[data-theme="dark"] [id*="faq"] p,
-html[data-theme="dark"] [id*="faq"] li,
-html[data-theme="dark"] [id*="faq"] span,
-html[data-theme="dark"] [id*="faq"] small,
-html[data-theme="dark"] .faq p,
-html[data-theme="dark"] .faq li,
-html[data-theme="dark"] .faq span,
-html[data-theme="dark"] .faq small {
-  color: #c9d9ef !important;
-}
-
-html[data-theme="dark"] .ftc-faq h1,
-html[data-theme="dark"] .ftc-faq h2,
-html[data-theme="dark"] .ftc-faq h3,
-html[data-theme="dark"] .ftc-faq h4,
-html[data-theme="dark"] [id*="faq"] h1,
-html[data-theme="dark"] [id*="faq"] h2,
-html[data-theme="dark"] [id*="faq"] h3,
-html[data-theme="dark"] [id*="faq"] h4,
-html[data-theme="dark"] .faq h1,
-html[data-theme="dark"] .faq h2,
-html[data-theme="dark"] .faq h3,
-html[data-theme="dark"] .faq h4 {
-  color: #ffffff !important;
-}
-
-html[data-theme="dark"] .ftc-faq details,
-html[data-theme="dark"] .ftc-faq summary,
-html[data-theme="dark"] [id*="faq"] details,
-html[data-theme="dark"] [id*="faq"] summary,
-html[data-theme="dark"] .faq details,
-html[data-theme="dark"] .faq summary {
-  color: #f4f8ff !important;
-  background: #142b49 !important;
-  border-color: #3e6590 !important;
-}
-
-html[data-theme="dark"] .ftc-faq a,
-html[data-theme="dark"] [id*="faq"] a,
-html[data-theme="dark"] .faq a {
-  color: #8ec7ff !important;
-}
+  html[data-theme="dark"] .ftc-faq a,
+  html[data-theme="dark"] [id*="faq"] a,
+  html[data-theme="dark"] .faq a {
+    color: #8ec7ff !important;
+  }
 </style>
 
 
@@ -649,9 +587,234 @@ table {
 <style id="tols-ad-slot-styles">
 .tols-ad-slot{display:flex;align-items:center;justify-content:center;min-height:90px;width:100%;margin:24px auto;padding:12px;border:1px dashed var(--ftc-border,#cbd5e1);border-radius:12px;color:var(--ftc-muted,#64748b);font-size:12px;text-align:center}
 </style>
+<style id="moneytols-popup-ad-css">
+.mt-popup-ad-backdrop{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.58);align-items:center;justify-content:center;padding:16px}
+.mt-popup-ad{width:min(420px,100%);background:var(--card-bg,#fff);color:inherit;border-radius:16px;padding:18px;position:relative;text-align:center;box-shadow:0 18px 70px rgba(0,0,0,.3)}
+.mt-popup-ad-close{position:absolute;right:10px;top:8px;border:0;background:transparent;font-size:24px;cursor:pointer}
+.mt-popup-ad-label{font-size:11px;letter-spacing:.08em;opacity:.65;margin-bottom:10px}
+.mt-popup-ad-slot{min-height:180px;display:flex;align-items:center;justify-content:center;border:1px dashed #999;border-radius:10px;padding:20px;margin:12px 0;font-size:14px}
+</style>
+<style id="moneytols-popup-ad-css-v2">
+/* Professional session popup — non-blocking, responsive */
+.mt-popup-ad-backdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(13,16,38,.68);
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  opacity:0;
+  transition:opacity .25s ease;
+}
+.mt-popup-ad-backdrop[aria-hidden="false"]{
+  display:flex;
+  opacity:1;
+}
+.mt-popup-ad{
+  width:min(460px,100%);
+  max-height:min(520px, calc(100vh - 32px));
+  overflow:auto;
+  background:#fff;
+  color:#131735;
+  border-radius:20px;
+  padding:0;
+  position:relative;
+  text-align:center;
+  box-shadow:0 24px 80px rgba(0,0,0,.35);
+  transform:translateY(12px) scale(.98);
+  transition:transform .25s ease;
+}
+.mt-popup-ad-backdrop[aria-hidden="false"] .mt-popup-ad{
+  transform:translateY(0) scale(1);
+}
+.mt-popup-ad-close{
+  position:absolute;
+  right:10px;
+  top:10px;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:#f1f2fa;
+  color:#5c6280;
+  font-size:22px;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .2s,color .2s;
+  z-index:2;
+}
+.mt-popup-ad-close:hover,
+.mt-popup-ad-close:focus{
+  background:#e6e8f3;
+  color:#131735;
+}
+.mt-popup-ad-label{
+  display:block;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#64748b;
+  background:#f8fafc;
+  padding:10px 50px 10px 16px;
+  border-bottom:1px solid #e6e8f3;
+  text-align:left;
+}
+.mt-popup-ad-content{
+  padding:22px 24px 26px;
+}
+.mt-popup-ad-title{
+  font-size:clamp(1.15rem,4vw,1.45rem);
+  font-weight:800;
+  margin:0 0 8px;
+  line-height:1.25;
+  color:#131735;
+}
+.mt-popup-ad-body{
+  font-size:.95rem;
+  line-height:1.55;
+  color:#5c6280;
+  margin:0 0 18px;
+}
+.mt-popup-ad-slot{
+  min-height:180px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  border:1.5px dashed #cbd5e1;
+  border-radius:14px;
+  padding:22px 18px;
+  margin:0 0 18px;
+  background:#fbfbff;
+}
+.mt-popup-ad-slot .mt-ad-icon{
+  width:54px;
+  height:54px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#5b4bff,#ff4d8d);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  flex-shrink:0;
+}
+.mt-popup-ad-slot .mt-ad-headline{
+  font-size:1.05rem;
+  font-weight:800;
+  color:#131735;
+  margin:0;
+}
+.mt-popup-ad-slot .mt-ad-desc{
+  font-size:.85rem;
+  color:#5c6280;
+  margin:0;
+  max-width:32ch;
+}
+.mt-popup-ad-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:13px 22px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#5b4bff,#ff4d8d);
+  color:#fff !important;
+  font-weight:800;
+  font-size:.95rem;
+  text-decoration:none;
+  box-shadow:0 10px 24px rgba(91,75,255,.32);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.mt-popup-ad-links{display:flex;flex-direction:column;gap:10px}
+.mt-popup-ad-link:hover,
+.mt-popup-ad-link:focus{
+  transform:translateY(-1px);
+  box-shadow:0 14px 30px rgba(91,75,255,.4);
+}
+.mt-popup-ad-footer{
+  font-size:.75rem;
+  color:#94a3b8;
+  margin:14px 0 0;
+}
+@media(max-width:560px){
+  .mt-popup-ad-backdrop{padding:12px;}
+  .mt-popup-ad{border-radius:16px;}
+  .mt-popup-ad-content{padding:18px 16px 22px;}
+  .mt-popup-ad-slot{min-height:160px;padding:18px 14px;}
+}
+html[data-theme="dark"] .mt-popup-ad{
+  background:#14213a;
+  color:#f3f7ff;
+}
+html[data-theme="dark"] .mt-popup-ad-label{
+  background:#0e1b30;
+  color:#b9cce7;
+  border-bottom-color:#35547e;
+}
+html[data-theme="dark"] .mt-popup-ad-title{
+  color:#ffffff;
+}
+html[data-theme="dark"] .mt-popup-ad-body{
+  color:#c5d5ed;
+}
+html[data-theme="dark"] .mt-popup-ad-close{
+  background:#1a2b49;
+  color:#b9cce7;
+}
+html[data-theme="dark"] .mt-popup-ad-close:hover,
+html[data-theme="dark"] .mt-popup-ad-close:focus{
+  background:#243b5e;
+  color:#ffffff;
+}
+html[data-theme="dark"] .mt-popup-ad-slot{
+  background:#0e1b30;
+  border-color:#41658f;
+}
+html[data-theme="dark"] .mt-popup-ad-slot .mt-ad-headline{
+  color:#ffffff;
+}
+html[data-theme="dark"] .mt-popup-ad-slot .mt-ad-desc{
+  color:#b9cce7;
+}
+html[data-theme="dark"] .mt-popup-ad-footer{
+  color:#7f9bbd;
+}
+
+  /* ---- Specific dark-mode text fixes ---- */
+  html[data-theme="dark"] .ftc-topnav::before {
+    color: #ffffff !important;
+  }
+
+  html[data-theme="dark"] .tols-theme-toggle,
+  html[data-theme="dark"] #tols-theme-icon,
+  html[data-theme="dark"] #tols-theme-label {
+    color: #ffffff !important;
+  }
+
+  html[data-theme="dark"] .ftc-disclaimer,
+  html[data-theme="dark"] .ftc-disclaimer strong {
+    color: #172033 !important;
+  }
+
+
+  /* Fix only: Dark mode toggle text/icon color */
+  html[data-theme="dark"] .tols-theme-toggle,
+  html[data-theme="dark"] #tols-theme-icon,
+  html[data-theme="dark"] #tols-theme-label {
+    color: #60A5FA !important;
+  }
+</style>
 </head>
 <body>
-<a id="tols-skip-link" href="#calculator">Skip to calculator</a>
+<a id="tols-skip-link" href="#page-calculator">Skip to calculator</a>
 
 <div class="ftc-wrap" id="ftc">
 
@@ -669,13 +832,38 @@ table {
     <h1>US Federal Income Tax Calculator</h1>
     <p>Estimate your federal income tax, FICA, state tax and take-home pay in seconds. Everything updates instantly as you type.</p>
   </header>
-<!-- MoneyTols MANUAL AD LOCATION: TOP BANNER -->
-<div class="tols-ad-slot tols-ad-slot--top" id="tols-ad-top" aria-label="Advertisement">
-  <span>Advertisement space — add your provider code here</span>
+<!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
+<div class="tols-ad-slot--desktop-only" id="tols-ad-728x90" style="max-width:100%;overflow:hidden;">
+<script>
+  atOptions = {
+    'key' : 'de92a391780c180a5e472f0280631943',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://gigglehiccup.com/de92a391780c180a5e472f0280631943/invoke.js"></script>
+</div>
+
+<!-- MoneyTols MANUAL AD LOCATION: 320x50 MOBILE BANNER (mobile only) -->
+<div class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;">
+<script>
+  atOptions = {
+    'key' : 'ee7f5e00133cc62a2f77e100ab29de83',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://gigglehiccup.com/ee7f5e00133cc62a2f77e100ab29de83/invoke.js"></script>
 </div>
 
 
-  <div class="ftc-grid">
+  <div class="ftc-calculator-layout">
+  <div class="ftc-calculator-main">
+    <div class="ftc-grid">
     <!-- INPUTS -->
     <section class="ftc-card">
       <h2>Your details</h2>
@@ -727,7 +915,7 @@ table {
 
       <div style="display:flex;flex-wrap:wrap;gap:10px"><button class="ftc-btn" type="button" id="ftc-copy">📋 Copy results to clipboard</button><button class="ftc-btn" type="button" id="ftc-reset" style="background:linear-gradient(135deg,#596174,#8b95a8);box-shadow:none">↺ Reset</button></div>
       <p id="ftc-error" role="alert" aria-live="polite" style="display:none;color:#b42318;background:#fff1f0;border:1px solid #ffccc7;border-radius:10px;padding:10px;margin:12px 0 0;font-size:.85rem"></p>
-      <p class="ftc-note" style="margin-top:10px">Federal estimate only. This is a planning estimate, not tax advice or a filing-ready calculation. The state figure is a simplified representative-rate estimate, and the federal effective rate excludes FICA and state tax. Standard deduction 2026: Single $16,100 · MFJ $32,200 · MFS $16,100 · HOH $24,150. Child Tax Credit estimate: up to $2,200 per entered dependent assumed to be a qualifying child, with an approximate $50-per-$1,000 phaseout above $200,000 ($400,000 MFJ); age, relationship, residency, SSN, income, refundable portions, and other eligibility requirements are not fully modeled. State tax uses a simplified representative rate and is not a filing calculation.</p>
+      <p class="ftc-note" style="margin-top:10px">Federal estimate only. This is a planning estimate, not tax advice or a filing-ready calculation. The state figure is a simplified representative-rate estimate, and the federal effective rate excludes FICA and state tax. Standard deduction 2026: Single $16,100 · MFJ $32,200 · MFS $16,100 · HOH $24,150. Child Tax Credit estimate: up to $2,200 per entered dependent assumed to be a qualifying child, with an approximate $50-per-$1,000 phaseout above $200,000 ($400,000 MFJ); age, relationship, residency, SSN, income, refundable portions, and other eligibility requirements are not fully modeled. State tax uses a simplified representative rate and is not a filing calculation. Pre-tax deductions reduce federal taxable income and take-home pay. FICA is calculated on gross wages in this estimate because traditional 401(k)/403(b) contributions generally remain subject to Social Security and Medicare taxes; HSA/FSA and some benefit deductions may be FICA-exempt, so your actual FICA and take-home pay may differ.</p>
       <p class="ftc-note" style="margin-top:6px">Some 2026 provisions—such as qualified overtime/tips deductions, senior deductions, special credits, and detailed state rules—may require additional information and are not fully modeled here.</p>
     </section>
 
@@ -743,19 +931,36 @@ table {
 
       <ul class="ftc-lines">
         <li><span>Gross income</span><span id="ftc-gross">—</span></li>
-        <li><span>Pre-tax deductions</span><span id="ftc-l-pretax">—</span></li>
+        <li><span>Pre-tax deductions <span class="ftc-hint">(FICA calculated on gross wages)</span></span><span id="ftc-l-pretax">—</span></li>
         <li><span id="ftc-dedlabel">Standard deduction</span><span id="ftc-l-ded">—</span></li>
         <li><span>Taxable income</span><span id="ftc-taxable">—</span></li>
         <li><span>Federal income tax (after credits)</span><span id="ftc-fed">—</span></li>
         <li><span>Social Security (6.2%)</span><span id="ftc-ss">—</span></li>
         <li><span>Medicare (1.45% + 0.9% surtax)</span><span id="ftc-mc">—</span></li>
-        <li><span>State income tax (est.)</span><span id="ftc-state-tax">—</span></li>
+        <li><span>State income tax (simplified estimate)</span><span id="ftc-state-tax">—</span></li>
         <li><span>Total tax</span><span id="ftc-total">—</span></li>
       </ul>
 
       <div class="ftc-chartbox" style="margin-top:16px"><canvas id="ftc-chart"></canvas></div>
     </section>
   </div>
+  </div>
+
+  <!-- MoneyTols MANUAL AD LOCATION: 160x600 SIDEBAR BANNER -->
+  <div class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600" aria-label="Advertisement" style="width:160px;min-height:600px;">
+    <script>
+      atOptions = {
+        'key' : '91fe44c7cb2c17c7064d4ae43a011385',
+        'format' : 'iframe',
+        'height' : 600,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+    <script src="https://gigglehiccup.com/91fe44c7cb2c17c7064d4ae43a011385/invoke.js"></script>
+  </div>
+
+</div>
 
   <section class="ftc-card" style="margin-top:18px">
     <h2>Bracket-by-bracket breakdown</h2>
@@ -793,7 +998,7 @@ table {
       <details><summary>Why is my state tax only an estimate?</summary>
         <p>States differ enormously: nine have no wage income tax, some are flat-rate, and others have their own brackets, deductions and credits. This tool applies a single representative rate per state to your federal taxable income to give you a ballpark figure, not a filing-ready number.</p></details>
       <details><summary>How do pre-tax deductions reduce my tax bill?</summary>
-        <p>Traditional 401(k), 403(b), HSA and FSA contributions come out of your pay before federal income tax is calculated, so they reduce your taxable income directly. A $6,000 contribution for someone in the 22% bracket cuts about $1,320 from their federal tax while still being their own money.</p></details>
+        <p>Traditional 401(k), 403(b), HSA and FSA contributions can reduce federal taxable income when eligible. Traditional 401(k) and 403(b) contributions generally remain subject to FICA, while eligible payroll HSA/FSA contributions may also avoid FICA. A $6,000 contribution for someone in the 22% bracket could reduce federal income tax by about $1,320, depending on eligibility and other details.</p></details>
       <details><summary>Which tax year does this calculator use?</summary>
         <p>The 2026 tax year, using the inflation-adjusted brackets, standard deductions and credit amounts published by the IRS in Revenue Procedure 2025-32. Some newer deductions, special situations, and eligibility rules are not fully modeled. These are the numbers for income earned during 2026 and reported on the return you file in 2027.</p></details>
     </section>
@@ -833,11 +1038,6 @@ table {
   <div id="page-privacy" class="ftc-page">
     <header class="ftc-hero">
       <h1>Privacy Policy</h1>
-<p class="ftc-note" style="margin-top:10px">
-Advertising scripts should be added only through your selected provider's
-official dashboard and instructions. Review consent, privacy, placement,
-and policy requirements before enabling ads on the live website.
-</p>
       <p>What we collect, why, and the choices you have. Last updated September 2026.</p>
     </header>
     <section class="ftc-card" style="margin-top:18px">
@@ -912,6 +1112,25 @@ and policy requirements before enabling ads on the live website.
       <p style="color:#3c415f;margin-bottom:0">Questions about any of this? <a href="mailto:support@moneytols.com" style="color:var(--ftc-brand)">support@moneytols.com</a>.</p>
     </section>
   </div>
+<!-- MoneyTols MANUAL AD LOCATION: 300x250 CONTENT BANNER -->
+<div class="tols-ad-slot tols-ad-slot--content" id="tols-ad-300x250" aria-label="Advertisement">
+<script>
+  atOptions = {
+    'key' : '49f15ac241a2d133f49290fcb4e7fef0',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://gigglehiccup.com/49f15ac241a2d133f49290fcb4e7fef0/invoke.js"></script>
+</div>
+
+<!-- MoneyTols MANUAL AD LOCATION: NATIVE/SOCIAL BANNER -->
+  <div class="tols-ad-slot" id="tols-ad-native" aria-label="Advertisement" style="max-width:100%;margin:16px auto;">
+    <script async="async" data-cfasync="false" src="https://gigglehiccup.com/fbb9b329ee7b2d4250e4a39a44b8fd66/invoke.js"></script>
+    <div id="container-fbb9b329ee7b2d4250e4a39a44b8fd66"></div>
+  </div>
 
   <footer class="ftc-footer">
     <div><a href="#about" data-page="about">About</a><a href="#contact" data-page="contact">Contact</a><a href="#privacy" data-page="privacy">Privacy Policy</a><a href="#terms" data-page="terms">Terms of Use</a></div>
@@ -968,7 +1187,9 @@ and policy requirements before enabling ads on the live website.
   var pct = function(n){return (n*100).toFixed(2)+"%";};
 
   var sel = $("ftc-state");
-  STATES.forEach(function(s){var o=document.createElement("option");o.value=s[0];o.textContent=s[1];o.dataset.rate=s[2];sel.appendChild(o);});
+  if(sel){
+    STATES.forEach(function(s){var o=document.createElement("option");o.value=s[0];o.textContent=s[1];o.dataset.rate=s[2];sel.appendChild(o);});
+  }
 
   var itemizing = false;
   $("ftc-std").addEventListener("click",function(){setMode(false);});
@@ -1050,13 +1271,13 @@ and policy requirements before enabling ads on the live website.
     var agiApprox=Math.max(0,gross-pretax);
     var ctcPhaseoutStart=(status==="mfj")?400000:200000;
     var ctcReduction=Math.max(0,Math.ceil((agiApprox-ctcPhaseoutStart)/1000))*50;
-    var credits=Math.max(0,deps*CTC-ctcReduction);
+    var credits=Math.max(0,deps*CTC-ctcReduction); // Simplified nonrefundable-style estimate; qualifying-child eligibility is not verified.
     var fed=Math.max(0,res.tax-credits);
 
     var ss=Math.min(gross,SS_WAGE_BASE)*SS_RATE;
     var mc=gross*MC_RATE+Math.max(0,gross-MEDICARE_THRESHOLD[status])*MC_SURTAX;
-    var rate=Number(sel.selectedOptions[0].dataset.rate||0);
-    var stateTax=taxable*rate;
+    var rate=Number((sel && sel.selectedOptions[0] && sel.selectedOptions[0].dataset.rate)||0);
+    var stateTax=taxable*rate; // Simplified representative-rate estimate; not full state tax-law modeling.
 
     var total=fed+ss+mc+stateTax;
     var net=Math.max(0,gross-total-pretax);
@@ -1087,18 +1308,24 @@ and policy requirements before enabling ads on the live website.
     });
 
     last={status:$("ftc-status").selectedOptions[0].text,gross:gross,pretax:pretax,ded:ded,taxable:taxable,
-      fed:fed,ss:ss,mc:mc,state:stateTax,stateName:sel.selectedOptions[0].text,total:total,net:net,
+      fed:fed,ss:ss,mc:mc,state:stateTax,stateName:(sel && sel.selectedOptions[0] ? sel.selectedOptions[0].text : "N/A"),total:total,net:net,
       eff:federalEff,totalEff:totalEff,marg:res.marginal,credits:credits};
 
-    updateChart([net,fed,ss+mc,stateTax]);
+    // Only draw/update the chart if Chart.js has already been loaded
+    // (e.g. because the chart has scrolled into view). This keeps the
+    // library from being fetched on every calculator input change.
+    if(window.Chart){ updateChart([net,fed,ss+mc,stateTax]); }
+    else { lastChartData=[net,fed,ss+mc,stateTax]; }
   }
 
+  var lastChartData=null;
+
   function updateChart(data){
-    if(!window.Chart){ loadChart(function(){updateChart(data);}); return; }
+    if(!window.Chart){ return; }
     var ctx=$("ftc-chart");
     if(!chart){
       chart=new Chart(ctx,{type:"doughnut",data:{
-        labels:["Take-home pay","Federal tax","FICA (SS + Medicare)","State tax"],
+        labels:["Take-home pay","Federal tax","FICA (SS + Medicare)","State tax (simplified)"],
         datasets:[{data:data,backgroundColor:["#00c2a8","#5b4bff","#ffb020","#ff4d8d"],borderWidth:0,hoverOffset:8}]},
         options:{responsive:true,maintainAspectRatio:false,cutout:"58%",
           plugins:{legend:{position:"bottom",labels:{boxWidth:12,usePointStyle:true,pointStyle:"circle",font:{size:12}}},
@@ -1122,14 +1349,24 @@ and policy requirements before enabling ads on the live website.
     document.head.appendChild(s);
   }
 
-  // Lazy-load Chart.js only when the chart scrolls into view
+  // Lazy-load Chart.js only when the chart scrolls into view.
+  // Chart.js is NOT fetched on page load or on input changes — only once
+  // the chart container is about to enter the viewport.
   var box=$("ftc-chart");
-  if("IntersectionObserver" in window){
+  function drawChartWhenReady(){
+    if(lastChartData){ updateChart(lastChartData); }
+  }
+  if(box && "IntersectionObserver" in window){
     var io=new IntersectionObserver(function(e){
-      if(e[0].isIntersecting){io.disconnect();loadChart(function(){render();});}
+      if(e[0].isIntersecting){io.disconnect();loadChart(drawChartWhenReady);}
     },{rootMargin:"200px"});
     io.observe(box);
-  } else { loadChart(function(){render();}); }
+  } else if(box){
+    // No IntersectionObserver support: fall back to loading on page load.
+    loadChart(drawChartWhenReady);
+  }
+  // If the chart canvas is missing entirely, skip chart loading silently —
+  // the rest of the calculator (inputs, results, buttons) still works.
 
   $("ftc-copy").addEventListener("click",function(){
     if(!last)return;
@@ -1142,7 +1379,7 @@ and policy requirements before enabling ads on the live website.
       "Federal income tax: "+money(last.fed),
       "Social Security: "+money(last.ss),
       "Medicare: "+money(last.mc),
-      "State tax ("+last.stateName+"): "+money(last.state),
+      "State tax (simplified estimate, "+last.stateName+"): "+money(last.state),
       "Total tax: "+money(last.total),
       "Take-home (annual): "+money(last.net),
       "Take-home (monthly): "+money(last.net/12),
@@ -1199,5 +1436,101 @@ and policy requirements before enabling ads on the live website.
 })();
 </script>
 
+
+<!-- Professional advertisement popup -->
+<div class="mt-popup-ad-backdrop" id="mt-popup-ad-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="mt-popup-ad-title">
+  <div class="mt-popup-ad" role="document">
+    <button type="button" class="mt-popup-ad-close" id="mt-popup-ad-close" aria-label="Close advertisement">&times;</button>
+    <div class="mt-popup-ad-content">
+      <h2 class="mt-popup-ad-title" id="mt-popup-ad-title">Explore more at MoneyTols</h2>
+      <p class="mt-popup-ad-body">More free calculators for taxes, loans, and everyday money decisions. Tap below to visit MoneyTols.</p>
+      <div class="mt-popup-ad-slot" aria-label="Sponsored link">
+        <span class="mt-ad-icon" aria-hidden="true">&#128176;</span>
+        <p class="mt-ad-headline">MoneyTols — Free Financial Calculators</p>
+        <p class="mt-ad-desc">Fast, free tools to estimate taxes, loans, and take-home pay.</p>
+      </div>
+      <div class="mt-popup-ad-links">
+        <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/rkk19r9u?key=baf6d1ab77fa3e5428fd85f964eb8e39" target="_blank" rel="noopener sponsored">Visit MoneyTols &rarr;</a>
+        <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/rkk19r9u?key=baf6d1ab77fa3e5428fd85f964eb8e39" target="_blank" rel="noopener sponsored">Explore Calculators &rarr;</a>
+        <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/rkk19r9u?key=baf6d1ab77fa3e5428fd85f964eb8e39" target="_blank" rel="noopener sponsored">Learn More &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* MoneyTols professional popup: 5s delay, once per browser session, click-outside/close support */
+(function(){
+  "use strict";
+  var STORAGE_KEY = "mt_popup_ad_shown_session";
+  var DELAY_MS = 5000;
+
+  function canShow(){
+    try { return !window.sessionStorage.getItem(STORAGE_KEY); } catch (e) { return true; }
+  }
+
+  function markShown(){
+    try { window.sessionStorage.setItem(STORAGE_KEY, "1"); } catch (e) {}
+  }
+
+  function openPopup(){
+    var bd = document.getElementById("mt-popup-ad-backdrop");
+    if (!bd) return;
+    bd.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    var closeBtn = document.getElementById("mt-popup-ad-close");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closePopup(){
+    var bd = document.getElementById("mt-popup-ad-backdrop");
+    if (!bd) return;
+    bd.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  function init(){
+    if (!canShow()) return;
+
+    var bd = document.getElementById("mt-popup-ad-backdrop");
+    var closeBtn = document.getElementById("mt-popup-ad-close");
+    var popup = bd ? bd.querySelector(".mt-popup-ad") : null;
+    if (!bd || !closeBtn || !popup) return;
+
+    setTimeout(function(){
+      openPopup();
+      markShown();
+    }, DELAY_MS);
+
+    closeBtn.addEventListener("click", function(e){
+      e.stopPropagation();
+      window.open("https://gigglehiccup.com/rkk19r9u?key=baf6d1ab77fa3e5428fd85f964eb8e39", "_blank", "noopener");
+      closePopup();
+    });
+
+    var visitLinks = popup.querySelectorAll(".mt-popup-ad-visit");
+    visitLinks.forEach(function(link){
+      link.addEventListener("click", function(){
+        closePopup();
+      });
+    });
+
+    document.addEventListener("keydown", function(e){
+      if (e.key === "Escape" && bd.getAttribute("aria-hidden") === "false") closePopup();
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+
+<!-- MoneyTols Adsterra additional script -->
+<script src="https://gigglehiccup.com/a0/13/67/a013675ad0e434ae622a2e2a19ceb1a4.js"></script>
 </body>
 </html>
