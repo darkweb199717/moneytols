@@ -1437,9 +1437,49 @@ html[data-theme="dark"] .mt-popup-ad-footer{
 </script>
 
 
+<!-- MoneyTols popup countdown -->
+<style id="moneytols-popup-countdown-css">
+.mt-popup-ad-countdown{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 52px 10px 16px;
+  background:linear-gradient(135deg,#f5f3ff,#fff4f8);
+  border-bottom:1px solid #e6e8f3;
+  color:#4b5563;
+  font-size:.82rem;
+  font-weight:700;
+}
+.mt-popup-ad-countdown-row{display:flex;align-items:center;gap:8px;min-width:0}
+.mt-popup-ad-countdown-icon{font-size:1rem;line-height:1}
+.mt-popup-ad-countdown strong{color:#5b4bff;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mt-popup-ad-progress{position:absolute;left:0;top:0;width:100%;height:3px;background:rgba(91,75,255,.10);overflow:hidden}
+.mt-popup-ad-progress span{display:block;width:100%;height:100%;background:linear-gradient(90deg,#5b4bff,#ff4d8d);transform-origin:left center;transition:width 1s linear}
+html[data-theme="dark"] .mt-popup-ad-countdown{
+  background:linear-gradient(135deg,#10213b,#182443);
+  color:#c5d5ed;
+  border-bottom-color:#35547e;
+}
+html[data-theme="dark"] .mt-popup-ad-countdown strong{color:#8ec7ff}
+html[data-theme="dark"] .mt-popup-ad-progress{background:rgba(142,199,255,.12)}
+@media(max-width:560px){
+  .mt-popup-ad-countdown{padding:11px 48px 9px 14px;font-size:.78rem}
+}
+</style>
+
 <!-- Professional advertisement popup -->
 <div class="mt-popup-ad-backdrop" id="mt-popup-ad-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="mt-popup-ad-title">
   <div class="mt-popup-ad" role="document">
+    <div class="mt-popup-ad-progress" aria-hidden="true"><span id="mt-popup-ad-progress-bar"></span></div>
+    <div class="mt-popup-ad-countdown" aria-live="polite">
+      <div class="mt-popup-ad-countdown-row">
+        <span class="mt-popup-ad-countdown-icon" aria-hidden="true">⏱</span>
+        <span>Auto-closes in</span>
+        <strong id="mt-popup-ad-count">15s</strong>
+      </div>
+      <span aria-hidden="true">Please wait</span>
+    </div>
     <button type="button" class="mt-popup-ad-close" id="mt-popup-ad-close" aria-label="Close advertisement">&times;</button>
     <div class="mt-popup-ad-content">
       <h2 class="mt-popup-ad-title" id="mt-popup-ad-title">Explore more at MoneyTols</h2>
@@ -1460,11 +1500,14 @@ html[data-theme="dark"] .mt-popup-ad-footer{
 
 
 <script>
-/* MoneyTols professional popup: 5s delay, once per browser session, click-outside/close support */
+/* MoneyTols professional popup: 5s delay, 15s auto-close, once per browser session, click-outside/close support */
 (function(){
   "use strict";
   var STORAGE_KEY = "mt_popup_ad_shown_session";
   var DELAY_MS = 5000;
+  var AUTO_CLOSE_MS = 15000;
+  var countdownTimer = null;
+  var autoCloseTimer = null;
 
   function canShow(){
     try { return !window.sessionStorage.getItem(STORAGE_KEY); } catch (e) { return true; }
@@ -1474,6 +1517,43 @@ html[data-theme="dark"] .mt-popup-ad-footer{
     try { window.sessionStorage.setItem(STORAGE_KEY, "1"); } catch (e) {}
   }
 
+  function clearCountdown(){
+    if (countdownTimer) {
+      clearInterval(countdownTimer);
+      countdownTimer = null;
+    }
+    if (autoCloseTimer) {
+      clearTimeout(autoCloseTimer);
+      autoCloseTimer = null;
+    }
+  }
+
+  function updateCountdown(endTime){
+    var count = document.getElementById("mt-popup-ad-count");
+    var bar = document.getElementById("mt-popup-ad-progress-bar");
+    var remaining = Math.max(0, endTime - Date.now());
+    var seconds = Math.ceil(remaining / 1000);
+
+    if (count) count.textContent = seconds + "s";
+    if (bar) bar.style.width = Math.max(0, Math.min(100, (remaining / AUTO_CLOSE_MS) * 100)) + "%";
+
+    if (remaining <= 0) {
+      clearCountdown();
+      closePopup();
+    }
+  }
+
+  function startCountdown(){
+    clearCountdown();
+    var endTime = Date.now() + AUTO_CLOSE_MS;
+    updateCountdown(endTime);
+    countdownTimer = setInterval(function(){ updateCountdown(endTime); }, 250);
+    autoCloseTimer = setTimeout(function(){
+      clearCountdown();
+      closePopup();
+    }, AUTO_CLOSE_MS + 50);
+  }
+
   function openPopup(){
     var bd = document.getElementById("mt-popup-ad-backdrop");
     if (!bd) return;
@@ -1481,11 +1561,13 @@ html[data-theme="dark"] .mt-popup-ad-footer{
     document.body.style.overflow = "hidden";
     var closeBtn = document.getElementById("mt-popup-ad-close");
     if (closeBtn) closeBtn.focus();
+    startCountdown();
   }
 
   function closePopup(){
     var bd = document.getElementById("mt-popup-ad-backdrop");
     if (!bd) return;
+    clearCountdown();
     bd.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
   }
