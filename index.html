@@ -914,6 +914,8 @@ html[data-theme="dark"] .mt-popup-ad-footer{
       </div>
 
       <div style="display:flex;flex-wrap:wrap;gap:10px"><button class="ftc-btn" type="button" id="ftc-copy">📋 Copy results to clipboard</button><button class="ftc-btn" type="button" id="ftc-reset" style="background:linear-gradient(135deg,#596174,#8b95a8);box-shadow:none">↺ Reset</button></div>
+      <p class="ftc-note" style="margin:14px 0 6px;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase">Sponsored</p>
+      <a class="ftc-btn" id="ftc-sponsored-link" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored nofollow" style="display:inline-block;text-decoration:none;text-align:center">Explore more money tools &rarr;</a>
       <p id="ftc-error" role="alert" aria-live="polite" style="display:none;color:#b42318;background:#fff1f0;border:1px solid #ffccc7;border-radius:10px;padding:10px;margin:12px 0 0;font-size:.85rem"></p>
       <p class="ftc-note" style="margin-top:10px">Federal estimate only. This is a planning estimate, not tax advice or a filing-ready calculation. The state figure is a simplified representative-rate estimate, and the federal effective rate excludes FICA and state tax. Standard deduction 2026: Single $16,100 · MFJ $32,200 · MFS $16,100 · HOH $24,150. Child Tax Credit estimate: up to $2,200 per entered dependent assumed to be a qualifying child, with an approximate $50-per-$1,000 phaseout above $200,000 ($400,000 MFJ); age, relationship, residency, SSN, income, refundable portions, and other eligibility requirements are not fully modeled. State tax uses a simplified representative rate and is not a filing calculation. Pre-tax deductions reduce federal taxable income and take-home pay. FICA is calculated on gross wages in this estimate because traditional 401(k)/403(b) contributions generally remain subject to Social Security and Medicare taxes; HSA/FSA and some benefit deductions may be FICA-exempt, so your actual FICA and take-home pay may differ.</p>
       <p class="ftc-note" style="margin-top:6px">Some 2026 provisions—such as qualified overtime/tips deductions, senior deductions, special credits, and detailed state rules—may require additional information and are not fully modeled here.</p>
@@ -1590,7 +1592,13 @@ html[data-theme="dark"] .mt-popup-ad-progress{background:rgba(142,199,255,.12)}
       closePopup();
     });
 
+    var AD_LINKS = [
+      "https://gigglehiccup.com/rkk19r9u?key=baf6d1ab77fa3e5428fd85f964eb8e39",
+      "https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f"
+    ];
+    var chosenLink = AD_LINKS[Math.floor(Math.random() * AD_LINKS.length)];
     var visitLinks = popup.querySelectorAll(".mt-popup-ad-visit");
+    visitLinks.forEach(function(link){ link.href = chosenLink; });
     visitLinks.forEach(function(link){
       link.addEventListener("click", function(){
         closePopup();
