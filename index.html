@@ -38,12 +38,14 @@
   color:var(--ftc-ink);line-height:1.55;max-width:1120px;margin:0 auto;padding:18px;
 }
 .ftc-wrap h1,.ftc-wrap h2,.ftc-wrap h3{line-height:1.2;margin:0 0 .5em}
-.ftc-hero{background:linear-gradient(135deg,#5b4bff 0%,#9b3bff 45%,#ff4d8d 100%);
-  color:#fff;border-radius:calc(var(--ftc-radius) + 8px);padding:28px 24px;box-shadow:0 18px 40px rgba(91,75,255,.28)}
-.ftc-hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;letter-spacing:-.02em}
-.ftc-hero p{margin:0;opacity:.92;max-width:62ch}
 .ftc-badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
   padding:4px 12px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px}
+.ftc-hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.ftc-hero-chips a{display:inline-block;padding:7px 14px;border-radius:999px;background:#fff;color:#131735;
+  font-size:.82rem;font-weight:700;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.08);transition:transform .15s ease}
+.ftc-hero-chips a:hover,.ftc-hero-chips a:focus-visible{transform:translateY(-1px)}
+html{scroll-behavior:smooth}
+html[data-theme="dark"] .ftc-hero-chips a{background:#14213a;color:#f3f7ff}
 .ftc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:18px}
 .ftc-calculator-layout{display:grid;grid-template-columns:minmax(0,1fr) 160px;gap:18px;align-items:start;margin-top:18px}
 .ftc-calculator-layout .ftc-grid{margin-top:0}
@@ -95,16 +97,9 @@
 .ftc-faq summary{cursor:pointer;font-weight:700}
 .ftc-faq p{margin:8px 0 0;color:#3c415f}
 .ftc-disclaimer{background:#fff7e8;border:1px solid #ffd894;border-radius:16px;padding:16px;font-size:.88rem}
-.ftc-topnav{display:flex;flex-wrap:wrap;gap:18px;padding:12px 4px;margin-bottom:14px;border-bottom:1px solid var(--ftc-line);font-size:.9rem;font-weight:700}
-.ftc-topnav a{color:var(--ftc-ink);text-decoration:none}
-.ftc-topnav a:hover{color:var(--ftc-brand)}
-.ftc-updated{font-size:.78rem;color:var(--ftc-muted);margin:-8px 0 18px}
-.ftc-footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--ftc-line);
-  display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.82rem;color:var(--ftc-muted)}
-.ftc-footer a{color:var(--ftc-muted);text-decoration:none;margin-right:16px}
-.ftc-footer a:hover{color:var(--ftc-brand)}
-/* Refined MoneyTols header */
 .ftc-topnav{
+  display:flex;
+  flex-wrap:wrap;
   align-items:center;
   justify-content:space-between;
   gap:14px;
@@ -114,6 +109,8 @@
   border-radius:18px;
   background:linear-gradient(135deg,rgba(91,75,255,.08),rgba(255,77,141,.08));
   box-shadow:0 8px 24px rgba(35,32,80,.06);
+  font-size:.9rem;
+  font-weight:700;
 }
 .ftc-topnav::before{
   content:"MoneyTols";
@@ -124,6 +121,8 @@
   margin-right:auto;
 }
 .ftc-topnav a{
+  color:var(--ftc-ink);
+  text-decoration:none;
   padding:8px 11px;
   border-radius:10px;
   transition:background .2s,color .2s;
@@ -132,6 +131,11 @@
   background:rgba(91,75,255,.10);
   color:var(--ftc-brand);
 }
+.ftc-updated{font-size:.78rem;color:var(--ftc-muted);margin:-8px 0 18px}
+.ftc-footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--ftc-line);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.82rem;color:var(--ftc-muted)}
+.ftc-footer a{color:var(--ftc-muted);text-decoration:none;margin-right:16px}
+.ftc-footer a:hover{color:var(--ftc-brand)}
 .ftc-hero{
   position:relative;
   overflow:hidden;
@@ -202,10 +206,10 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 1px dashed #cbd5e1;
+  border: 1px dashed var(--ftc-border, #cbd5e1);
   border-radius: 12px;
   background: #f8fafc;
-  color: #64748b;
+  color: var(--ftc-muted, #64748b);
   font-size: 12px;
   overflow: hidden;
 }
@@ -584,9 +588,6 @@ table {
 #tols-skip-link{position:absolute;left:-9999px;top:8px;z-index:9999;padding:10px 14px;background:#2563eb;color:#fff;border-radius:8px}
 #tols-skip-link:focus{left:8px}
 </style>
-<style id="tols-ad-slot-styles">
-.tols-ad-slot{display:flex;align-items:center;justify-content:center;min-height:90px;width:100%;margin:24px auto;padding:12px;border:1px dashed var(--ftc-border,#cbd5e1);border-radius:12px;color:var(--ftc-muted,#64748b);font-size:12px;text-align:center}
-</style>
 <style id="moneytols-popup-ad-css">
 .mt-popup-ad-backdrop{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.58);align-items:center;justify-content:center;padding:16px}
 .mt-popup-ad{width:min(420px,100%);background:var(--card-bg,#fff);color:inherit;border-radius:16px;padding:18px;position:relative;text-align:center;box-shadow:0 18px 70px rgba(0,0,0,.3)}
@@ -812,6 +813,33 @@ html[data-theme="dark"] .mt-popup-ad-footer{
     color: #60A5FA !important;
   }
 </style>
+<style id="ftc-polish">
+html{scroll-behavior:smooth}
+*{transition-timing-function:cubic-bezier(.2,.7,.3,1)}
+a,button,input,select,.ftc-card,.ftc-btn,.ftc-topnav a,.ftc-hero-chips a,.ftc-calc-tile{
+  transition:background-color .22s,border-color .22s,box-shadow .25s,color .2s,transform .18s;
+}
+.ftc-card{will-change:transform;box-shadow:0 1px 2px rgba(20,20,43,.04)}
+.ftc-card:hover{box-shadow:0 10px 28px -12px rgba(20,20,43,.14),0 1px 2px rgba(20,20,43,.05);transform:translateY(-1px)}
+.ftc-topnav a{position:relative}
+.ftc-topnav a::after{content:"";position:absolute;left:10px;right:10px;bottom:4px;height:2px;border-radius:2px;
+  background:linear-gradient(135deg,var(--ftc-brand),var(--ftc-brand2));transform:scaleX(0);transform-origin:center;
+  transition:transform .25s}
+.ftc-topnav a:hover::after{transform:scaleX(1)}
+.ftc-hero-chips a,.ftc-calc-tile{transition:background-color .22s,border-color .22s,box-shadow .25s,transform .18s}
+.ftc-hero-chips a:hover,.ftc-calc-tile:hover{transform:translateY(-2px);box-shadow:0 8px 20px -10px rgba(20,20,43,.18)}
+.ftc-btn{transition:transform .15s,box-shadow .22s,filter .2s}
+.ftc-btn:hover{filter:brightness(1.04);box-shadow:0 6px 16px -6px rgba(91,75,255,.4)}
+.ftc-btn:active{transform:translateY(1px) scale(.98)}
+.ftc-wrap input[type=number],.ftc-wrap select{transition:border-color .2s,box-shadow .25s,transform .15s}
+.ftc-wrap input[type=number]:focus,.ftc-wrap select:focus{transform:translateY(-1px)}
+.ftc-page{animation:ftc-fade .32s ease both}
+@keyframes ftc-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,.ftc-page{animation:none!important;transition:none!important}
+}
+</style>
 </head>
 <body>
 <a id="tols-skip-link" href="#page-calculator">Skip to calculator</a>
@@ -820,6 +848,7 @@ html[data-theme="dark"] .mt-popup-ad-footer{
 
   <nav class="ftc-topnav">
     <a href="#calculator" data-page="calculator">Tax Tools</a>
+    <a href="#more-calculators">More Calculators</a>
     <a href="#about" data-page="about">About</a>
     <a href="#contact" data-page="contact">Contact</a>
   <button class="tols-theme-toggle" id="tols-theme-toggle" type="button" aria-label="Switch color theme"><span id="tols-theme-icon">☾</span><span id="tols-theme-label">Dark mode</span></button></nav>
@@ -831,34 +860,19 @@ html[data-theme="dark"] .mt-popup-ad-footer{
     <div class="ftc-badge">Tax year 2026 · IRS Rev. Proc. 2025-32</div>
     <h1>US Federal Income Tax Calculator</h1>
     <p>Estimate your federal income tax, FICA, state tax and take-home pay in seconds. Everything updates instantly as you type.</p>
+    <div class="ftc-hero-chips" aria-label="Browse calculator categories">
+      <a href="#calculator" data-page="calculator">Tax &amp; Paycheck</a>
+      <a href="#loan" data-page="loan">Loans &amp; Debt</a>
+      <a href="#mortgage" data-page="mortgage">Home Buying</a>
+      <a href="#savings" data-page="savings">Savings &amp; Investing</a>
+      <a href="#hourly" data-page="hourly">Everyday</a>
+    </div>
   </header>
 <!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
-<div class="tols-ad-slot--desktop-only" id="tols-ad-728x90" style="max-width:100%;overflow:hidden;">
-<script>
-  atOptions = {
-    'key' : 'de92a391780c180a5e472f0280631943',
-    'format' : 'iframe',
-    'height' : 90,
-    'width' : 728,
-    'params' : {}
-  };
-</script>
-<script src="https://gigglehiccup.com/de92a391780c180a5e472f0280631943/invoke.js"></script>
-</div>
+<div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90" style="max-width:100%;overflow:hidden;"></div>
 
 <!-- MoneyTols MANUAL AD LOCATION: 320x50 MOBILE BANNER (mobile only) -->
-<div class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;">
-<script>
-  atOptions = {
-    'key' : 'ee7f5e00133cc62a2f77e100ab29de83',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script src="https://gigglehiccup.com/ee7f5e00133cc62a2f77e100ab29de83/invoke.js"></script>
-</div>
+<div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 
 
   <div class="ftc-calculator-layout">
@@ -914,8 +928,6 @@ html[data-theme="dark"] .mt-popup-ad-footer{
       </div>
 
       <div style="display:flex;flex-wrap:wrap;gap:10px"><button class="ftc-btn" type="button" id="ftc-copy">📋 Copy results to clipboard</button><button class="ftc-btn" type="button" id="ftc-reset" style="background:linear-gradient(135deg,#596174,#8b95a8);box-shadow:none">↺ Reset</button></div>
-      <p class="ftc-note" style="margin:14px 0 6px;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase">Sponsored</p>
-      <a class="ftc-btn" id="ftc-sponsored-link" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored nofollow" style="display:inline-block;text-decoration:none;text-align:center">Explore more money tools &rarr;</a>
       <p id="ftc-error" role="alert" aria-live="polite" style="display:none;color:#b42318;background:#fff1f0;border:1px solid #ffccc7;border-radius:10px;padding:10px;margin:12px 0 0;font-size:.85rem"></p>
       <p class="ftc-note" style="margin-top:10px">Federal estimate only. This is a planning estimate, not tax advice or a filing-ready calculation. The state figure is a simplified representative-rate estimate, and the federal effective rate excludes FICA and state tax. Standard deduction 2026: Single $16,100 · MFJ $32,200 · MFS $16,100 · HOH $24,150. Child Tax Credit estimate: up to $2,200 per entered dependent assumed to be a qualifying child, with an approximate $50-per-$1,000 phaseout above $200,000 ($400,000 MFJ); age, relationship, residency, SSN, income, refundable portions, and other eligibility requirements are not fully modeled. State tax uses a simplified representative rate and is not a filing calculation. Pre-tax deductions reduce federal taxable income and take-home pay. FICA is calculated on gross wages in this estimate because traditional 401(k)/403(b) contributions generally remain subject to Social Security and Medicare taxes; HSA/FSA and some benefit deductions may be FICA-exempt, so your actual FICA and take-home pay may differ.</p>
       <p class="ftc-note" style="margin-top:6px">Some 2026 provisions—such as qualified overtime/tips deductions, senior deductions, special credits, and detailed state rules—may require additional information and are not fully modeled here.</p>
@@ -949,22 +961,11 @@ html[data-theme="dark"] .mt-popup-ad-footer{
   </div>
 
   <!-- MoneyTols MANUAL AD LOCATION: 160x600 SIDEBAR BANNER -->
-  <div class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600" aria-label="Advertisement" style="width:160px;min-height:600px;">
-    <script>
-      atOptions = {
-        'key' : '91fe44c7cb2c17c7064d4ae43a011385',
-        'format' : 'iframe',
-        'height' : 600,
-        'width' : 160,
-        'params' : {}
-      };
-    </script>
-    <script src="https://gigglehiccup.com/91fe44c7cb2c17c7064d4ae43a011385/invoke.js"></script>
-  </div>
+  <div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600" aria-label="Advertisement" style="width:160px;min-height:600px;"></div>
 
 </div>
 
-  <section class="ftc-card" style="margin-top:18px">
+  <section class="ftc-card" style="margin-top:18px" id="ftc-brackets-section">
     <h2>Bracket-by-bracket breakdown</h2>
     <div class="ftc-scroll">
       <table>
@@ -989,7 +990,7 @@ html[data-theme="dark"] .mt-popup-ad-footer{
       <p>Before brackets apply, you subtract either the standard deduction or your itemized deductions, plus any pre-tax payroll contributions such as a traditional 401(k) or HSA. Eligible tax credits, such as the Child Tax Credit, are subtracted from tax itself. This tool uses a simplified credit assumption and does not verify every eligibility or refundable-credit rule.</p>
     </section>
 
-    <section class="ftc-card ftc-faq">
+    <section class="ftc-card ftc-faq" id="ftc-faq-section">
       <h2>Frequently asked questions</h2>
       <details open><summary>What is the difference between marginal and effective tax rate?</summary>
         <p>Your marginal rate is the rate applied to your last dollar of taxable income — useful for deciding whether to contribute more to a 401(k). Your effective federal rate is federal income tax after modeled credits divided by gross income. It is not a complete measure of total payroll and state taxes, and it may not always be lower than the marginal rate in every simplified scenario.</p></details>
@@ -1009,6 +1010,373 @@ html[data-theme="dark"] .mt-popup-ad-footer{
       <strong>Disclaimer:</strong> This calculator provides a simplified estimate for general information only and is not tax, legal or financial advice. It does not account for capital gains, self-employment tax, AMT, phase-outs, local taxes, or most credits and deductions. Your actual liability may differ. This tool does not model every 2026 provision, including all new deductions, phaseouts, filing-specific limitations, local taxes, or refundable-credit rules. Consult a qualified tax professional or the IRS before making decisions.
     </section>
   </div>
+  </div>
+
+
+    <!-- MoneyTols: More calculators + content/native ads -->
+    <section class="ftc-card" id="more-calculators" style="margin-top:18px">
+      <h2>More calculators</h2>
+      <p class="ftc-note">Free tools for pay, loans, home buying and saving.</p>
+      <div class="ftc-calc-hub"><a class="ftc-calc-tile" href="#hourly" data-page="hourly"><strong>Hourly ↔ Salary</strong><span>Convert hourly pay to annual, monthly and weekly income, or the reverse.</span></a><a class="ftc-calc-tile" href="#loan" data-page="loan"><strong>Loan Payment</strong><span>Monthly payment, total interest and a year-by-year payoff schedule.</span></a><a class="ftc-calc-tile" href="#mortgage" data-page="mortgage"><strong>Mortgage Payment</strong><span>Estimate a full monthly payment with taxes, insurance and PMI.</span></a><a class="ftc-calc-tile" href="#savings" data-page="savings"><strong>Savings Growth</strong><span>See how deposits and compound interest grow over time.</span></a></div>
+    </section>
+
+    <!-- MoneyTols MANUAL AD LOCATION: 300x250 CONTENT BANNER -->
+    <div data-ad-key="49f15ac241a2d133f49290fcb4e7fef0" class="tols-ad-slot tols-ad-slot--content" id="tols-ad-300x250-calculator" aria-label="Advertisement"></div>
+
+    <!-- MoneyTols MANUAL AD LOCATION: NATIVE/SOCIAL BANNER -->
+    <div data-ad-key="fbb9b329ee7b2d4250e4a39a44b8fd66" data-ad-native="1" class="tols-ad-slot" id="tols-ad-native-calculator" aria-label="Advertisement" style="max-width:100%;margin:16px auto;"><div class="tols-native-container"></div></div>
+
+  <div id="page-hourly" class="ftc-page">
+    <header class="ftc-hero">
+      <div class="ftc-badge">Salary &amp; pay</div>
+      <h1>Hourly to Salary Calculator</h1>
+      <p>Convert between hourly pay and annual salary. See weekly, biweekly, semi-monthly and monthly gross income before taxes.</p>
+    </header>
+<!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
+<div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-hourly" style="max-width:100%;overflow:hidden;"></div>
+
+<!-- MoneyTols MANUAL AD LOCATION: 320x50 MOBILE BANNER (mobile only) -->
+<div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-hourly" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
+
+    <div class="ftc-calculator-layout">
+  <div class="ftc-calculator-main">
+<div class="ftc-grid">
+      <section class="ftc-card">
+        <h2>Your pay</h2>
+        <div class="ftc-field">
+          <div class="ftc-seg" role="group" aria-label="Conversion direction">
+            <button type="button" id="hr-mode-h" aria-pressed="true">Hourly → Salary</button>
+            <button type="button" id="hr-mode-s" aria-pressed="false">Salary → Hourly</button>
+          </div>
+        </div>
+        <div class="ftc-field">
+          <label for="hr-amount" id="hr-amount-label">Hourly rate ($)</label>
+          <input type="number" id="hr-amount" min="0" step="0.5" value="30">
+        </div>
+        <div class="ftc-row">
+          <div class="ftc-field">
+            <label for="hr-hours">Hours per week</label>
+            <input type="number" id="hr-hours" min="1" max="100" step="1" value="40">
+          </div>
+          <div class="ftc-field">
+            <label for="hr-weeks">Weeks worked per year</label>
+            <input type="number" id="hr-weeks" min="1" max="52" step="1" value="52">
+          </div>
+        </div>
+        <p class="ftc-note" id="hr-error" role="alert" aria-live="polite" style="display:none;color:#b42318"></p>
+        <button class="ftc-btn" type="button" id="hr-to-tax">Estimate take-home pay →</button>
+      </section>
+      <section class="ftc-card">
+        <h2>Your income</h2>
+        <div class="ftc-kpis">
+          <div class="ftc-kpi ftc-k1"><span>Annual</span><strong id="hr-o-annual">—</strong></div>
+          <div class="ftc-kpi ftc-k2"><span>Monthly</span><strong id="hr-o-monthly">—</strong></div>
+          <div class="ftc-kpi ftc-k3"><span>Biweekly</span><strong id="hr-o-biweekly">—</strong></div>
+          <div class="ftc-kpi ftc-k4"><span>Hourly</span><strong id="hr-o-hourly">—</strong></div>
+        </div>
+        <ul class="ftc-lines">
+          <li><span>Hourly</span><span id="hr-l-hourly">—</span></li>
+          <li><span>Daily <span class="ftc-hint">(5-day week)</span></span><span id="hr-l-daily">—</span></li>
+          <li><span>Weekly</span><span id="hr-l-weekly">—</span></li>
+          <li><span>Biweekly <span class="ftc-hint">(26 pay periods)</span></span><span id="hr-l-biweekly">—</span></li>
+          <li><span>Semi-monthly <span class="ftc-hint">(24 pay periods)</span></span><span id="hr-l-semi">—</span></li>
+          <li><span>Monthly</span><span id="hr-l-monthly">—</span></li>
+          <li><span>Annual</span><span id="hr-l-annual">—</span></li>
+        </ul>
+      </section>
+    </div>
+
+
+
+    
+  </div>
+
+  <!-- MoneyTols MANUAL AD LOCATION: 160x600 SIDEBAR BANNER -->
+<div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-hourly" aria-label="Advertisement" style="width:160px;min-height:600px;"></div>
+
+</div>
+
+<section class="ftc-card" style="margin-top:18px">
+      <h2>More calculators</h2>
+      <div class="ftc-calc-hub"><a class="ftc-calc-tile" href="#calculator" data-page="calculator"><strong>Federal Income Tax</strong><span>2026 brackets, FICA, state estimate and take-home pay.</span></a><a class="ftc-calc-tile" href="#loan" data-page="loan"><strong>Loan Payment</strong><span>Monthly payment, total interest and a year-by-year payoff schedule.</span></a><a class="ftc-calc-tile" href="#mortgage" data-page="mortgage"><strong>Mortgage Payment</strong><span>Estimate a full monthly payment with taxes, insurance and PMI.</span></a><a class="ftc-calc-tile" href="#savings" data-page="savings"><strong>Savings Growth</strong><span>See how deposits and compound interest grow over time.</span></a></div>
+    </section>
+
+<!-- MoneyTols MANUAL AD LOCATION: 300x250 CONTENT BANNER -->
+<div data-ad-key="49f15ac241a2d133f49290fcb4e7fef0" class="tols-ad-slot tols-ad-slot--content" id="tols-ad-300x250-hourly" aria-label="Advertisement"></div>
+
+
+<!-- MoneyTols MANUAL AD LOCATION: NATIVE/SOCIAL BANNER -->
+<div data-ad-key="fbb9b329ee7b2d4250e4a39a44b8fd66" data-ad-native="1" class="tols-ad-slot" id="tols-ad-native-hourly" aria-label="Advertisement" style="max-width:100%;margin:16px auto;"><div class="tols-native-container"></div></div>
+
+  </div>
+
+  <div id="page-loan" class="ftc-page">
+    <header class="ftc-hero">
+      <div class="ftc-badge">Loans</div>
+      <h1>Loan Payment Calculator</h1>
+      <p>Work out the monthly payment on a car, personal or student loan, and see how much interest you will pay.</p>
+    </header>
+<!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
+<div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-loan" style="max-width:100%;overflow:hidden;"></div>
+
+<!-- MoneyTols MANUAL AD LOCATION: 320x50 MOBILE BANNER (mobile only) -->
+<div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-loan" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
+
+    <div class="ftc-calculator-layout">
+  <div class="ftc-calculator-main">
+<div class="ftc-grid">
+      <section class="ftc-card">
+        <h2>Loan details</h2>
+        <div class="ftc-field">
+          <label for="ln-amount">Loan amount ($)</label>
+          <input type="number" id="ln-amount" min="0" step="500" value="25000">
+        </div>
+        <div class="ftc-row">
+          <div class="ftc-field">
+            <label for="ln-rate">Interest rate (APR %)</label>
+            <input type="number" id="ln-rate" min="0" max="60" step="0.05" value="7.5">
+          </div>
+          <div class="ftc-field">
+            <label for="ln-years">Term (years)</label>
+            <input type="number" id="ln-years" min="0.25" max="50" step="0.25" value="5">
+          </div>
+        </div>
+        <div class="ftc-field">
+          <label for="ln-extra">Extra monthly payment <span class="ftc-hint">(optional)</span></label>
+          <input type="number" id="ln-extra" min="0" step="25" value="0">
+        </div>
+        <p class="ftc-note" id="ln-error" role="alert" aria-live="polite" style="display:none;color:#b42318"></p>
+      </section>
+      <section class="ftc-card">
+        <h2>Your payment</h2>
+        <div class="ftc-kpis">
+          <div class="ftc-kpi ftc-k1"><span>Monthly payment</span><strong id="ln-o-pmt">—</strong></div>
+          <div class="ftc-kpi ftc-k2"><span>Total interest</span><strong id="ln-o-int">—</strong></div>
+          <div class="ftc-kpi ftc-k3"><span>Total paid</span><strong id="ln-o-total">—</strong></div>
+          <div class="ftc-kpi ftc-k4"><span>Paid off in</span><strong id="ln-o-time">—</strong></div>
+        </div>
+        <ul class="ftc-lines">
+          <li><span>Loan amount</span><span id="ln-l-amount">—</span></li>
+          <li><span>Base monthly payment</span><span id="ln-l-base">—</span></li>
+          <li><span>Extra payment</span><span id="ln-l-extra">—</span></li>
+          <li><span>Interest saved by paying extra</span><span id="ln-l-saved">—</span></li>
+        </ul>
+      </section>
+    </div>
+
+
+
+    
+  </div>
+
+  <!-- MoneyTols MANUAL AD LOCATION: 160x600 SIDEBAR BANNER -->
+<div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-loan" aria-label="Advertisement" style="width:160px;min-height:600px;"></div>
+
+</div>
+
+<section class="ftc-card" style="margin-top:18px">
+      <h2>Year-by-year schedule</h2>
+      <div class="ftc-scroll">
+        <table>
+          <thead><tr><th>Year</th><th>Principal paid</th><th>Interest paid</th><th>Ending balance</th></tr></thead>
+          <tbody id="ln-table"></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="ftc-card" style="margin-top:18px">
+      <h2>More calculators</h2>
+      <div class="ftc-calc-hub"><a class="ftc-calc-tile" href="#calculator" data-page="calculator"><strong>Federal Income Tax</strong><span>2026 brackets, FICA, state estimate and take-home pay.</span></a><a class="ftc-calc-tile" href="#hourly" data-page="hourly"><strong>Hourly ↔ Salary</strong><span>Convert hourly pay to annual, monthly and weekly income, or the reverse.</span></a><a class="ftc-calc-tile" href="#mortgage" data-page="mortgage"><strong>Mortgage Payment</strong><span>Estimate a full monthly payment with taxes, insurance and PMI.</span></a><a class="ftc-calc-tile" href="#savings" data-page="savings"><strong>Savings Growth</strong><span>See how deposits and compound interest grow over time.</span></a></div>
+    </section>
+
+<!-- MoneyTols MANUAL AD LOCATION: 300x250 CONTENT BANNER -->
+<div data-ad-key="49f15ac241a2d133f49290fcb4e7fef0" class="tols-ad-slot tols-ad-slot--content" id="tols-ad-300x250-loan" aria-label="Advertisement"></div>
+
+
+<!-- MoneyTols MANUAL AD LOCATION: NATIVE/SOCIAL BANNER -->
+<div data-ad-key="fbb9b329ee7b2d4250e4a39a44b8fd66" data-ad-native="1" class="tols-ad-slot" id="tols-ad-native-loan" aria-label="Advertisement" style="max-width:100%;margin:16px auto;"><div class="tols-native-container"></div></div>
+
+  </div>
+
+  <div id="page-mortgage" class="ftc-page">
+    <header class="ftc-hero">
+      <div class="ftc-badge">Home buying</div>
+      <h1>Mortgage Payment Calculator</h1>
+      <p>Estimate your full monthly housing payment, including principal, interest, property tax, insurance and PMI.</p>
+    </header>
+<!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
+<div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-mortgage" style="max-width:100%;overflow:hidden;"></div>
+
+<!-- MoneyTols MANUAL AD LOCATION: 320x50 MOBILE BANNER (mobile only) -->
+<div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-mortgage" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
+
+    <div class="ftc-calculator-layout">
+  <div class="ftc-calculator-main">
+<div class="ftc-grid">
+      <section class="ftc-card">
+        <h2>Home and loan</h2>
+        <div class="ftc-field">
+          <label for="mg-price">Home price ($)</label>
+          <input type="number" id="mg-price" min="0" step="5000" value="400000">
+        </div>
+        <div class="ftc-row">
+          <div class="ftc-field">
+            <label for="mg-down">Down payment (%)</label>
+            <input type="number" id="mg-down" min="0" max="100" step="0.5" value="20">
+          </div>
+          <div class="ftc-field">
+            <label for="mg-rate">Interest rate (%)</label>
+            <input type="number" id="mg-rate" min="0" max="30" step="0.05" value="6.5">
+          </div>
+        </div>
+        <div class="ftc-field">
+          <label for="mg-term">Loan term</label>
+          <select id="mg-term">
+            <option value="30" selected>30 years</option>
+            <option value="20">20 years</option>
+            <option value="15">15 years</option>
+            <option value="10">10 years</option>
+          </select>
+        </div>
+        <div class="ftc-row">
+          <div class="ftc-field">
+            <label for="mg-tax">Property tax (% per year)</label>
+            <input type="number" id="mg-tax" min="0" max="10" step="0.05" value="1.1">
+          </div>
+          <div class="ftc-field">
+            <label for="mg-ins">Home insurance ($ per year)</label>
+            <input type="number" id="mg-ins" min="0" step="100" value="1500">
+          </div>
+        </div>
+        <div class="ftc-field">
+          <label for="mg-hoa">HOA dues ($ per month)</label>
+          <input type="number" id="mg-hoa" min="0" step="10" value="0">
+        </div>
+        <p class="ftc-note" id="mg-error" role="alert" aria-live="polite" style="display:none;color:#b42318"></p>
+      </section>
+      <section class="ftc-card">
+        <h2>Your monthly payment</h2>
+        <div class="ftc-kpis">
+          <div class="ftc-kpi ftc-k1"><span>Total monthly</span><strong id="mg-o-total">—</strong></div>
+          <div class="ftc-kpi ftc-k2"><span>Principal &amp; interest</span><strong id="mg-o-pi">—</strong></div>
+          <div class="ftc-kpi ftc-k3"><span>Loan amount</span><strong id="mg-o-loan">—</strong></div>
+          <div class="ftc-kpi ftc-k4"><span>Total interest</span><strong id="mg-o-int">—</strong></div>
+        </div>
+        <ul class="ftc-lines">
+          <li><span>Principal &amp; interest</span><span id="mg-l-pi">—</span></li>
+          <li><span>Property tax</span><span id="mg-l-tax">—</span></li>
+          <li><span>Home insurance</span><span id="mg-l-ins">—</span></li>
+          <li><span>PMI <span class="ftc-hint" id="mg-pmi-hint">(estimate)</span></span><span id="mg-l-pmi">—</span></li>
+          <li><span>HOA dues</span><span id="mg-l-hoa">—</span></li>
+          <li><span>Total monthly payment</span><span id="mg-l-total">—</span></li>
+        </ul>
+        <p class="ftc-note" style="margin-top:10px" id="mg-down-note"></p>
+      </section>
+    </div>
+
+
+
+    
+  </div>
+
+  <!-- MoneyTols MANUAL AD LOCATION: 160x600 SIDEBAR BANNER -->
+<div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-mortgage" aria-label="Advertisement" style="width:160px;min-height:600px;"></div>
+
+</div>
+
+<section class="ftc-card" style="margin-top:18px">
+      <h2>More calculators</h2>
+      <div class="ftc-calc-hub"><a class="ftc-calc-tile" href="#calculator" data-page="calculator"><strong>Federal Income Tax</strong><span>2026 brackets, FICA, state estimate and take-home pay.</span></a><a class="ftc-calc-tile" href="#hourly" data-page="hourly"><strong>Hourly ↔ Salary</strong><span>Convert hourly pay to annual, monthly and weekly income, or the reverse.</span></a><a class="ftc-calc-tile" href="#loan" data-page="loan"><strong>Loan Payment</strong><span>Monthly payment, total interest and a year-by-year payoff schedule.</span></a><a class="ftc-calc-tile" href="#savings" data-page="savings"><strong>Savings Growth</strong><span>See how deposits and compound interest grow over time.</span></a></div>
+    </section>
+
+<!-- MoneyTols MANUAL AD LOCATION: 300x250 CONTENT BANNER -->
+<div data-ad-key="49f15ac241a2d133f49290fcb4e7fef0" class="tols-ad-slot tols-ad-slot--content" id="tols-ad-300x250-mortgage" aria-label="Advertisement"></div>
+
+
+<!-- MoneyTols MANUAL AD LOCATION: NATIVE/SOCIAL BANNER -->
+<div data-ad-key="fbb9b329ee7b2d4250e4a39a44b8fd66" data-ad-native="1" class="tols-ad-slot" id="tols-ad-native-mortgage" aria-label="Advertisement" style="max-width:100%;margin:16px auto;"><div class="tols-native-container"></div></div>
+
+  </div>
+
+  <div id="page-savings" class="ftc-page">
+    <header class="ftc-hero">
+      <div class="ftc-badge">Savings &amp; investing</div>
+      <h1>Savings Growth Calculator</h1>
+      <p>See how an opening balance and regular monthly deposits can grow with compound interest.</p>
+    </header>
+<!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
+<div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-savings" style="max-width:100%;overflow:hidden;"></div>
+
+<!-- MoneyTols MANUAL AD LOCATION: 320x50 MOBILE BANNER (mobile only) -->
+<div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-savings" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
+
+    <div class="ftc-calculator-layout">
+  <div class="ftc-calculator-main">
+<div class="ftc-grid">
+      <section class="ftc-card">
+        <h2>Your savings plan</h2>
+        <div class="ftc-field">
+          <label for="sv-init">Starting balance ($)</label>
+          <input type="number" id="sv-init" min="0" step="500" value="5000">
+        </div>
+        <div class="ftc-field">
+          <label for="sv-monthly">Monthly contribution ($)</label>
+          <input type="number" id="sv-monthly" min="0" step="25" value="300">
+        </div>
+        <div class="ftc-row">
+          <div class="ftc-field">
+            <label for="sv-rate">Annual return (%)</label>
+            <input type="number" id="sv-rate" min="0" max="50" step="0.1" value="7">
+          </div>
+          <div class="ftc-field">
+            <label for="sv-years">Years to grow</label>
+            <input type="number" id="sv-years" min="1" max="60" step="1" value="20">
+          </div>
+        </div>
+        <p class="ftc-note" id="sv-error" role="alert" aria-live="polite" style="display:none;color:#b42318"></p>
+        <p class="ftc-note">Interest compounds monthly and contributions are added at the end of each month.</p>
+      </section>
+      <section class="ftc-card">
+        <h2>Your projection</h2>
+        <div class="ftc-kpis">
+          <div class="ftc-kpi ftc-k1"><span>Final balance</span><strong id="sv-o-final">—</strong></div>
+          <div class="ftc-kpi ftc-k2"><span>You contributed</span><strong id="sv-o-contrib">—</strong></div>
+          <div class="ftc-kpi ftc-k3"><span>Interest earned</span><strong id="sv-o-int">—</strong></div>
+          <div class="ftc-kpi ftc-k4"><span>Share from growth</span><strong id="sv-o-share">—</strong></div>
+        </div>
+      </section>
+    </div>
+
+
+
+    
+  </div>
+
+  <!-- MoneyTols MANUAL AD LOCATION: 160x600 SIDEBAR BANNER -->
+<div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-savings" aria-label="Advertisement" style="width:160px;min-height:600px;"></div>
+
+</div>
+
+<section class="ftc-card" style="margin-top:18px">
+      <h2>Year-by-year growth</h2>
+      <div class="ftc-scroll">
+        <table>
+          <thead><tr><th>Year</th><th>Total contributed</th><th>Total interest</th><th>Balance</th></tr></thead>
+          <tbody id="sv-table"></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="ftc-card" style="margin-top:18px">
+      <h2>More calculators</h2>
+      <div class="ftc-calc-hub"><a class="ftc-calc-tile" href="#calculator" data-page="calculator"><strong>Federal Income Tax</strong><span>2026 brackets, FICA, state estimate and take-home pay.</span></a><a class="ftc-calc-tile" href="#hourly" data-page="hourly"><strong>Hourly ↔ Salary</strong><span>Convert hourly pay to annual, monthly and weekly income, or the reverse.</span></a><a class="ftc-calc-tile" href="#loan" data-page="loan"><strong>Loan Payment</strong><span>Monthly payment, total interest and a year-by-year payoff schedule.</span></a><a class="ftc-calc-tile" href="#mortgage" data-page="mortgage"><strong>Mortgage Payment</strong><span>Estimate a full monthly payment with taxes, insurance and PMI.</span></a></div>
+    </section>
+
+<!-- MoneyTols MANUAL AD LOCATION: 300x250 CONTENT BANNER -->
+<div data-ad-key="49f15ac241a2d133f49290fcb4e7fef0" class="tols-ad-slot tols-ad-slot--content" id="tols-ad-300x250-savings" aria-label="Advertisement"></div>
+
+
+<!-- MoneyTols MANUAL AD LOCATION: NATIVE/SOCIAL BANNER -->
+<div data-ad-key="fbb9b329ee7b2d4250e4a39a44b8fd66" data-ad-native="1" class="tols-ad-slot" id="tols-ad-native-savings" aria-label="Advertisement" style="max-width:100%;margin:16px auto;"><div class="tols-native-container"></div></div>
+
   </div>
 
   <div id="page-about" class="ftc-page">
@@ -1114,26 +1482,6 @@ html[data-theme="dark"] .mt-popup-ad-footer{
       <p style="color:#3c415f;margin-bottom:0">Questions about any of this? <a href="mailto:support@moneytols.com" style="color:var(--ftc-brand)">support@moneytols.com</a>.</p>
     </section>
   </div>
-<!-- MoneyTols MANUAL AD LOCATION: 300x250 CONTENT BANNER -->
-<div class="tols-ad-slot tols-ad-slot--content" id="tols-ad-300x250" aria-label="Advertisement">
-<script>
-  atOptions = {
-    'key' : '49f15ac241a2d133f49290fcb4e7fef0',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://gigglehiccup.com/49f15ac241a2d133f49290fcb4e7fef0/invoke.js"></script>
-</div>
-
-<!-- MoneyTols MANUAL AD LOCATION: NATIVE/SOCIAL BANNER -->
-  <div class="tols-ad-slot" id="tols-ad-native" aria-label="Advertisement" style="max-width:100%;margin:16px auto;">
-    <script async="async" data-cfasync="false" src="https://gigglehiccup.com/fbb9b329ee7b2d4250e4a39a44b8fd66/invoke.js"></script>
-    <div id="container-fbb9b329ee7b2d4250e4a39a44b8fd66"></div>
-  </div>
-
   <footer class="ftc-footer">
     <div><a href="#about" data-page="about">About</a><a href="#contact" data-page="contact">Contact</a><a href="#privacy" data-page="privacy">Privacy Policy</a><a href="#terms" data-page="terms">Terms of Use</a></div>
     <div>&copy; 2026 MoneyTols. All rights reserved.</div>
@@ -1143,14 +1491,47 @@ html[data-theme="dark"] .mt-popup-ad-footer{
 <script>
 (function(){
   "use strict";
-  var pages=["calculator","about","contact","privacy","terms"];
+  var pages=["calculator","hourly","loan","mortgage","savings","about","contact","privacy","terms"];
+  var baseTitle=document.title;
+  var titles={hourly:"Hourly to Salary Calculator | MoneyTols",loan:"Loan Payment Calculator | MoneyTols",mortgage:"Mortgage Payment Calculator | MoneyTols",savings:"Savings Growth Calculator | MoneyTols",about:"About | MoneyTols",contact:"Contact | MoneyTols",privacy:"Privacy Policy | MoneyTols",terms:"Terms of Use | MoneyTols"};
+  function loadAdSlot(slot){
+    if(slot.dataset.adLoaded) return;
+    slot.dataset.adLoaded="1";
+    var key=slot.getAttribute("data-ad-key");
+    if(!key) return;
+    if(slot.hasAttribute("data-ad-native")){
+      var container=slot.querySelector(".tols-native-container");
+      if(container) container.id="container-"+key;
+      var s=document.createElement("script");
+      s.async=true; s.dataset.cfasync="false";
+      s.src="https://gigglehiccup.com/"+key+"/invoke.js";
+      slot.appendChild(s);
+      return;
+    }
+    var w=slot.id.indexOf("728")>-1?728:slot.id.indexOf("320")>-1?320:slot.id.indexOf("160")>-1?160:300;
+    var h=slot.id.indexOf("728")>-1?90:slot.id.indexOf("320")>-1?50:slot.id.indexOf("160")>-1?600:250;
+    window.atOptions={key:key,format:"iframe",height:h,width:w,params:{}};
+    var s2=document.createElement("script");
+    s2.src="https://gigglehiccup.com/"+key+"/invoke.js";
+    slot.appendChild(s2);
+  }
+  function loadPageAds(name){
+    var page=document.getElementById("page-"+name);
+    if(!page) return;
+    page.querySelectorAll("[data-ad-key]").forEach(loadAdSlot);
+  }
   function showPage(name){
     if(pages.indexOf(name)===-1) name="calculator";
     pages.forEach(function(p){
       var el=document.getElementById("page-"+p);
-      if(el) el.classList.toggle("active",p===name);
+      if(!el) return;
+      var isActive=p===name;
+      el.classList.toggle("active",isActive);
+      if(isActive){el.style.animation="none";void el.offsetWidth;el.style.animation="";}
     });
+    document.title=titles[name]||baseTitle;
     window.scrollTo(0,0);
+    loadPageAds(name);
   }
   document.querySelectorAll("[data-page]").forEach(function(a){
     a.addEventListener("click",function(e){
@@ -1234,6 +1615,17 @@ html[data-theme="dark"] .mt-popup-ad-footer{
 
   var last=null, chart=null, chartLoading=false;
 
+  function clearTaxResults(){
+    ["ftc-net","ftc-netm","ftc-eff","ftc-marg","ftc-gross","ftc-l-pretax",
+     "ftc-l-ded","ftc-taxable","ftc-fed","ftc-ss","ftc-mc","ftc-state-tax","ftc-total"]
+      .forEach(function(id){ var el=$(id); if(el) el.textContent="—"; });
+    var tbody=$("ftc-brackets");
+    if(tbody) tbody.innerHTML="";
+    last=null;
+    lastChartData=null;
+    if(chart){ chart.destroy(); chart=null; }
+  }
+
   function render(){
     var status=$("ftc-status").value;
     var grossRaw=$("ftc-income").value;
@@ -1254,6 +1646,8 @@ html[data-theme="dark"] .mt-popup-ad-footer{
 
     var errorEl=$("ftc-error");
     if(error.length){
+      // Prevent stale numbers from being mistaken for results for invalid inputs.
+      clearTaxResults();
       errorEl.textContent=error.join(" ");
       errorEl.style.display="block";
       return;
@@ -1410,6 +1804,180 @@ html[data-theme="dark"] .mt-popup-ad-footer{
 })();
 </script>
 
+<script id="moneytols-more-calculators">
+(function(){
+  "use strict";
+  var usd0=new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});
+  var usd2=new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",minimumFractionDigits:2,maximumFractionDigits:2});
+  function $(id){return document.getElementById(id);}
+  function val(id){var v=parseFloat($(id).value);return isFinite(v)?v:NaN;}
+  function set(id,t){var e=$(id);if(e)e.textContent=t;}
+  function clear(ids){ids.forEach(function(i){set(i,"\u2014");});}
+  function err(id,msg){var e=$(id);if(!e)return;e.textContent=msg||"";e.style.display=msg?"block":"none";}
+  function on(ids,fn){ids.forEach(function(i){var e=$(i);if(e){e.addEventListener("input",fn);e.addEventListener("change",fn);}});}
+  function years(months){
+    var y=Math.floor(months/12),m=months%12,s=[];
+    if(y)s.push(y+(y===1?" yr":" yrs"));
+    if(m||!y)s.push(m+(m===1?" mo":" mos"));
+    return s.join(" ");
+  }
+  function pmt(P,apr,n){
+    var r=apr/1200;
+    return r===0?P/n:P*r/(1-Math.pow(1+r,-n));
+  }
+
+  /* ---------- Hourly <-> Salary ---------- */
+  var hrMode="h";
+  function hrCalc(){
+    var amt=val("hr-amount"),hrs=val("hr-hours"),wks=val("hr-weeks");
+    var ids=["hr-o-annual","hr-o-monthly","hr-o-biweekly","hr-o-hourly","hr-l-hourly","hr-l-daily","hr-l-weekly","hr-l-biweekly","hr-l-semi","hr-l-monthly","hr-l-annual"];
+    if(!(amt>=0)||!(hrs>0&&hrs<=100)||!(wks>=1&&wks<=52)){
+      err("hr-error","Enter a pay amount of $0 or more, 1\u2013100 hours per week and 1\u201352 weeks per year.");
+      clear(ids);return null;
+    }
+    err("hr-error","");
+    var hourly,annual;
+    if(hrMode==="h"){hourly=amt;annual=hourly*hrs*wks;}
+    else{annual=amt;hourly=annual/(hrs*wks);}
+    var weekly=hourly*hrs;
+    set("hr-o-annual",usd0.format(annual));
+    set("hr-o-monthly",usd0.format(annual/12));
+    set("hr-o-biweekly",usd0.format(annual/26));
+    set("hr-o-hourly",usd2.format(hourly));
+    set("hr-l-hourly",usd2.format(hourly));
+    set("hr-l-daily",usd2.format(weekly/5));
+    set("hr-l-weekly",usd2.format(weekly));
+    set("hr-l-biweekly",usd2.format(annual/26));
+    set("hr-l-semi",usd2.format(annual/24));
+    set("hr-l-monthly",usd2.format(annual/12));
+    set("hr-l-annual",usd2.format(annual));
+    return annual;
+  }
+  function hrSetMode(m){
+    if(m===hrMode)return;
+    var amt=val("hr-amount"),hrs=val("hr-hours"),wks=val("hr-weeks");
+    if(amt>=0&&hrs>0&&wks>0){
+      $("hr-amount").value=(m==="s")?Math.round(amt*hrs*wks*100)/100:Math.round(amt/(hrs*wks)*100)/100;
+    }
+    hrMode=m;
+    $("hr-mode-h").setAttribute("aria-pressed",m==="h"?"true":"false");
+    $("hr-mode-s").setAttribute("aria-pressed",m==="s"?"true":"false");
+    $("hr-amount-label").textContent=m==="h"?"Hourly rate ($)":"Annual salary ($)";
+    $("hr-amount").step=m==="h"?"0.5":"1000";
+    hrCalc();
+  }
+  $("hr-mode-h").addEventListener("click",function(){hrSetMode("h");});
+  $("hr-mode-s").addEventListener("click",function(){hrSetMode("s");});
+  on(["hr-amount","hr-hours","hr-weeks"],hrCalc);
+  $("hr-to-tax").addEventListener("click",function(){
+    var annual=hrCalc();
+    if(annual===null)return;
+    var inc=$("ftc-income");
+    if(!inc)return;
+    inc.value=Math.round(annual);
+    inc.dispatchEvent(new Event("input",{bubbles:true}));
+    history.pushState(null,"","#calculator");
+    window.dispatchEvent(new PopStateEvent("popstate"));
+  });
+
+  /* ---------- Loan ---------- */
+  function lnCalc(){
+    var P=val("ln-amount"),apr=val("ln-rate"),yrs=val("ln-years"),extra=val("ln-extra");
+    if(isNaN(extra)||extra<0)extra=0;
+    var ids=["ln-o-pmt","ln-o-int","ln-o-total","ln-o-time","ln-l-amount","ln-l-base","ln-l-extra","ln-l-saved"];
+    if(!(P>0)||!(apr>=0&&apr<=60)||!(yrs>=0.25&&yrs<=50)){
+      err("ln-error","Enter a loan amount above $0, a rate between 0% and 60%, and a term between 0.25 and 50 years.");
+      clear(ids);$("ln-table").innerHTML="";return;
+    }
+    err("ln-error","");
+    var n=Math.round(yrs*12),r=apr/1200,base=pmt(P,apr,n);
+    function run(pay){
+      var bal=P,months=0,interest=0,rows=[],yP=0,yI=0;
+      while(bal>0.005&&months<1200){
+        var i=bal*r,p=Math.min(pay-i,bal);
+        if(p<=0)break;
+        bal-=p;interest+=i;yP+=p;yI+=i;months++;
+        if(months%12===0||bal<=0.005){rows.push({y:Math.ceil(months/12),p:yP,i:yI,b:Math.max(bal,0)});yP=0;yI=0;}
+      }
+      return {months:months,interest:interest,rows:rows};
+    }
+    var plain=run(base),withExtra=extra>0?run(base+extra):plain;
+    set("ln-o-pmt",usd2.format(base+extra));
+    set("ln-o-int",usd0.format(withExtra.interest));
+    set("ln-o-total",usd0.format(P+withExtra.interest));
+    set("ln-o-time",years(withExtra.months));
+    set("ln-l-amount",usd0.format(P));
+    set("ln-l-base",usd2.format(base));
+    set("ln-l-extra",usd2.format(extra));
+    set("ln-l-saved",extra>0?usd0.format(Math.max(plain.interest-withExtra.interest,0)):"\u2014");
+    $("ln-table").innerHTML=withExtra.rows.map(function(x){
+      return "<tr><td>"+x.y+"</td><td>"+usd0.format(x.p)+"</td><td>"+usd0.format(x.i)+"</td><td>"+usd0.format(x.b)+"</td></tr>";
+    }).join("");
+  }
+  on(["ln-amount","ln-rate","ln-years","ln-extra"],lnCalc);
+
+  /* ---------- Mortgage ---------- */
+  function mgCalc(){
+    var price=val("mg-price"),down=val("mg-down"),rate=val("mg-rate"),term=val("mg-term"),
+        tax=val("mg-tax"),ins=val("mg-ins"),hoa=val("mg-hoa");
+    if(isNaN(tax)||tax<0)tax=0;if(isNaN(ins)||ins<0)ins=0;if(isNaN(hoa)||hoa<0)hoa=0;
+    var ids=["mg-o-total","mg-o-pi","mg-o-loan","mg-o-int","mg-l-pi","mg-l-tax","mg-l-ins","mg-l-pmi","mg-l-hoa","mg-l-total"];
+    if(!(price>0)||!(down>=0&&down<=100)||!(rate>=0&&rate<=30)||!(term>0)){
+      err("mg-error","Enter a home price above $0, a down payment of 0\u2013100% and an interest rate of 0\u201330%.");
+      clear(ids);set("mg-down-note","");return;
+    }
+    err("mg-error","");
+    var downAmt=price*down/100,loan=price-downAmt,n=term*12;
+    var pi=loan>0?pmt(loan,rate,n):0;
+    var taxM=price*tax/100/12,insM=ins/12;
+    var pmi=(down<20&&loan>0)?loan*0.006/12:0;
+    var total=pi+taxM+insM+pmi+hoa;
+    set("mg-o-total",usd0.format(total));
+    set("mg-o-pi",usd0.format(pi));
+    set("mg-o-loan",usd0.format(loan));
+    set("mg-o-int",usd0.format(Math.max(pi*n-loan,0)));
+    set("mg-l-pi",usd2.format(pi));
+    set("mg-l-tax",usd2.format(taxM));
+    set("mg-l-ins",usd2.format(insM));
+    set("mg-l-pmi",usd2.format(pmi));
+    set("mg-l-hoa",usd2.format(hoa));
+    set("mg-l-total",usd2.format(total));
+    set("mg-pmi-hint",down<20?"(estimated, down payment under 20%)":"(not needed at 20% or more down)");
+    set("mg-down-note","Down payment: "+usd0.format(downAmt)+" ("+down+"% of the price).");
+  }
+  on(["mg-price","mg-down","mg-rate","mg-term","mg-tax","mg-ins","mg-hoa"],mgCalc);
+
+  /* ---------- Savings ---------- */
+  function svCalc(){
+    var init=val("sv-init"),mon=val("sv-monthly"),rate=val("sv-rate"),yrs=val("sv-years");
+    var ids=["sv-o-final","sv-o-contrib","sv-o-int","sv-o-share"];
+    if(isNaN(init)||init<0)init=0;if(isNaN(mon)||mon<0)mon=0;
+    if(!(rate>=0&&rate<=50)||!(yrs>=1&&yrs<=60)||(init===0&&mon===0)){
+      err("sv-error","Enter a starting balance or monthly contribution, a return of 0\u201350% and 1\u201360 years.");
+      clear(ids);$("sv-table").innerHTML="";return;
+    }
+    err("sv-error","");
+    var r=rate/1200,bal=init,contrib=init,rows=[];
+    var months=Math.round(yrs)*12;
+    for(var m=1;m<=months;m++){
+      bal=bal*(1+r)+mon;contrib+=mon;
+      if(m%12===0)rows.push({y:m/12,c:contrib,i:bal-contrib,b:bal});
+    }
+    var interest=bal-contrib;
+    set("sv-o-final",usd0.format(bal));
+    set("sv-o-contrib",usd0.format(contrib));
+    set("sv-o-int",usd0.format(interest));
+    set("sv-o-share",bal>0?Math.round(interest/bal*100)+"%":"\u2014");
+    $("sv-table").innerHTML=rows.map(function(x){
+      return "<tr><td>"+x.y+"</td><td>"+usd0.format(x.c)+"</td><td>"+usd0.format(x.i)+"</td><td>"+usd0.format(x.b)+"</td></tr>";
+    }).join("");
+  }
+  on(["sv-init","sv-monthly","sv-rate","sv-years"],svCalc);
+
+  hrCalc();lnCalc();mgCalc();svCalc();
+})();
+</script>
+
 <script id="tols-theme-script">
 (function () {
   const root = document.documentElement;
@@ -1468,6 +2036,13 @@ html[data-theme="dark"] .mt-popup-ad-progress{background:rgba(142,199,255,.12)}
 @media(max-width:560px){
   .mt-popup-ad-countdown{padding:11px 48px 9px 14px;font-size:.78rem}
 }
+
+.ftc-calc-hub{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:14px}
+.ftc-calc-tile{display:block;padding:16px;border:1px solid var(--ftc-line);border-radius:15px;background:var(--ftc-card);text-decoration:none;color:var(--ftc-ink)}
+.ftc-calc-tile strong{display:block;font-size:.98rem;margin-bottom:4px}
+.ftc-calc-tile span{display:block;font-size:.82rem;color:var(--ftc-muted);line-height:1.5}
+.ftc-calc-tile:hover,.ftc-calc-tile:focus-visible{border-color:#b9b0ff;box-shadow:0 8px 20px rgba(91,75,255,.12)}
+html[data-theme="dark"] .ftc-calc-tile{background:#0e1b30;border-color:#35547e}
 </style>
 
 <!-- Professional advertisement popup -->
@@ -1492,9 +2067,9 @@ html[data-theme="dark"] .mt-popup-ad-progress{background:rgba(142,199,255,.12)}
         <p class="mt-ad-desc">Fast, free tools to estimate taxes, loans, and take-home pay.</p>
       </div>
       <div class="mt-popup-ad-links">
-        <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/rkk19r9u?key=baf6d1ab77fa3e5428fd85f964eb8e39" target="_blank" rel="noopener sponsored">Visit MoneyTols &rarr;</a>
-        <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/rkk19r9u?key=baf6d1ab77fa3e5428fd85f964eb8e39" target="_blank" rel="noopener sponsored">Explore Calculators &rarr;</a>
-        <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/rkk19r9u?key=baf6d1ab77fa3e5428fd85f964eb8e39" target="_blank" rel="noopener sponsored">Learn More &rarr;</a>
+        <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">Visit MoneyTols &rarr;</a>
+        <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">Explore Calculators &rarr;</a>
+        <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">Learn More &rarr;</a>
       </div>
     </div>
   </div>
@@ -1592,13 +2167,7 @@ html[data-theme="dark"] .mt-popup-ad-progress{background:rgba(142,199,255,.12)}
       closePopup();
     });
 
-    var AD_LINKS = [
-      "https://gigglehiccup.com/rkk19r9u?key=baf6d1ab77fa3e5428fd85f964eb8e39",
-      "https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f"
-    ];
-    var chosenLink = AD_LINKS[Math.floor(Math.random() * AD_LINKS.length)];
     var visitLinks = popup.querySelectorAll(".mt-popup-ad-visit");
-    visitLinks.forEach(function(link){ link.href = chosenLink; });
     visitLinks.forEach(function(link){
       link.addEventListener("click", function(){
         closePopup();
