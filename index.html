@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Basic clickjacking guard: bust out if this page is ever loaded inside someone else's frame/iframe -->
+  <script>if (window.top !== window.self) { window.top.location = window.self.location; }</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script id="tols-theme-preload">
+    (function(){
+      try {
+        var t=localStorage.getItem("tols-theme");
+        if(!t) t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";
+        document.documentElement.setAttribute("data-theme",t);
+      } catch(e) {}
+    })();
+  </script>
   <link rel="icon" href="/favicon.ico">
-  <title>US Federal Income Tax Calculator 2026 | MoneyTols</title>
-  <meta name="description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with MoneyTols' free tax calculator.">
-  <link rel="canonical" href="https://moneytols.com/us-federal-income-tax-calculator">
+  <title>Free US Financial Calculators 2026 — Tax, Loan, Mortgage & Savings | MoneyTols</title>
+  <meta name="description" content="Free US financial calculators for 2026: federal income tax, hourly to salary, loan payments, mortgage, and savings growth. Fast, accurate, no sign-up needed.">
+  <link rel="canonical" href="https://moneytols.com/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="US Federal Income Tax Calculator 2026 | MoneyTols">
-  <meta property="og:description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with MoneyTols' free tax calculator.">
-  <meta property="og:url" content="https://moneytols.com/us-federal-income-tax-calculator">
+  <meta property="og:title" content="Free US Financial Calculators 2026 — Tax, Loan, Mortgage & Savings | MoneyTols">
+  <meta property="og:description" content="Free US financial calculators for 2026: federal income tax, hourly to salary, loan payments, mortgage, and savings growth. Fast, accurate, no sign-up needed.">
+  <meta property="og:url" content="https://moneytols.com/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="US Federal Income Tax Calculator 2026 | MoneyTols">
-  <meta name="twitter:description" content="Estimate your 2026 US federal income tax, FICA, state tax, and take-home pay with MoneyTols' free tax calculator.">
+  <meta name="twitter:title" content="Free US Financial Calculators 2026 — Tax, Loan, Mortgage & Savings | MoneyTols">
+  <meta name="twitter:description" content="Free US financial calculators for 2026: federal income tax, hourly to salary, loan payments, mortgage, and savings growth. Fast, accurate, no sign-up needed.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -24,7 +35,27 @@
       {"@type":"Question","name":"Does this include Social Security and Medicare taxes?","acceptedAnswer":{"@type":"Answer","text":"Yes. Social Security is 6.2% of wages up to the 2026 wage base of $184,500. Medicare is 1.45% on all wages, plus an Additional Medicare Tax of 0.9% on wages above $200,000 (single/HOH), $250,000 (joint) or $125,000 (married filing separately)."}},
       {"@type":"Question","name":"Why is my state tax only an estimate?","acceptedAnswer":{"@type":"Answer","text":"States differ enormously: nine have no wage income tax, some are flat-rate, and others have their own brackets, deductions and credits. This tool applies a single representative rate per state to your federal taxable income to give you a ballpark figure, not a filing-ready number."}},
       {"@type":"Question","name":"How do pre-tax deductions reduce my tax bill?","acceptedAnswer":{"@type":"Answer","text":"Traditional 401(k), 403(b), HSA and FSA contributions can reduce federal taxable income when eligible. Traditional 401(k) and 403(b) contributions generally remain subject to FICA, while eligible payroll HSA/FSA contributions may also avoid FICA. A $6,000 contribution for someone in the 22% bracket could reduce federal income tax by about $1,320, depending on eligibility and other details."}},
-      {"@type":"Question","name":"Which tax year does this calculator use?","acceptedAnswer":{"@type":"Answer","text":"The 2026 tax year, using the inflation-adjusted brackets, standard deductions and credit amounts published by the IRS in Revenue Procedure 2025-32. Some newer deductions, special situations, and eligibility rules are not fully modeled. These are the numbers for income earned during 2026 and reported on the return you file in 2027."}}
+      {"@type":"Question","name":"Which tax year does this calculator use?","acceptedAnswer":{"@type":"Answer","text":"The 2026 tax year, using the inflation-adjusted brackets, standard deductions and credit amounts published by the IRS in Revenue Procedure 2025-32. Some newer deductions, special situations, and eligibility rules are not fully modeled. These are the numbers for income earned during 2026 and reported on the return you file in 2027."}},
+      {"@type":"Question","name":"What is the 2026 standard deduction?","acceptedAnswer":{"@type":"Answer","text":"For the 2026 tax year the standard deduction is $16,100 for single filers and married filing separately, $32,200 for married filing jointly and qualifying surviving spouses, and $24,150 for heads of household. These amounts are adjusted each year for inflation by the IRS."}},
+      {"@type":"Question","name":"How much will I get back as a tax refund?","acceptedAnswer":{"@type":"Answer","text":"A refund happens when the amount withheld from your paychecks during the year exceeds your actual tax liability. Subtract the federal tax shown in this calculator from the total federal withholding on your W-2 or pay stub. If withholding is higher you will likely get a refund; if it is lower you may owe at filing."}},
+      {"@type":"Question","name":"How does the Child Tax Credit work?","acceptedAnswer":{"@type":"Answer","text":"The Child Tax Credit provides up to $2,200 per qualifying child under age 17. Up to $1,700 of that may be refundable (the Additional Child Tax Credit) if the credit exceeds your tax liability. This calculator applies a simplified credit model, including an estimated refundable ACTC component, and does not verify all eligibility rules such as qualifying-child requirements or filing-specific phase-outs."}},
+      {"@type":"Question","name":"What is a W-4 and how does it affect my paycheck?","acceptedAnswer":{"@type":"Answer","text":"Form W-4 tells your employer how much federal income tax to withhold from each paycheck. If too little is withheld you may owe a penalty at tax time; if too much is withheld you get a larger refund but give the IRS an interest-free loan all year. Use the results from this calculator to check whether your current withholding is on track."}},
+      {"@type":"Question","name":"$25 an hour is how much a year?","acceptedAnswer":{"@type":"Answer","text":"At $25 per hour working a standard full-time schedule of 40 hours per week and 52 weeks per year, your gross annual salary is $52,000. That breaks down to about $4,333 per month, $2,000 per biweekly paycheck, or $1,000 per week before taxes and deductions."}},
+      {"@type":"Question","name":"What is the difference between biweekly and semi-monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Biweekly means you get paid every two weeks — 26 paychecks per year. Semi-monthly means twice per month — 24 paychecks per year. Biweekly paychecks are slightly smaller but you get two extra per year. For a $52,000 salary, biweekly pay is $2,000 per check while semi-monthly is about $2,167 per check."}},
+      {"@type":"Question","name":"How do I convert annual salary to hourly rate?","acceptedAnswer":{"@type":"Answer","text":"Divide your annual salary by the total hours you work in a year. For a standard full-time schedule, that's 2,080 hours (40 hours × 52 weeks). For example, $60,000 ÷ 2,080 = $28.85 per hour. If you work a different schedule, adjust the hours per week and weeks per year in this calculator."}},
+      {"@type":"Question","name":"How many hours per year is full-time?","acceptedAnswer":{"@type":"Answer","text":"The standard US full-time schedule is 40 hours per week × 52 weeks = 2,080 hours per year. Some employers use 50 weeks instead of 52 to account for unpaid time off, which gives 2,000 hours — a common rule of thumb for quick mental math."}},
+      {"@type":"Question","name":"How is a loan payment calculated?","acceptedAnswer":{"@type":"Answer","text":"Lenders use the amortization formula: M = P × r × (1+r)^n ÷ ((1+r)^n − 1). P is the loan amount, r is the monthly interest rate (APR divided by 12), and n is the total number of monthly payments. This gives a fixed monthly amount where early payments are mostly interest and later payments are mostly principal."}},
+      {"@type":"Question","name":"Does paying extra reduce the total interest on a loan?","acceptedAnswer":{"@type":"Answer","text":"Yes, significantly. Extra payments go directly toward your principal balance. Since interest is calculated on the remaining balance, a lower balance means less interest charged every month going forward. Use the Extra monthly payment field in this calculator to see exactly how much interest you could save and how much sooner you'd pay off the loan."}},
+      {"@type":"Question","name":"What is a good interest rate for a personal loan?","acceptedAnswer":{"@type":"Answer","text":"As of 2026, personal loan rates typically range from about 6% to 36% depending on your credit score, income, and loan term. Borrowers with excellent credit (740+) generally see rates under 12%, while those with fair credit may face rates of 20% or more. Auto loans tend to have lower rates, often 5%–12% for new cars."}},
+      {"@type":"Question","name":"Should I choose a shorter or longer loan term?","acceptedAnswer":{"@type":"Answer","text":"A shorter term means higher monthly payments but much less total interest. A longer term lowers your monthly payment but costs more over the life of the loan. For example, a $25,000 loan at 7.5% costs about $5,085 in interest over 5 years but $10,374 over 8 years. Choose the shortest term whose monthly payment fits comfortably in your budget."}},
+      {"@type":"Question","name":"How much house can I afford?","acceptedAnswer":{"@type":"Answer","text":"A common guideline is the 28/36 rule: your monthly housing payment (principal, interest, taxes, insurance) should be at most 28% of your gross monthly income, and your total debt payments (including the mortgage, car loans, credit cards) should stay under 36%. For a $100,000 annual income ($8,333/month), that means a maximum housing payment of about $2,333 per month."}},
+      {"@type":"Question","name":"What is PMI and how do I avoid it?","acceptedAnswer":{"@type":"Answer","text":"PMI (Private Mortgage Insurance) protects the lender if you default on the loan. It's typically required when your down payment is less than 20% of the home price. PMI usually costs 0.3%–1.5% of the loan amount per year — on a $320,000 loan, that's $960–$4,800 annually. To avoid PMI, put down at least 20%. Once you reach 20% equity through payments or appreciation, you can request to have it removed."}},
+      {"@type":"Question","name":"Should I choose a 30-year or 15-year mortgage?","acceptedAnswer":{"@type":"Answer","text":"A 15-year mortgage has higher monthly payments but a lower interest rate and dramatically less total interest. A 30-year mortgage offers lower, more manageable payments at a slightly higher rate. For a $320,000 loan at 6.5%, a 15-year term costs about $2,790/month with $182,000 total interest, while a 30-year term costs about $2,023/month but $408,000 total interest. Choose based on your monthly budget and long-term goals."}},
+      {"@type":"Question","name":"How much should I put down on a house?","acceptedAnswer":{"@type":"Answer","text":"The traditional recommendation is 20% to avoid PMI and get the best rates. However, many lenders offer loans with as little as 3%–5% down. A larger down payment means lower monthly payments, less interest over the life of the loan, and no PMI. A smaller down payment preserves your cash for emergencies, repairs, and other investments. Consider your full financial picture before deciding."}},
+      {"@type":"Question","name":"What is compound interest?","acceptedAnswer":{"@type":"Answer","text":"Compound interest is when you earn interest on both your original deposit and on the interest that has already accumulated. For example, $1,000 at 7% earns $70 in year one. In year two, you earn 7% on $1,070 — $74.90. Over decades, this snowball effect turns small regular contributions into significant wealth."}},
+      {"@type":"Question","name":"How much should I save monthly to reach $100,000?","acceptedAnswer":{"@type":"Answer","text":"It depends on your timeline and expected return. At a 7% annual return: to reach $100,000 in 10 years, you'd need to save about $580/month. In 15 years, about $320/month. In 20 years, about $195/month. The longer your timeline, the less you need to contribute each month because compound interest does more of the heavy lifting."}},
+      {"@type":"Question","name":"What is a good annual return for savings?","acceptedAnswer":{"@type":"Answer","text":"High-yield savings accounts currently offer 4%–5% APY with no risk. CDs offer similar rates for locked-in terms. The S&P 500 has historically returned about 10% annually on average before inflation (roughly 7% after inflation), but with significant year-to-year volatility. For long-term goals (10+ years), investing typically outperforms savings."}},
+      {"@type":"Question","name":"How much of my savings should be in an emergency fund?","acceptedAnswer":{"@type":"Answer","text":"Most financial advisors recommend 3–6 months of essential expenses in an easily accessible emergency fund. If your essential monthly costs (rent, food, utilities, transportation, insurance) total $3,000, aim for $9,000–$18,000. Keep this in a high-yield savings account where it's safe, liquid, and earning some interest."}}
     ]
   }
   </script>
@@ -70,6 +101,7 @@
       --success: #10b981;
       --warning: #f59e0b;
       --danger: #ef4444;
+      --error-color: #b42318;
 
       --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #fce7f3 30%, #e0f2fe 60%, #f3e8ff 100%);
     }
@@ -96,6 +128,7 @@
       --accent-soft: rgba(244, 114, 182, 0.12);
 
       --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1a1035 30%, #0c1a2e 60%, #1a0f2e 100%);
+      --error-color: #ff7875;
     }
 
     html {
@@ -402,7 +435,7 @@
     /* ---------- CALCULATOR LAYOUT ---------- */
     .ftc-calculator-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 180px;
+      grid-template-columns: minmax(0, 1fr) 160px;
       gap: 24px;
       align-items: start;
       margin-top: 24px;
@@ -966,9 +999,10 @@
 
     .tols-ad-slot--desktop-only { display: block; }
     .tols-ad-slot--mobile { display: none; }
+    .tols-ad-slot--content { max-width:320px; margin:16px auto; }
 
     .tols-ad-slot--sidebar {
-      width: 180px;
+      width: 160px;
       min-height: 600px;
       margin: 0;
     }
@@ -1009,209 +1043,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---------- POPUP AD ---------- */
-    .mt-popup-ad-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: rgba(10, 16, 30, 0.55);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      opacity: 0;
-      transition: opacity 0.35s ease;
-    }
-
-    .mt-popup-ad-backdrop[aria-hidden="false"] {
-      display: flex;
-      opacity: 1;
-    }
-
-    .mt-popup-ad {
-      width: min(460px, 100%);
-      max-height: min(560px, calc(100vh - 32px));
-      overflow: auto;
-      background: var(--glass-bg-strong);
-      backdrop-filter: blur(40px) saturate(180%);
-      -webkit-backdrop-filter: blur(40px) saturate(180%);
-      color: var(--text-primary);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--glass-border-strong);
-      position: relative;
-      box-shadow: var(--glass-shadow-xl), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      transform: translateY(20px) scale(0.96);
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .mt-popup-ad-backdrop[aria-hidden="false"] .mt-popup-ad {
-      transform: translateY(0) scale(1);
-    }
-
-    .mt-popup-ad-progress {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 3px;
-      background: var(--glass-bg-subtle);
-      overflow: hidden;
-      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-    }
-
-    .mt-popup-ad-progress span {
-      display: block;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--brand), var(--accent));
-      transform-origin: left center;
-      transition: width 1s linear;
-    }
-
-    .mt-popup-ad-countdown {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 16px 54px 14px 20px;
-      background: var(--glass-bg-subtle);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--glass-border);
-      color: var(--text-tertiary);
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-
-    .mt-popup-ad-countdown strong {
-      color: var(--brand);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .mt-popup-ad-close {
-      position: absolute;
-      right: 14px;
-      top: 14px;
-      width: 36px;
-      height: 36px;
-      border: 1px solid var(--glass-border);
-      border-radius: 50%;
-      background: var(--glass-bg-subtle);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      color: var(--text-tertiary);
-      font-size: 20px;
-      line-height: 1;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.25s ease;
-      z-index: 2;
-    }
-
-    .mt-popup-ad-close:hover {
-      background: var(--glass-bg-strong);
-      color: var(--text-primary);
-      transform: rotate(90deg) scale(1.05);
-      box-shadow: var(--glass-shadow);
-    }
-
-    .mt-popup-ad-content {
-      padding: 26px 26px 30px;
-    }
-
-    .mt-popup-ad-title {
-      font-size: clamp(1.1rem, 3.5vw, 1.35rem);
-      font-weight: 800;
-      margin-bottom: 8px;
-      color: var(--text-primary);
-      letter-spacing: -0.02em;
-    }
-
-    .mt-popup-ad-body {
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: var(--text-secondary);
-      margin-bottom: 20px;
-    }
-
-    .mt-popup-ad-slot {
-      min-height: 160px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      border: 1.5px dashed var(--glass-border);
-      border-radius: var(--radius-md);
-      padding: 26px 20px;
-      margin-bottom: 20px;
-      background: var(--glass-bg-subtle);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    .mt-ad-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: var(--radius-md);
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      flex-shrink: 0;
-      box-shadow: var(--glass-shadow-lg);
-    }
-
-    .mt-ad-headline {
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      margin: 0;
-    }
-
-    .mt-ad-desc {
-      font-size: 0.82rem;
-      color: var(--text-tertiary);
-      margin: 0;
-      max-width: 30ch;
-    }
-
-    .mt-popup-ad-links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .mt-popup-ad-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 24px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(79, 70, 229, 0.9), rgba(236, 72, 153, 0.9));
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      color: #fff !important;
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-decoration: none;
-      box-shadow: var(--glass-shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-      transition: all 0.25s ease;
-    }
-
-    .mt-popup-ad-link:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: var(--glass-shadow-xl), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      filter: brightness(1.08);
-    }
-
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 1100px) {
       .ftc-calculator-layout { grid-template-columns: 1fr; }
@@ -1239,12 +1070,6 @@
         gap: 4px;
         border-radius: var(--radius-lg);
       }
-      .ftc-topnav::after {
-        font-size: 1rem;
-        padding: 4px 4px;
-        width: 100%;
-        margin-bottom: 6px;
-      }
       .ftc-topnav a {
         font-size: 0.78rem;
         padding: 8px 12px;
@@ -1270,11 +1095,7 @@
         text-align: center;
       }
       .ftc-footer a { margin: 0 10px; }
-      .mt-popup-ad-content { padding: 20px 18px 24px; }
-      .mt-popup-ad-countdown {
-        padding: 14px 50px 12px 18px;
-        font-size: 0.76rem;
-      }
+
     }
 
     @media (max-width: 480px) {
@@ -1294,10 +1115,155 @@
         scroll-behavior: auto !important;
       }
     }
-  </style>
+
+    /* ===== Sponsored offer bar ===== */
+    .ftc-sponsored-bar{
+      max-width:860px;
+      margin:22px auto 28px;
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      border:1px solid var(--border,#e2e5ee);
+      border-color:color-mix(in srgb, var(--border,#e2e5ee) 88%, transparent);
+      border-radius:18px;
+      background:var(--card,#fff);
+      background:linear-gradient(135deg, color-mix(in srgb, var(--card,#fff) 94%, var(--brand,#5b4bff) 6%), var(--card,#fff));
+      box-shadow:0 8px 24px rgba(31,35,55,.06), inset 0 1px 0 rgba(255,255,255,.55);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+    }
+    .ftc-sponsored-label{
+      flex:0 0 auto;
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(91,75,255,.09);
+      background:color-mix(in srgb, var(--brand,#5b4bff) 9%, transparent);
+      color:var(--text-secondary,#6b7280);
+      font-size:.68rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .ftc-sponsored-dot{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--brand,#5b4bff);
+      box-shadow:0 0 0 4px rgba(91,75,255,.12);
+      box-shadow:0 0 0 4px color-mix(in srgb, var(--brand,#5b4bff) 12%, transparent);
+    }
+    .ftc-sponsored-copy{
+      min-width:0;
+      flex:1 1 auto;
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .ftc-sponsored-copy strong{
+      color:var(--text,#111827);
+      font-size:.9rem;
+      line-height:1.2;
+    }
+    .ftc-sponsored-copy span{
+      color:var(--text-secondary,#6b7280);
+      font-size:.76rem;
+      line-height:1.35;
+    }
+    .ftc-sponsored-actions{
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .ftc-sponsored-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      min-height:38px;
+      padding:0 13px;
+      border-radius:11px;
+      font-size:.78rem;
+      font-weight:750;
+      line-height:1;
+      text-decoration:none;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+      white-space:nowrap;
+    }
+    .ftc-sponsored-btn span:last-child{
+      font-size:1rem;
+      transition:transform .18s ease;
+    }
+    .ftc-sponsored-btn:hover{
+      transform:translateY(-1px);
+    }
+    .ftc-sponsored-btn:hover span:last-child{
+      transform:translateX(2px);
+    }
+    .ftc-sponsored-btn:focus-visible{
+      outline:3px solid rgba(91,75,255,.28);
+      outline-color:color-mix(in srgb, var(--brand,#5b4bff) 28%, transparent);
+      outline-offset:2px;
+    }
+    .ftc-sponsored-btn-primary{
+      color:#fff;
+      background:var(--brand,#5b4bff);
+      box-shadow:0 5px 14px rgba(91,75,255,.22);
+      box-shadow:0 5px 14px color-mix(in srgb, var(--brand,#5b4bff) 22%, transparent);
+    }
+    .ftc-sponsored-btn-primary:hover{
+      box-shadow:0 8px 18px rgba(91,75,255,.28);
+      box-shadow:0 8px 18px color-mix(in srgb, var(--brand,#5b4bff) 28%, transparent);
+    }
+    .ftc-sponsored-btn-secondary{
+      color:var(--text,#111827);
+      background:var(--card,#fff);
+      background:color-mix(in srgb, var(--card,#fff) 88%, var(--border,#e2e5ee) 12%);
+      border:1px solid var(--border,#e2e5ee);
+    }
+    .ftc-sponsored-btn-secondary:hover{
+      background:var(--card,#fff);
+      background:color-mix(in srgb, var(--brand,#5b4bff) 7%, var(--card,#fff));
+    }
+    @media (max-width:720px){
+      .ftc-sponsored-bar{
+        align-items:flex-start;
+        flex-wrap:wrap;
+        gap:11px;
+        padding:13px;
+      }
+      .ftc-sponsored-copy{
+        flex:1 1 calc(100% - 110px);
+      }
+      .ftc-sponsored-actions{
+        width:100%;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+      }
+      .ftc-sponsored-btn{
+        width:100%;
+      }
+    }
+    @media (max-width:420px){
+      .ftc-sponsored-actions{
+        grid-template-columns:1fr;
+      }
+    }
+    @media (prefers-reduced-motion:reduce){
+      .ftc-sponsored-btn,.ftc-sponsored-btn span:last-child{
+        transition:none;
+      }
+    }
+</style>
 
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#4f46e5">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
   <a id="tols-skip-link" href="#page-calculator">Skip to calculator</a>
@@ -1317,6 +1283,25 @@
 
     <!-- ===== CALCULATOR PAGE ===== -->
     <div id="page-calculator" class="ftc-page active">
+
+    <section class="ftc-sponsored-bar" aria-label="Sponsored offers">
+      <div class="ftc-sponsored-label">
+        <span class="ftc-sponsored-dot" aria-hidden="true"></span>
+        <span>Sponsored</span>
+      </div>
+      <div class="ftc-sponsored-copy">
+        <strong>Featured offers</strong>
+        <span>Explore a couple of offers from our partners.</span>
+      </div>
+      <div class="ftc-sponsored-actions">
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-primary" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">
+          <span>Check this offer</span><span aria-hidden="true">→</span>
+        </a>
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-secondary" href="https://gigglehiccup.com/r1az0xw9i7?key=d6a2defc1f48afceb62b16b996e0b5a9" target="_blank" rel="noopener sponsored">
+          <span>See another offer</span><span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
       <p class="ftc-updated">Last updated: September 2026 · Reviewed by the MoneyTols team</p>
 
       <header class="ftc-hero">
@@ -1332,7 +1317,7 @@
         </div>
       </header>
 
-      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90" style="max-width:100%;overflow:hidden;"></div>
+      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot tols-ad-slot--desktop-only" aria-label="Advertisement" id="tols-ad-728x90" style="max-width:100%;overflow:hidden;"></div>
       <div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 
       <div class="ftc-calculator-layout">
@@ -1359,7 +1344,7 @@
 
               <div class="ftc-row">
                 <div class="ftc-field">
-                  <label for="ftc-pretax">Pre-tax deductions <span class="ftc-hint">(401k, HSA)</span></label>
+                  <label for="ftc-pretax">Pre-tax deductions <span class="ftc-hint">(401k, HSA — FICA treatment varies)</span></label>
                   <input type="number" id="ftc-pretax" min="0" step="500" value="6000">
                 </div>
                 <div class="ftc-field">
@@ -1390,8 +1375,8 @@
                 <button class="ftc-btn" type="button" id="ftc-copy">📋 Copy results</button>
                 <button class="ftc-btn ftc-btn-secondary" type="button" id="ftc-reset">↺ Reset</button>
               </div>
-              <p id="ftc-error" role="alert" aria-live="polite" style="display:none;color:#b42318;background:rgba(255,241,240,0.7);backdrop-filter:blur(8px);border:1px solid #ffccc7;border-radius:10px;padding:10px;margin:12px 0 0;font-size:.85rem"></p>
-              <p class="ftc-note" style="margin-top:14px">Federal estimate only. This is a planning estimate, not tax advice or a filing-ready calculation. The state figure is a simplified representative-rate estimate, and the federal effective rate excludes FICA and state tax. Standard deduction 2026: Single $16,100 · MFJ $32,200 · MFS $16,100 · HOH $24,150. Child Tax Credit estimate: up to $2,200 per entered dependent assumed to be a qualifying child, with an approximate $50-per-$1,000 phaseout above $200,000 ($400,000 MFJ); age, relationship, residency, SSN, income, refundable portions, and other eligibility requirements are not fully modeled. State tax uses a simplified representative rate and is not a filing calculation. Pre-tax deductions reduce federal taxable income and take-home pay. FICA is calculated on gross wages in this estimate because traditional 401(k)/403(b) contributions generally remain subject to Social Security and Medicare taxes; HSA/FSA and some benefit deductions may be FICA-exempt, so your actual FICA and take-home pay may differ.</p>
+              <p id="ftc-error" role="alert" aria-live="polite" style="display:none;color:var(--error-color);background:rgba(255,241,240,0.7);backdrop-filter:blur(8px);border:1px solid #ffccc7;border-radius:10px;padding:10px;margin:12px 0 0;font-size:.85rem"></p>
+              <p class="ftc-note" style="margin-top:14px">Federal estimate only. This is a planning estimate, not tax advice or a filing-ready calculation. The state figure is a simplified representative-rate estimate, and the federal effective rate excludes FICA and state tax. Standard deduction 2026: Single $16,100 · MFJ $32,200 · MFS $16,100 · HOH $24,150. Child Tax Credit estimate: up to $2,200 per entered dependent assumed to be a qualifying child, with an approximate $50-per-$1,000 phaseout above $200,000 ($400,000 MFJ); a simplified refundable ACTC estimate is modeled using the earned-income formula, but age, relationship, residency, SSN, filing-specific rules, and other eligibility requirements are not fully modeled. State tax uses a simplified representative rate and is not a filing calculation. Pre-tax deductions reduce federal taxable income and take-home pay. FICA is calculated on gross wages in this estimate because traditional 401(k)/403(b) contributions generally remain subject to Social Security and Medicare taxes; HSA/FSA and some benefit deductions may be FICA-exempt, so your actual FICA and take-home pay may differ.</p>
               <p class="ftc-note" style="margin-top:6px">Some 2026 provisions—such as qualified overtime/tips deductions, senior deductions, special credits, and detailed state rules—may require additional information and are not fully modeled here.</p>
             </section>
 
@@ -1421,7 +1406,7 @@
           </div>
         </div>
 
-        <div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600" aria-label="Advertisement" style="width:180px;min-height:600px;"></div>
+        <div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600" aria-label="Advertisement" style="width:160px;min-height:600px;"></div>
       </div>
 
       <section class="ftc-card" style="margin-top:20px" id="ftc-brackets-section">
@@ -1445,7 +1430,7 @@
           <h2>How federal income tax brackets work</h2>
           <p>The US uses a <strong>progressive</strong> system with seven rates: 10%, 12%, 22%, 24%, 32%, 35% and 37%. A common myth is that moving into a higher bracket taxes all of your income at that higher rate. It does not. Each bracket only applies to the dollars that fall inside its range.</p>
           <p>For example, a single filer with $60,000 of taxable income in 2026 pays 10% on the first $12,400, 12% on the amount between $12,400 and $50,400, and 22% only on the remaining $9,600. Their top (marginal) rate is 22%, but their effective rate — total tax divided by total income — is far lower.</p>
-          <p>Before brackets apply, you subtract either the standard deduction or your itemized deductions, plus any pre-tax payroll contributions such as a traditional 401(k) or HSA. Eligible tax credits, such as the Child Tax Credit, are subtracted from tax itself. This tool uses a simplified credit assumption and does not verify every eligibility or refundable-credit rule.</p>
+          <p>Before brackets apply, you subtract either the standard deduction or your itemized deductions, plus any pre-tax payroll contributions such as a traditional 401(k) or HSA. Eligible tax credits, such as the Child Tax Credit, reduce federal income tax. This tool models a simplified nonrefundable CTC and refundable ACTC estimate, but does not verify every eligibility or filing-specific rule.</p>
         </section>
 
         <section class="ftc-card ftc-faq" id="ftc-faq-section">
@@ -1462,38 +1447,65 @@
             <p>Traditional 401(k), 403(b), HSA and FSA contributions can reduce federal taxable income when eligible. Traditional 401(k) and 403(b) contributions generally remain subject to FICA, while eligible payroll HSA/FSA contributions may also avoid FICA. A $6,000 contribution for someone in the 22% bracket could reduce federal income tax by about $1,320, depending on eligibility and other details.</p></details>
           <details><summary>Which tax year does this calculator use?</summary>
             <p>The 2026 tax year, using the inflation-adjusted brackets, standard deductions and credit amounts published by the IRS in Revenue Procedure 2025-32. Some newer deductions, special situations, and eligibility rules are not fully modeled. These are the numbers for income earned during 2026 and reported on the return you file in 2027.</p></details>
+          <details><summary>What is the 2026 standard deduction?</summary>
+            <p>For the 2026 tax year the standard deduction is <strong>$16,100</strong> for single filers and married filing separately, <strong>$32,200</strong> for married filing jointly and qualifying surviving spouses, and <strong>$24,150</strong> for heads of household. These amounts are adjusted each year for inflation by the IRS. If your itemized deductions exceed these amounts it may be worth itemizing instead.</p></details>
+          <details><summary>How much will I get back as a tax refund?</summary>
+            <p>A refund happens when the amount withheld from your paychecks during the year exceeds your actual tax liability. This calculator estimates your total federal tax bill but does not know how much your employer has already withheld. To estimate your refund, subtract the tax shown here from the federal withholding on your most recent pay stub or W-2. If withholding is higher, you will likely get a refund; if it is lower, you may owe at filing.</p></details>
+          <details><summary>How does the Child Tax Credit work?</summary>
+            <p>The Child Tax Credit provides up to <strong>$2,200 per qualifying child</strong> under age 17. Up to $1,700 of that may be refundable (the Additional Child Tax Credit) if the credit exceeds your tax liability. This calculator applies a simplified credit model, including an estimated refundable ACTC component, and does not verify all eligibility rules such as qualifying-child requirements or filing-specific phase-outs.</p></details>
+          <details><summary>What is a W-4 and how does it affect my paycheck?</summary>
+            <p>Form W-4 tells your employer how much federal income tax to withhold from each paycheck. It replaced the old allowances system — now you directly enter dollar amounts for deductions, credits and extra withholding. If too little is withheld you may owe a penalty at tax time; if too much is withheld you get a larger refund but give the IRS an interest-free loan all year. Use the results from this calculator to check whether your current withholding is on track and update your W-4 accordingly.</p></details>
         </section>
 
         <section class="ftc-disclaimer">
           <strong>Disclaimer:</strong> This calculator provides a simplified estimate for general information only and is not tax, legal or financial advice. It does not account for capital gains, self-employment tax, AMT, phase-outs, local taxes, or most credits and deductions. Your actual liability may differ. This tool does not model every 2026 provision, including all new deductions, phaseouts, filing-specific limitations, local taxes, or refundable-credit rules. Consult a qualified tax professional or the IRS before making decisions.
         </section>
       </div>
+
+      <!-- ===== MORE CALCULATORS ===== -->
+      <section class="ftc-card" id="more-calculators" style="margin-top:20px">
+        <h2>More calculators</h2>
+        <p class="ftc-note">Free tools for pay, loans, home buying and saving.</p>
+        <div class="ftc-calc-hub">
+          <a class="ftc-calc-tile" href="#hourly" data-page="hourly"><strong>Hourly ↔ Salary</strong><span>Convert hourly pay to annual, monthly and weekly income, or the reverse.</span></a>
+          <a class="ftc-calc-tile" href="#loan" data-page="loan"><strong>Loan Payment</strong><span>Monthly payment, total interest and a year-by-year payoff schedule.</span></a>
+          <a class="ftc-calc-tile" href="#mortgage" data-page="mortgage"><strong>Mortgage Payment</strong><span>Estimate a full monthly payment with taxes, insurance and PMI.</span></a>
+          <a class="ftc-calc-tile" href="#savings" data-page="savings"><strong>Savings Growth</strong><span>See how deposits and compound interest grow over time.</span></a>
+        </div>
+      </section>
+
+      <div data-ad-key="49f15ac241a2d133f49290fcb4e7fef0" class="tols-ad-slot tols-ad-slot--content" id="tols-ad-300x250-calculator" aria-label="Advertisement"></div>
+      <div data-ad-key="fbb9b329ee7b2d4250e4a39a44b8fd66" data-ad-native="1" class="tols-ad-slot" id="tols-ad-native-calculator" aria-label="Advertisement" style="max-width:100%;margin:16px auto;"><div class="tols-native-container"></div></div>
     </div>
-
-    <!-- ===== MORE CALCULATORS ===== -->
-    <section class="ftc-card" id="more-calculators" style="margin-top:20px">
-      <h2>More calculators</h2>
-      <p class="ftc-note">Free tools for pay, loans, home buying and saving.</p>
-      <div class="ftc-calc-hub">
-        <a class="ftc-calc-tile" href="#hourly" data-page="hourly"><strong>Hourly ↔ Salary</strong><span>Convert hourly pay to annual, monthly and weekly income, or the reverse.</span></a>
-        <a class="ftc-calc-tile" href="#loan" data-page="loan"><strong>Loan Payment</strong><span>Monthly payment, total interest and a year-by-year payoff schedule.</span></a>
-        <a class="ftc-calc-tile" href="#mortgage" data-page="mortgage"><strong>Mortgage Payment</strong><span>Estimate a full monthly payment with taxes, insurance and PMI.</span></a>
-        <a class="ftc-calc-tile" href="#savings" data-page="savings"><strong>Savings Growth</strong><span>See how deposits and compound interest grow over time.</span></a>
-      </div>
-    </section>
-
-    <div data-ad-key="49f15ac241a2d133f49290fcb4e7fef0" class="tols-ad-slot tols-ad-slot--content" id="tols-ad-300x250-calculator" aria-label="Advertisement"></div>
-    <div data-ad-key="fbb9b329ee7b2d4250e4a39a44b8fd66" data-ad-native="1" class="tols-ad-slot" id="tols-ad-native-calculator" aria-label="Advertisement" style="max-width:100%;margin:16px auto;"><div class="tols-native-container"></div></div>
 
     <!-- ===== HOURLY PAGE ===== -->
     <div id="page-hourly" class="ftc-page">
+
+    <section class="ftc-sponsored-bar" aria-label="Sponsored offers">
+      <div class="ftc-sponsored-label">
+        <span class="ftc-sponsored-dot" aria-hidden="true"></span>
+        <span>Sponsored</span>
+      </div>
+      <div class="ftc-sponsored-copy">
+        <strong>Featured offers</strong>
+        <span>Explore a couple of offers from our partners.</span>
+      </div>
+      <div class="ftc-sponsored-actions">
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-primary" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">
+          <span>Check this offer</span><span aria-hidden="true">→</span>
+        </a>
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-secondary" href="https://gigglehiccup.com/r1az0xw9i7?key=d6a2defc1f48afceb62b16b996e0b5a9" target="_blank" rel="noopener sponsored">
+          <span>See another offer</span><span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
       <header class="ftc-hero">
         <div class="ftc-badge">Salary &amp; pay</div>
         <h1>Hourly to Salary Calculator</h1>
         <p>Convert between hourly pay and annual salary. See weekly, biweekly, semi-monthly and monthly gross income before taxes.</p>
       </header>
 
-      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-hourly" style="max-width:100%;overflow:hidden;"></div>
+      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot tols-ad-slot--desktop-only" aria-label="Advertisement" id="tols-ad-728x90-hourly" style="max-width:100%;overflow:hidden;"></div>
       <div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-hourly" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 
       <div class="ftc-calculator-layout">
@@ -1521,7 +1533,7 @@
                   <input type="number" id="hr-weeks" min="1" max="52" step="1" value="52">
                 </div>
               </div>
-              <p class="ftc-note" id="hr-error" role="alert" aria-live="polite" style="display:none;color:#b42318"></p>
+              <p class="ftc-note" id="hr-error" role="alert" aria-live="polite" style="display:none;color:var(--error-color)"></p>
               <button class="ftc-btn" type="button" id="hr-to-tax">Estimate take-home pay →</button>
             </section>
             <section class="ftc-card">
@@ -1545,10 +1557,29 @@
           </div>
         </div>
 
-        <div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-hourly" aria-label="Advertisement" style="width:180px;min-height:600px;"></div>
+        <div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-hourly" aria-label="Advertisement" style="width:160px;min-height:600px;"></div>
       </div>
 
+
       <section class="ftc-card" style="margin-top:20px">
+        <h2>How this conversion works</h2>
+        <p style="color:var(--text-secondary)">Converting between hourly pay and annual salary is straightforward once you know the standard multipliers. A full-time job in the US typically means <strong>40 hours per week</strong> and <strong>52 weeks per year</strong> (including paid time off). Multiply your hourly rate by those two numbers to get your gross annual salary — before any taxes or deductions.</p>
+        <p style="color:var(--text-secondary)">For example, $25/hour × 40 hours × 52 weeks = <strong>$52,000 per year</strong>. From there you can divide by 12 for monthly pay, by 26 for biweekly paychecks, or by 24 for semi-monthly pay. Each pay period type has a different number of periods per year, which is why the per-check amounts differ even when the annual total stays the same.</p>
+        <p style="color:var(--text-secondary)">This calculator shows gross income only. To see what actually lands in your bank account after federal tax, FICA, and state tax, use our <a href="#calculator" data-page="calculator" style="color:var(--brand)">Federal Income Tax Calculator</a>.</p>
+      </section>
+
+      <section class="ftc-card ftc-faq" style="margin-top:20px">
+        <h2>Frequently asked questions</h2>
+        <details><summary>$25 an hour is how much a year?</summary>
+          <p>At $25 per hour working a standard full-time schedule of 40 hours per week and 52 weeks per year, your gross annual salary is <strong>$52,000</strong>. That breaks down to about $4,333 per month, $2,000 per biweekly paycheck, or $1,000 per week before taxes and deductions.</p></details>
+        <details><summary>What is the difference between biweekly and semi-monthly pay?</summary>
+          <p>Biweekly means you get paid every two weeks — 26 paychecks per year. Semi-monthly means twice per month — 24 paychecks per year. Biweekly paychecks are slightly smaller but you get two extra per year. For a $52,000 salary, biweekly pay is $2,000 per check while semi-monthly is about $2,167 per check.</p></details>
+        <details><summary>How do I convert annual salary to hourly rate?</summary>
+          <p>Divide your annual salary by the total hours you work in a year. For a standard full-time schedule, that's 2,080 hours (40 hours × 52 weeks). For example, $60,000 ÷ 2,080 = <strong>$28.85 per hour</strong>. If you work a different schedule, adjust the hours per week and weeks per year in this calculator.</p></details>
+        <details><summary>How many hours per year is full-time?</summary>
+          <p>The standard US full-time schedule is 40 hours per week × 52 weeks = <strong>2,080 hours per year</strong>. Some employers use 50 weeks instead of 52 to account for unpaid time off, which gives 2,000 hours — a common rule of thumb for quick mental math.</p></details>
+      </section>
+<section class="ftc-card" style="margin-top:20px">
         <h2>More calculators</h2>
         <div class="ftc-calc-hub">
           <a class="ftc-calc-tile" href="#calculator" data-page="calculator"><strong>Federal Income Tax</strong><span>2026 brackets, FICA, state estimate and take-home pay.</span></a>
@@ -1564,13 +1595,32 @@
 
     <!-- ===== LOAN PAGE ===== -->
     <div id="page-loan" class="ftc-page">
+
+    <section class="ftc-sponsored-bar" aria-label="Sponsored offers">
+      <div class="ftc-sponsored-label">
+        <span class="ftc-sponsored-dot" aria-hidden="true"></span>
+        <span>Sponsored</span>
+      </div>
+      <div class="ftc-sponsored-copy">
+        <strong>Featured offers</strong>
+        <span>Explore a couple of offers from our partners.</span>
+      </div>
+      <div class="ftc-sponsored-actions">
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-primary" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">
+          <span>Check this offer</span><span aria-hidden="true">→</span>
+        </a>
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-secondary" href="https://gigglehiccup.com/r1az0xw9i7?key=d6a2defc1f48afceb62b16b996e0b5a9" target="_blank" rel="noopener sponsored">
+          <span>See another offer</span><span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
       <header class="ftc-hero">
         <div class="ftc-badge">Loans</div>
         <h1>Loan Payment Calculator</h1>
         <p>Work out the monthly payment on a car, personal or student loan, and see how much interest you will pay.</p>
       </header>
 
-      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-loan" style="max-width:100%;overflow:hidden;"></div>
+      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot tols-ad-slot--desktop-only" aria-label="Advertisement" id="tols-ad-728x90-loan" style="max-width:100%;overflow:hidden;"></div>
       <div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-loan" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 
       <div class="ftc-calculator-layout">
@@ -1596,7 +1646,7 @@
                 <label for="ln-extra">Extra monthly payment <span class="ftc-hint">(optional)</span></label>
                 <input type="number" id="ln-extra" min="0" step="25" value="0">
               </div>
-              <p class="ftc-note" id="ln-error" role="alert" aria-live="polite" style="display:none;color:#b42318"></p>
+              <p class="ftc-note" id="ln-error" role="alert" aria-live="polite" style="display:none;color:var(--error-color)"></p>
             </section>
             <section class="ftc-card">
               <h2>Your payment</h2>
@@ -1616,7 +1666,7 @@
           </div>
         </div>
 
-        <div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-loan" aria-label="Advertisement" style="width:180px;min-height:600px;"></div>
+        <div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-loan" aria-label="Advertisement" style="width:160px;min-height:600px;"></div>
       </div>
 
       <section class="ftc-card" style="margin-top:20px">
@@ -1629,7 +1679,26 @@
         </div>
       </section>
 
+
       <section class="ftc-card" style="margin-top:20px">
+        <h2>How loan payments are calculated</h2>
+        <p style="color:var(--text-secondary)">Every fixed-rate loan payment has two parts: <strong>principal</strong> (the amount you borrowed) and <strong>interest</strong> (the cost of borrowing). Your monthly payment stays the same, but the split between principal and interest changes over time. Early in the loan, most of each payment goes toward interest. As the balance shrinks, more goes toward principal.</p>
+        <p style="color:var(--text-secondary)">The formula lenders use is: <strong>M = P × r × (1+r)^n ÷ ((1+r)^n − 1)</strong>, where M is the monthly payment, P is the loan amount, r is the monthly interest rate (APR ÷ 12), and n is the total number of months. This calculator applies that formula automatically and shows you the full year-by-year breakdown.</p>
+        <p style="color:var(--text-secondary)">Making <strong>extra payments</strong> directly reduces your principal balance, which means less interest accrues on every future payment. Even $50–$100 extra per month can shave months or years off a loan and save hundreds or thousands in interest.</p>
+      </section>
+
+      <section class="ftc-card ftc-faq" style="margin-top:20px">
+        <h2>Frequently asked questions</h2>
+        <details><summary>How is a loan payment calculated?</summary>
+          <p>Lenders use the amortization formula: M = P × r × (1+r)^n ÷ ((1+r)^n − 1). P is the loan amount, r is the monthly interest rate (APR divided by 12), and n is the total number of monthly payments. This gives a fixed monthly amount where early payments are mostly interest and later payments are mostly principal.</p></details>
+        <details><summary>Does paying extra reduce the total interest?</summary>
+          <p><strong>Yes, significantly.</strong> Extra payments go directly toward your principal balance. Since interest is calculated on the remaining balance, a lower balance means less interest charged every month going forward. Use the "Extra monthly payment" field in this calculator to see exactly how much interest you could save and how much sooner you'd pay off the loan.</p></details>
+        <details><summary>What is a good interest rate for a personal loan?</summary>
+          <p>As of 2026, personal loan rates typically range from about <strong>6% to 36%</strong> depending on your credit score, income, and loan term. Borrowers with excellent credit (740+) generally see rates under 12%, while those with fair credit may face rates of 20% or more. Auto loans tend to have lower rates, often 5%–12% for new cars.</p></details>
+        <details><summary>Should I choose a shorter or longer loan term?</summary>
+          <p>A shorter term means higher monthly payments but much less total interest. A longer term lowers your monthly payment but costs more over the life of the loan. For example, a $25,000 loan at 7.5% costs about $5,085 in interest over 5 years but $10,374 over 8 years. Choose the shortest term whose monthly payment fits comfortably in your budget.</p></details>
+      </section>
+<section class="ftc-card" style="margin-top:20px">
         <h2>More calculators</h2>
         <div class="ftc-calc-hub">
           <a class="ftc-calc-tile" href="#calculator" data-page="calculator"><strong>Federal Income Tax</strong><span>2026 brackets, FICA, state estimate and take-home pay.</span></a>
@@ -1645,13 +1714,32 @@
 
     <!-- ===== MORTGAGE PAGE ===== -->
     <div id="page-mortgage" class="ftc-page">
+
+    <section class="ftc-sponsored-bar" aria-label="Sponsored offers">
+      <div class="ftc-sponsored-label">
+        <span class="ftc-sponsored-dot" aria-hidden="true"></span>
+        <span>Sponsored</span>
+      </div>
+      <div class="ftc-sponsored-copy">
+        <strong>Featured offers</strong>
+        <span>Explore a couple of offers from our partners.</span>
+      </div>
+      <div class="ftc-sponsored-actions">
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-primary" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">
+          <span>Check this offer</span><span aria-hidden="true">→</span>
+        </a>
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-secondary" href="https://gigglehiccup.com/r1az0xw9i7?key=d6a2defc1f48afceb62b16b996e0b5a9" target="_blank" rel="noopener sponsored">
+          <span>See another offer</span><span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
       <header class="ftc-hero">
         <div class="ftc-badge">Home buying</div>
         <h1>Mortgage Payment Calculator</h1>
         <p>Estimate your full monthly housing payment, including principal, interest, property tax, insurance and PMI.</p>
       </header>
 
-      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-mortgage" style="max-width:100%;overflow:hidden;"></div>
+      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot tols-ad-slot--desktop-only" aria-label="Advertisement" id="tols-ad-728x90-mortgage" style="max-width:100%;overflow:hidden;"></div>
       <div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-mortgage" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 
       <div class="ftc-calculator-layout">
@@ -1696,7 +1784,7 @@
                 <label for="mg-hoa">HOA dues ($ per month)</label>
                 <input type="number" id="mg-hoa" min="0" step="10" value="0">
               </div>
-              <p class="ftc-note" id="mg-error" role="alert" aria-live="polite" style="display:none;color:#b42318"></p>
+              <p class="ftc-note" id="mg-error" role="alert" aria-live="polite" style="display:none;color:var(--error-color)"></p>
             </section>
             <section class="ftc-card">
               <h2>Your monthly payment</h2>
@@ -1710,7 +1798,7 @@
                 <li><span>Principal &amp; interest</span><span id="mg-l-pi">—</span></li>
                 <li><span>Property tax</span><span id="mg-l-tax">—</span></li>
                 <li><span>Home insurance</span><span id="mg-l-ins">—</span></li>
-                <li><span>PMI <span class="ftc-hint" id="mg-pmi-hint">(estimate)</span></span><span id="mg-l-pmi">—</span></li>
+                <li><span>PMI <span class="ftc-hint" id="mg-pmi-hint">(estimate, 0.60%/yr)</span></span><span id="mg-l-pmi">—</span></li>
                 <li><span>HOA dues</span><span id="mg-l-hoa">—</span></li>
                 <li><span>Total monthly payment</span><span id="mg-l-total">—</span></li>
               </ul>
@@ -1719,10 +1807,29 @@
           </div>
         </div>
 
-        <div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-mortgage" aria-label="Advertisement" style="width:180px;min-height:600px;"></div>
+        <div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-mortgage" aria-label="Advertisement" style="width:160px;min-height:600px;"></div>
       </div>
 
+
       <section class="ftc-card" style="margin-top:20px">
+        <h2>Understanding your mortgage payment</h2>
+        <p style="color:var(--text-secondary)">Your total monthly housing payment includes more than just the loan. The <strong>PITI</strong> acronym covers the four main parts: <strong>P</strong>rincipal, <strong>I</strong>nterest, <strong>T</strong>axes, and <strong>I</strong>nsurance. Some properties also have HOA dues, and if your down payment is under 20%, you'll likely pay <strong>PMI</strong> (Private Mortgage Insurance) as well.</p>
+        <p style="color:var(--text-secondary)">Principal and interest are calculated using the same amortization formula as any fixed-rate loan. Property tax is typically 0.5%–2.5% of the home's value per year depending on your county. Home insurance averages $1,200–$2,000 per year for most single-family homes. PMI usually costs 0.3%–1.5% of the loan amount per year until you reach 20% equity.</p>
+        <p style="color:var(--text-secondary)">A general rule of thumb is that your total monthly housing cost should not exceed <strong>28% of your gross monthly income</strong> (the "front-end ratio"), and all your debt payments combined should stay under 36% (the "back-end ratio"). Lenders use these guidelines — along with your credit score and down payment — to determine how much house you can afford.</p>
+      </section>
+
+      <section class="ftc-card ftc-faq" style="margin-top:20px">
+        <h2>Frequently asked questions</h2>
+        <details><summary>How much house can I afford?</summary>
+          <p>A common guideline is the <strong>28/36 rule</strong>: your monthly housing payment (principal, interest, taxes, insurance) should be at most 28% of your gross monthly income, and your total debt payments (including the mortgage, car loans, credit cards) should stay under 36%. For a $100,000 annual income ($8,333/month), that means a maximum housing payment of about $2,333 per month.</p></details>
+        <details><summary>What is PMI and how do I avoid it?</summary>
+          <p><strong>PMI (Private Mortgage Insurance)</strong> protects the lender if you default on the loan. It's typically required when your down payment is less than 20% of the home price. PMI usually costs 0.3%–1.5% of the loan amount per year — on a $320,000 loan, that's $960–$4,800 annually. To avoid PMI, put down at least 20%. Once you reach 20% equity through payments or appreciation, you can request to have it removed.</p></details>
+        <details><summary>Should I choose a 30-year or 15-year mortgage?</summary>
+          <p>A <strong>15-year mortgage</strong> has higher monthly payments but a lower interest rate and dramatically less total interest. A <strong>30-year mortgage</strong> offers lower, more manageable payments at a slightly higher rate. For a $320,000 loan at 6.5%, a 15-year term costs about $2,790/month with $182,000 total interest, while a 30-year term costs about $2,023/month but $408,000 total interest. Choose based on your monthly budget and long-term goals.</p></details>
+        <details><summary>How much should I put down on a house?</summary>
+          <p>The traditional recommendation is <strong>20%</strong> to avoid PMI and get the best rates. However, many lenders offer loans with as little as 3%–5% down. A larger down payment means lower monthly payments, less interest over the life of the loan, and no PMI. A smaller down payment preserves your cash for emergencies, repairs, and other investments. Consider your full financial picture before deciding.</p></details>
+      </section>
+<section class="ftc-card" style="margin-top:20px">
         <h2>More calculators</h2>
         <div class="ftc-calc-hub">
           <a class="ftc-calc-tile" href="#calculator" data-page="calculator"><strong>Federal Income Tax</strong><span>2026 brackets, FICA, state estimate and take-home pay.</span></a>
@@ -1738,13 +1845,32 @@
 
     <!-- ===== SAVINGS PAGE ===== -->
     <div id="page-savings" class="ftc-page">
+
+    <section class="ftc-sponsored-bar" aria-label="Sponsored offers">
+      <div class="ftc-sponsored-label">
+        <span class="ftc-sponsored-dot" aria-hidden="true"></span>
+        <span>Sponsored</span>
+      </div>
+      <div class="ftc-sponsored-copy">
+        <strong>Featured offers</strong>
+        <span>Explore a couple of offers from our partners.</span>
+      </div>
+      <div class="ftc-sponsored-actions">
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-primary" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">
+          <span>Check this offer</span><span aria-hidden="true">→</span>
+        </a>
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-secondary" href="https://gigglehiccup.com/r1az0xw9i7?key=d6a2defc1f48afceb62b16b996e0b5a9" target="_blank" rel="noopener sponsored">
+          <span>See another offer</span><span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
       <header class="ftc-hero">
         <div class="ftc-badge">Savings &amp; investing</div>
         <h1>Savings Growth Calculator</h1>
         <p>See how an opening balance and regular monthly deposits can grow with compound interest.</p>
       </header>
 
-      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-savings" style="max-width:100%;overflow:hidden;"></div>
+      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot tols-ad-slot--desktop-only" aria-label="Advertisement" id="tols-ad-728x90-savings" style="max-width:100%;overflow:hidden;"></div>
       <div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-savings" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 
       <div class="ftc-calculator-layout">
@@ -1770,7 +1896,7 @@
                   <input type="number" id="sv-years" min="1" max="60" step="1" value="20">
                 </div>
               </div>
-              <p class="ftc-note" id="sv-error" role="alert" aria-live="polite" style="display:none;color:#b42318"></p>
+              <p class="ftc-note" id="sv-error" role="alert" aria-live="polite" style="display:none;color:var(--error-color)"></p>
               <p class="ftc-note">Interest compounds monthly and contributions are added at the end of each month.</p>
             </section>
             <section class="ftc-card">
@@ -1785,7 +1911,7 @@
           </div>
         </div>
 
-        <div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-savings" aria-label="Advertisement" style="width:180px;min-height:600px;"></div>
+        <div data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" class="tols-ad-slot tols-ad-slot--sidebar" id="tols-ad-160x600-savings" aria-label="Advertisement" style="width:160px;min-height:600px;"></div>
       </div>
 
       <section class="ftc-card" style="margin-top:20px">
@@ -1798,7 +1924,26 @@
         </div>
       </section>
 
+
       <section class="ftc-card" style="margin-top:20px">
+        <h2>How compound interest grows your savings</h2>
+        <p style="color:var(--text-secondary)"><strong>Compound interest</strong> means you earn interest not just on your original deposit, but also on the interest you've already earned. Over time, this creates a snowball effect where your money grows faster and faster. The two key factors are the <strong>interest rate</strong> and the <strong>compounding frequency</strong> — the more often interest is calculated and added, the faster your balance grows.</p>
+        <p style="color:var(--text-secondary)">For example, $5,000 invested at 7% annual return grows to about <strong>$9,836 in 10 years</strong> with no additional contributions. But if you add just $300 per month, that same account reaches roughly <strong>$66,000 in 10 years</strong> — about $41,000 of which is pure growth. Time is your most powerful tool: the earlier you start saving, the more compounding works in your favor.</p>
+        <p style="color:var(--text-secondary)">This projection assumes a constant annual return with monthly compounding and end-of-month contributions. Actual savings and investment returns vary by account, fees, taxes, and market conditions.</p>
+      </section>
+
+      <section class="ftc-card ftc-faq" style="margin-top:20px">
+        <h2>Frequently asked questions</h2>
+        <details><summary>What is compound interest?</summary>
+          <p>Compound interest is when you earn interest on both your original deposit <em>and</em> on the interest that has already accumulated. For example, $1,000 at 7% earns $70 in year one. In year two, you earn 7% on $1,070 — $74.90. Over decades, this snowball effect turns small regular contributions into significant wealth. Albert Einstein reportedly called it "the eighth wonder of the world."</p></details>
+        <details><summary>How much should I save monthly to reach $100,000?</summary>
+          <p>It depends on your timeline and expected return. At a 7% annual return: to reach $100,000 in <strong>10 years</strong>, you'd need to save about $580/month. In <strong>15 years</strong>, about $320/month. In <strong>20 years</strong>, about $195/month. The longer your timeline, the less you need to contribute each month because compound interest does more of the heavy lifting. Use this calculator to test different scenarios.</p></details>
+        <details><summary>What is a good annual return for savings?</summary>
+          <p>It depends on where you put your money. High-yield savings accounts currently offer <strong>4%–5% APY</strong> with no risk. CDs offer similar rates for locked-in terms. The S&P 500 has historically returned about <strong>10% annually</strong> on average before inflation (roughly 7% after inflation), but with significant year-to-year volatility. For long-term goals (10+ years), investing typically outperforms savings. For short-term goals, stick with insured savings products.</p></details>
+        <details><summary>How much of my savings should be in an emergency fund?</summary>
+          <p>Most financial advisors recommend <strong>3–6 months of essential expenses</strong> in an easily accessible emergency fund. If your essential monthly costs (rent, food, utilities, transportation, insurance) total $3,000, aim for $9,000–$18,000. Keep this in a high-yield savings account where it's safe, liquid, and earning some interest. Once your emergency fund is fully stocked, redirect monthly contributions toward investing for long-term goals.</p></details>
+      </section>
+<section class="ftc-card" style="margin-top:20px">
         <h2>More calculators</h2>
         <div class="ftc-calc-hub">
           <a class="ftc-calc-tile" href="#calculator" data-page="calculator"><strong>Federal Income Tax</strong><span>2026 brackets, FICA, state estimate and take-home pay.</span></a>
@@ -1814,12 +1959,31 @@
 
     <!-- ===== ABOUT PAGE ===== -->
     <div id="page-about" class="ftc-page">
+
+    <section class="ftc-sponsored-bar" aria-label="Sponsored offers">
+      <div class="ftc-sponsored-label">
+        <span class="ftc-sponsored-dot" aria-hidden="true"></span>
+        <span>Sponsored</span>
+      </div>
+      <div class="ftc-sponsored-copy">
+        <strong>Featured offers</strong>
+        <span>Explore a couple of offers from our partners.</span>
+      </div>
+      <div class="ftc-sponsored-actions">
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-primary" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">
+          <span>Check this offer</span><span aria-hidden="true">→</span>
+        </a>
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-secondary" href="https://gigglehiccup.com/r1az0xw9i7?key=d6a2defc1f48afceb62b16b996e0b5a9" target="_blank" rel="noopener sponsored">
+          <span>See another offer</span><span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
       <header class="ftc-hero">
         <h1>About Us</h1>
         <p>Practical, free calculators for the money questions you actually have.</p>
       </header>
 
-      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-about" style="max-width:100%;overflow:hidden;"></div>
+      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot tols-ad-slot--desktop-only" aria-label="Advertisement" id="tols-ad-728x90-about" style="max-width:100%;overflow:hidden;"></div>
       <div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-about" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 
       <section class="ftc-card" style="margin-top:20px">
@@ -1835,12 +1999,31 @@
 
     <!-- ===== CONTACT PAGE ===== -->
     <div id="page-contact" class="ftc-page">
+
+    <section class="ftc-sponsored-bar" aria-label="Sponsored offers">
+      <div class="ftc-sponsored-label">
+        <span class="ftc-sponsored-dot" aria-hidden="true"></span>
+        <span>Sponsored</span>
+      </div>
+      <div class="ftc-sponsored-copy">
+        <strong>Featured offers</strong>
+        <span>Explore a couple of offers from our partners.</span>
+      </div>
+      <div class="ftc-sponsored-actions">
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-primary" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">
+          <span>Check this offer</span><span aria-hidden="true">→</span>
+        </a>
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-secondary" href="https://gigglehiccup.com/r1az0xw9i7?key=d6a2defc1f48afceb62b16b996e0b5a9" target="_blank" rel="noopener sponsored">
+          <span>See another offer</span><span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
       <header class="ftc-hero">
         <h1>Get in Touch</h1>
         <p>Spotted a bug, have an idea for a new calculator, or just want to say hi? Send it over.</p>
       </header>
 
-      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-contact" style="max-width:100%;overflow:hidden;"></div>
+      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot tols-ad-slot--desktop-only" aria-label="Advertisement" id="tols-ad-728x90-contact" style="max-width:100%;overflow:hidden;"></div>
       <div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-contact" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 
       <section class="ftc-card" style="margin-top:20px">
@@ -1856,12 +2039,31 @@
 
     <!-- ===== PRIVACY PAGE ===== -->
     <div id="page-privacy" class="ftc-page">
+
+    <section class="ftc-sponsored-bar" aria-label="Sponsored offers">
+      <div class="ftc-sponsored-label">
+        <span class="ftc-sponsored-dot" aria-hidden="true"></span>
+        <span>Sponsored</span>
+      </div>
+      <div class="ftc-sponsored-copy">
+        <strong>Featured offers</strong>
+        <span>Explore a couple of offers from our partners.</span>
+      </div>
+      <div class="ftc-sponsored-actions">
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-primary" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">
+          <span>Check this offer</span><span aria-hidden="true">→</span>
+        </a>
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-secondary" href="https://gigglehiccup.com/r1az0xw9i7?key=d6a2defc1f48afceb62b16b996e0b5a9" target="_blank" rel="noopener sponsored">
+          <span>See another offer</span><span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
       <header class="ftc-hero">
         <h1>Privacy Policy</h1>
         <p>What we collect, why, and the choices you have. Last updated September 2026.</p>
       </header>
 
-      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-privacy" style="max-width:100%;overflow:hidden;"></div>
+      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot tols-ad-slot--desktop-only" aria-label="Advertisement" id="tols-ad-728x90-privacy" style="max-width:100%;overflow:hidden;"></div>
       <div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-privacy" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 
       <section class="ftc-card" style="margin-top:20px">
@@ -1905,12 +2107,31 @@
 
     <!-- ===== TERMS PAGE ===== -->
     <div id="page-terms" class="ftc-page">
+
+    <section class="ftc-sponsored-bar" aria-label="Sponsored offers">
+      <div class="ftc-sponsored-label">
+        <span class="ftc-sponsored-dot" aria-hidden="true"></span>
+        <span>Sponsored</span>
+      </div>
+      <div class="ftc-sponsored-copy">
+        <strong>Featured offers</strong>
+        <span>Explore a couple of offers from our partners.</span>
+      </div>
+      <div class="ftc-sponsored-actions">
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-primary" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">
+          <span>Check this offer</span><span aria-hidden="true">→</span>
+        </a>
+        <a class="ftc-sponsored-btn ftc-sponsored-btn-secondary" href="https://gigglehiccup.com/r1az0xw9i7?key=d6a2defc1f48afceb62b16b996e0b5a9" target="_blank" rel="noopener sponsored">
+          <span>See another offer</span><span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
       <header class="ftc-hero">
         <h1>Terms of Use</h1>
         <p>The ground rules for using MoneyTols. Last updated September 2026.</p>
       </header>
 
-      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot--desktop-only" id="tols-ad-728x90-terms" style="max-width:100%;overflow:hidden;"></div>
+      <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot tols-ad-slot--desktop-only" aria-label="Advertisement" id="tols-ad-728x90-terms" style="max-width:100%;overflow:hidden;"></div>
       <div data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" class="tols-ad-slot tols-ad-slot--mobile" id="tols-ad-320x50-terms" aria-label="Advertisement" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 
       <section class="ftc-card" style="margin-top:20px">
@@ -1952,6 +2173,8 @@
       <div data-ad-key="fbb9b329ee7b2d4250e4a39a44b8fd66" data-ad-native="1" class="tols-ad-slot" id="tols-ad-native-terms" aria-label="Advertisement" style="max-width:100%;margin:16px auto;"><div class="tols-native-container"></div></div>
     </div>
 
+
+
     <footer class="ftc-footer">
       <div>
         <a href="#about" data-page="about">About</a>
@@ -1986,7 +2209,12 @@
         }
         var w=slot.id.indexOf("728")>-1?728:slot.id.indexOf("320")>-1?320:slot.id.indexOf("160")>-1?160:300;
         var h=slot.id.indexOf("728")>-1?90:slot.id.indexOf("320")>-1?50:slot.id.indexOf("160")>-1?600:250;
-        window.atOptions={key:key,format:"iframe",height:h,width:w,params:{}};
+        /* Inline atOptions into a script block so it is set immediately before
+           its paired invoke.js — avoids the global being overwritten when
+           multiple slots load in quick succession. */
+        var sOpts=document.createElement("script");
+        sOpts.text="window.atOptions={key:'"+key+"',format:'iframe',height:"+h+",width:"+w+",params:{}};";
+        slot.appendChild(sOpts);
         var s2=document.createElement("script");
         s2.src="https://gigglehiccup.com/"+key+"/invoke.js";
         slot.appendChild(s2);
@@ -2027,6 +2255,7 @@
   <script>
     (function(){
       "use strict";
+      var lastChartData=null;
       var TAX_YEAR = 2026;
       var BRACKETS = {
         single:[[0,.10],[12400,.12],[50400,.22],[105700,.24],[201775,.32],[256225,.35],[640600,.37]],
@@ -2037,7 +2266,7 @@
       var STD = {single:16100,mfj:32200,mfs:16100,hoh:24150};
       var MEDICARE_THRESHOLD = {single:200000,mfj:250000,mfs:125000,hoh:200000};
       var SS_WAGE_BASE = 184500, SS_RATE = .062, MC_RATE = .0145, MC_SURTAX = .009;
-      var CTC = 2200;
+      var CTC = 2200, ACTC_MAX = 1700, ACTC_EARNED_INCOME_THRESHOLD = 2500, ACTC_RATE = 0.15;
 
       var STATES = [["",'No state tax estimate',0],["AL","Alabama",.05],["AK","Alaska",0],["AZ","Arizona",.025],["AR","Arkansas",.039],["CA","California",.08],["CO","Colorado",.044],["CT","Connecticut",.05],["DE","Delaware",.052],["DC","District of Columbia",.065],["FL","Florida",0],["GA","Georgia",.0519],["HI","Hawaii",.079],["ID","Idaho",.053],["IL","Illinois",.0495],["IN","Indiana",.03],["IA","Iowa",.038],["KS","Kansas",.0558],["KY","Kentucky",.04],["LA","Louisiana",.03],["ME","Maine",.0675],["MD","Maryland",.0475],["MA","Massachusetts",.05],["MI","Michigan",.0425],["MN","Minnesota",.068],["MS","Mississippi",.044],["MO","Missouri",.047],["MT","Montana",.059],["NE","Nebraska",.052],["NV","Nevada",0],["NH","New Hampshire",0],["NJ","New Jersey",.0637],["NM","New Mexico",.049],["NY","New York",.0585],["NC","North Carolina",.0425],["ND","North Dakota",.0195],["OH","Ohio",.035],["OK","Oklahoma",.0475],["OR","Oregon",.0875],["PA","Pennsylvania",.0307],["RI","Rhode Island",.0475],["SC","South Carolina",.062],["SD","South Dakota",0],["TN","Tennessee",0],["TX","Texas",0],["UT","Utah",.0455],["VT","Vermont",.066],["VA","Virginia",.0575],["WA","Washington",0],["WV","West Virginia",.0482],["WI","Wisconsin",.053],["WY","Wyoming",0]];
 
@@ -2142,15 +2371,20 @@
         var agiApprox=Math.max(0,gross-pretax);
         var ctcPhaseoutStart=(status==="mfj")?400000:200000;
         var ctcReduction=Math.max(0,Math.ceil((agiApprox-ctcPhaseoutStart)/1000))*50;
-        var credits=Math.max(0,deps*CTC-ctcReduction);
-        var fed=Math.max(0,res.tax-credits);
+        var totalCtc=Math.max(0,deps*CTC-ctcReduction);
+        var nonrefundableCtc=Math.min(res.tax,totalCtc);
+        var remainingCtc=Math.max(0,totalCtc-nonrefundableCtc);
+        var actcEarned=Math.max(0,(gross-ACTC_EARNED_INCOME_THRESHOLD)*ACTC_RATE);
+        var refundableActc=Math.min(remainingCtc,deps*ACTC_MAX,actcEarned);
+        var credits=nonrefundableCtc+refundableActc;
+        var fed=Math.max(0,res.tax-nonrefundableCtc);
 
         var ss=Math.min(gross,SS_WAGE_BASE)*SS_RATE;
         var mc=gross*MC_RATE+Math.max(0,gross-MEDICARE_THRESHOLD[status])*MC_SURTAX;
         var rate=Number((sel && sel.selectedOptions[0] && sel.selectedOptions[0].dataset.rate)||0);
         var stateTax=taxable*rate;
 
-        var total=fed+ss+mc+stateTax;
+        var total=fed+ss+mc+stateTax-refundableActc;
         var net=Math.max(0,gross-total-pretax);
         var federalEff=gross>0?fed/gross:0;
         var totalEff=gross>0?total/gross:0;
@@ -2159,7 +2393,7 @@
         $("ftc-l-pretax").textContent="− "+money(pretax);
         $("ftc-l-ded").textContent="− "+money(ded);
         $("ftc-taxable").textContent=money(taxable);
-        $("ftc-fed").textContent=money(fed)+(credits?" (after "+money(credits)+" credits)":"");
+        $("ftc-fed").textContent=money(fed)+(credits?" (after "+money(credits)+" credits"+(refundableActc?", including "+money(refundableActc)+" refundable ACTC":"")+")":"");
         $("ftc-ss").textContent=money(ss);
         $("ftc-mc").textContent=money(mc);
         $("ftc-state-tax").textContent=money(stateTax);
@@ -2180,13 +2414,11 @@
 
         last={status:$("ftc-status").selectedOptions[0].text,gross:gross,pretax:pretax,ded:ded,taxable:taxable,
           fed:fed,ss:ss,mc:mc,state:stateTax,stateName:(sel && sel.selectedOptions[0] ? sel.selectedOptions[0].text : "N/A"),total:total,net:net,
-          eff:federalEff,totalEff:totalEff,marg:res.marginal,credits:credits};
+          eff:federalEff,totalEff:totalEff,marg:res.marginal,credits:credits,refundableActc:refundableActc};
 
         if(window.Chart){ updateChart([net,fed,ss+mc,stateTax]); }
         else { lastChartData=[net,fed,ss+mc,stateTax]; }
       }
-
-      var lastChartData=null;
 
       function updateChart(data){
         if(!window.Chart){ return; }
@@ -2322,7 +2554,7 @@
         if(m===hrMode)return;
         var amt=val("hr-amount"),hrs=val("hr-hours"),wks=val("hr-weeks");
         if(amt>=0&&hrs>0&&wks>0){
-          $("hr-amount").value=(m==="s")?Math.round(amt*hrs*wks*100)/100:Math.round(amt/(hrs*wks)*100)/100;
+          $("hr-amount").value=(m==="s")?Math.round(amt*hrs*wks):Math.round(amt/(hrs*wks)*100)/100;
         }
         hrMode=m;
         $("hr-mode-h").setAttribute("aria-pressed",m==="h"?"true":"false");
@@ -2465,117 +2697,6 @@
       toggle.addEventListener('click', function () {
         applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
       });
-    })();
-  </script>
-
-  <!-- ===== POPUP AD ===== -->
-  <div class="mt-popup-ad-backdrop" id="mt-popup-ad-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="mt-popup-ad-title">
-    <div class="mt-popup-ad" role="document">
-      <div class="mt-popup-ad-progress" aria-hidden="true"><span id="mt-popup-ad-progress-bar"></span></div>
-      <div class="mt-popup-ad-countdown" aria-live="polite">
-        <div style="display:flex;align-items:center;gap:8px;min-width:0">
-          <span aria-hidden="true">⏱</span>
-          <span>Auto-closes in</span>
-          <strong id="mt-popup-ad-count">15s</strong>
-        </div>
-        <span aria-hidden="true" style="opacity:.6">Please wait</span>
-      </div>
-      <button type="button" class="mt-popup-ad-close" id="mt-popup-ad-close" aria-label="Close advertisement">&times;</button>
-      <div class="mt-popup-ad-content">
-        <h2 class="mt-popup-ad-title" id="mt-popup-ad-title">Explore more at MoneyTols</h2>
-        <p class="mt-popup-ad-body">More free calculators for taxes, loans, and everyday money decisions. Tap below to visit MoneyTols.</p>
-        <div class="mt-popup-ad-slot" aria-label="Sponsored link">
-          <span class="mt-ad-icon" aria-hidden="true">💰</span>
-          <p class="mt-ad-headline">MoneyTols — Free Financial Calculators</p>
-          <p class="mt-ad-desc">Fast, free tools to estimate taxes, loans, and take-home pay.</p>
-        </div>
-        <div class="mt-popup-ad-links">
-          <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">Visit MoneyTols →</a>
-          <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">Explore Calculators →</a>
-          <a class="mt-popup-ad-link mt-popup-ad-visit" href="https://gigglehiccup.com/v37g356tz?key=b22d5bbc0b74655128a5cacd718fb87f" target="_blank" rel="noopener sponsored">Learn More →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    (function(){
-      "use strict";
-      var STORAGE_KEY = "mt_popup_ad_shown_session";
-      var DELAY_MS = 5000;
-      var AUTO_CLOSE_MS = 15000;
-      var countdownTimer = null;
-      var autoCloseTimer = null;
-
-      function canShow(){
-        try { return !window.sessionStorage.getItem(STORAGE_KEY); } catch (e) { return true; }
-      }
-
-      function markShown(){
-        try { window.sessionStorage.setItem(STORAGE_KEY, "1"); } catch (e) {}
-      }
-
-      function clearCountdown(){
-        if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
-        if (autoCloseTimer) { clearTimeout(autoCloseTimer); autoCloseTimer = null; }
-      }
-
-      function updateCountdown(endTime){
-        var count = document.getElementById("mt-popup-ad-count");
-        var bar = document.getElementById("mt-popup-ad-progress-bar");
-        var remaining = Math.max(0, endTime - Date.now());
-        var seconds = Math.ceil(remaining / 1000);
-        if (count) count.textContent = seconds + "s";
-        if (bar) bar.style.width = Math.max(0, Math.min(100, (remaining / AUTO_CLOSE_MS) * 100)) + "%";
-        if (remaining <= 0) { clearCountdown(); closePopup(); }
-      }
-
-      function startCountdown(){
-        clearCountdown();
-        var endTime = Date.now() + AUTO_CLOSE_MS;
-        updateCountdown(endTime);
-        countdownTimer = setInterval(function(){ updateCountdown(endTime); }, 250);
-        autoCloseTimer = setTimeout(function(){ clearCountdown(); closePopup(); }, AUTO_CLOSE_MS + 50);
-      }
-
-      function openPopup(){
-        var bd = document.getElementById("mt-popup-ad-backdrop");
-        if (!bd) return;
-        bd.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        var closeBtn = document.getElementById("mt-popup-ad-close");
-        if (closeBtn) closeBtn.focus();
-        startCountdown();
-      }
-
-      function closePopup(){
-        var bd = document.getElementById("mt-popup-ad-backdrop");
-        if (!bd) return;
-        clearCountdown();
-        bd.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
-
-      function init(){
-        if (!canShow()) return;
-        var bd = document.getElementById("mt-popup-ad-backdrop");
-        var closeBtn = document.getElementById("mt-popup-ad-close");
-        var popup = bd ? bd.querySelector(".mt-popup-ad") : null;
-        if (!bd || !closeBtn || !popup) return;
-        setTimeout(function(){ openPopup(); markShown(); }, DELAY_MS);
-        closeBtn.addEventListener("click", function(e){ e.stopPropagation(); closePopup(); });
-        var visitLinks = popup.querySelectorAll(".mt-popup-ad-visit");
-        visitLinks.forEach(function(link){ link.addEventListener("click", function(){ closePopup(); }); });
-        document.addEventListener("keydown", function(e){
-          if (e.key === "Escape" && bd.getAttribute("aria-hidden") === "false") closePopup();
-        });
-      }
-
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", init);
-      } else {
-        init();
-      }
     })();
   </script>
 
