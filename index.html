@@ -27,6 +27,7 @@
   <meta property="og:url" content="https://moneytols.com/">
   <meta property="og:site_name" content="MoneyTols">
   <meta property="og:image" content="https://moneytols.com/images/moneytols-og-image.jpg">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="MoneyTols free 2026 federal income tax and financial calculators">
@@ -395,6 +396,13 @@
       box-shadow: var(--glass-shadow);
       transform: translateY(-1px);
     }
+
+    .ftc-topnav a[aria-current="page"] {
+      color: var(--brand);
+      background: var(--glass-bg-strong);
+    }
+
+    #main:focus { outline: none; }
 
     .tols-theme-toggle {
       display: inline-flex;
@@ -1493,7 +1501,7 @@
   <meta name="geo.region" content="US">
 </head>
 <body>
-  <a id="tols-skip-link" href="#page-calculator">Skip to calculator</a>
+  <a id="tols-skip-link" href="#main">Skip to main content</a>
 
   <div class="ftc-wrap" id="ftc">
     <nav class="ftc-topnav" aria-label="Main navigation">
@@ -1508,13 +1516,15 @@
       </button>
     </nav>
 
+    <main id="main" tabindex="-1">
+
     <!-- ===== CALCULATOR PAGE ===== -->
     <div id="page-calculator" class="ftc-page active">
 <p class="ftc-updated">Last updated: October 2026 · Reviewed by the MoneyTols team</p>
 
       <header class="ftc-hero">
         <div class="ftc-badge">Tax year 2026 · IRS Rev. Proc. 2025-32</div>
-        <h1>Free 2026 Federal Income Tax Calculator – Take-Home Pay & Tax Estimate</h1>
+        <h1>Free 2026 Federal Income Tax Calculator</h1>
         <p>Use our free 2026 US federal income tax calculator to estimate your paycheck, take-home pay, monthly net income, FICA and state tax. Enter your salary, filing status, pre-tax deductions and qualifying children to see your full tax breakdown using the official 2026 IRS tax brackets and standard deductions. Everything updates instantly as you type.</p>
         <div class="ftc-hero-chips" aria-label="Browse calculator categories">
           <a href="#calculator" data-page="calculator">Federal income tax calculator</a>
@@ -1748,7 +1758,7 @@
             <li><a href="https://www.irs.gov/taxtopics/tc751" target="_blank" rel="noopener">IRS Topic 751: Social Security and Medicare withholding rates</a> — the 6.2% / 1.45% / 0.9% rates used in our FICA calculation.</li>
           </ul>
           <p><strong>Key assumptions this tool makes:</strong> it assumes all income is W-2 wages (no capital gains, self-employment, or investment income); it does not model the Alternative Minimum Tax; the Child Tax Credit and Additional Child Tax Credit are simplified estimates that don't verify every qualifying-child or filing-specific rule; and the state tax figure is one flat representative rate per state, not an actual state tax calculation. Full details are in the FAQ above and the disclaimer below.</p>
-          <p class="ftc-note" style="margin-top:4px">Bracket thresholds and standard deductions were last compared with the IRS source above in October 2026. Update this date after the next source review. The Child Tax Credit, FICA and state tax models are simplified and have not been verified for every filing situation.</p>
+          <p class="ftc-note" style="margin-top:4px">Bracket thresholds and standard deductions were last verified against the IRS source above in October 2026. The Child Tax Credit, FICA and state tax models are simplified and have not been verified for every filing situation.</p>
         </section>
 
         <section class="ftc-disclaimer">
@@ -1813,7 +1823,7 @@
     <div id="page-hourly" class="ftc-page">
 <header class="ftc-hero">
         <div class="ftc-badge">Salary &amp; pay</div>
-        <h2>Hourly to Salary Calculator</h2>
+        <h1>Hourly to Salary Calculator</h1>
         <p>Convert between hourly pay and annual salary. See weekly, biweekly, semi-monthly and monthly gross income before taxes.</p>
       </header>
 <!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
@@ -1962,7 +1972,7 @@
     <div id="page-loan" class="ftc-page">
 <header class="ftc-hero">
         <div class="ftc-badge">Loans</div>
-        <h2>Loan Payment Calculator</h2>
+        <h1>Loan Payment Calculator</h1>
         <p>Work out the monthly payment on a car, personal or student loan, and see how much interest you will pay.</p>
       </header>
 <!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
@@ -2115,7 +2125,7 @@
     <div id="page-mortgage" class="ftc-page">
 <header class="ftc-hero">
         <div class="ftc-badge">Home buying</div>
-        <h2>Mortgage Payment Calculator</h2>
+        <h1>Mortgage Payment Calculator</h1>
         <p>Estimate your full monthly housing payment, including principal, interest, property tax, insurance and PMI.</p>
       </header>
 <!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
@@ -2280,7 +2290,7 @@
     <div id="page-savings" class="ftc-page">
 <header class="ftc-hero">
         <div class="ftc-badge">Savings &amp; investing</div>
-        <h2>Savings Growth Calculator</h2>
+        <h1>Savings Growth Calculator</h1>
         <p>See how an opening balance and regular monthly deposits can grow with compound interest.</p>
       </header>
 <!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
@@ -2425,7 +2435,7 @@
     <!-- ===== ABOUT PAGE ===== -->
     <div id="page-about" class="ftc-page">
 <header class="ftc-hero">
-        <h2>About Us</h2>
+        <h1>About Us</h1>
         <p>Practical, free calculators for the money questions you actually have.</p>
       </header>
 <!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
@@ -2466,7 +2476,7 @@
     <!-- ===== CONTACT PAGE ===== -->
     <div id="page-contact" class="ftc-page">
 <header class="ftc-hero">
-        <h2>Get in Touch</h2>
+        <h1>Get in Touch</h1>
         <p>Spotted a bug, have an idea for a new calculator, or just want to say hi? Send it over.</p>
       </header>
 <!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
@@ -2507,8 +2517,8 @@
     <!-- ===== PRIVACY PAGE ===== -->
     <div id="page-privacy" class="ftc-page">
 <header class="ftc-hero">
-        <h2>Privacy Policy</h2>
-        <p>What we collect, why, and the choices you have. Last updated September 2026.</p>
+        <h1>Privacy Policy</h1>
+        <p>What we collect, why, and the choices you have. Last updated October 2026.</p>
       </header>
 <!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
       <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot tols-ad-slot--desktop-only" aria-label="Advertisement" id="tols-ad-728x90-privacy" style="max-width:100%;overflow:hidden;"></div>
@@ -2574,8 +2584,8 @@
     <!-- ===== TERMS PAGE ===== -->
     <div id="page-terms" class="ftc-page">
 <header class="ftc-hero">
-        <h2>Terms of Use</h2>
-        <p>The ground rules for using MoneyTols. Last updated September 2026.</p>
+        <h1>Terms of Use</h1>
+        <p>The ground rules for using MoneyTols. Last updated October 2026.</p>
       </header>
 <!-- MoneyTols MANUAL AD LOCATION: TOP BANNER (desktop only) -->
       <div data-ad-key="de92a391780c180a5e472f0280631943" class="tols-ad-slot tols-ad-slot--desktop-only" aria-label="Advertisement" id="tols-ad-728x90-terms" style="max-width:100%;overflow:hidden;"></div>
@@ -2639,6 +2649,8 @@
     </div>
 
 
+
+    </main>
 
     <footer class="ftc-footer">
       <div>
@@ -2706,19 +2718,13 @@
           if(!el) return;
           var isActive=p===name;
           el.classList.toggle("active",isActive);
-          var pageTitle=el.querySelector(".ftc-hero h1, .ftc-hero h2");
-          if(pageTitle){
-            if(isActive){
-              pageTitle.setAttribute("role","heading");
-              pageTitle.setAttribute("aria-level","1");
-            } else {
-              pageTitle.removeAttribute("role");
-              pageTitle.removeAttribute("aria-level");
-            }
-          }
           if(isActive){el.style.animation="none";void el.offsetWidth;el.style.animation="";}
         });
         document.title=titles[name]||baseTitle;
+        document.querySelectorAll(".ftc-topnav a[data-page]").forEach(function(a){
+          if(a.getAttribute("data-page")===name){a.setAttribute("aria-current","page");}
+          else{a.removeAttribute("aria-current");}
+        });
         window.scrollTo(0,0);
         loadPageAds(name);
       }
@@ -2733,7 +2739,19 @@
       window.addEventListener("popstate",function(){
         showPage(location.hash.replace("#",""));
       });
-      showPage(location.hash.replace("#","") || "calculator");
+      var moreNav=document.querySelector('.ftc-topnav a[href="#more-calculators"]');
+      if(moreNav){
+        moreNav.addEventListener("click",function(e){
+          e.preventDefault();
+          history.pushState(null,"","#calculator");
+          showPage("calculator");
+          var sec=document.getElementById("more-calculators");
+          if(sec){setTimeout(function(){sec.scrollIntoView({behavior:"smooth",block:"start"});},60);}
+        });
+      }
+      function scrollMore(){var sec=document.getElementById("more-calculators");if(sec){setTimeout(function(){sec.scrollIntoView({behavior:"smooth",block:"start"});},60);}}
+      if(location.hash==="#more-calculators"){showPage("calculator");scrollMore();}
+      else{showPage(location.hash.replace("#","") || "calculator");}
     })();
   </script>
 
