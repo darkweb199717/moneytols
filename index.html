@@ -2010,7 +2010,7 @@
 <details><summary>How do I calculate my 2026 tax refund?</summary>
 <p>Subtract your total 2026 federal tax liability (shown by this calculator) from the federal income tax withheld on your W-2 or pay stubs. If withholding exceeds your liability, you get a refund. If it's lower, you owe the difference. Refundable credits like the Additional Child Tax Credit are added on top of any withholding.</p></details>
 <details><summary>Are 401(k) contributions tax-deductible in 2026?</summary>
-<p>Yes, traditional 401(k) contributions reduce your federal taxable income for 2026. The 2026 employee contribution limit is <strong>$24,500</strong>. Eligible participants age 50 and older can generally contribute an additional <strong>$8,000</strong> (usual combined maximum $32,500); participants ages 60–63 may qualify for a higher $11,250 catch-up limit if their plan allows it. Special rules can apply.  However, 401(k) contributions remain subject to Social Security and Medicare (FICA) taxes. This calculator lets you enter your pre-tax 401(k) amount to see the impact.</p></details>
+<p>Yes, traditional 401(k) contributions reduce your federal taxable income for 2026. The 2026 employee contribution limit is <strong>$24,500</strong>. Eligible participants age 50 and older can generally contribute an additional <strong>$8,000</strong> (usual combined maximum $32,500); participants ages 60–63 may qualify for a higher $11,250 catch-up limit if their plan allows it. Special rules can apply. However, 401(k) contributions remain subject to Social Security and Medicare (FICA) taxes. This calculator lets you enter your pre-tax 401(k) amount to see the impact.</p></details>
 <details><summary>What is the difference between gross pay and net pay?</summary>
 <p><strong>Gross pay</strong> is your total earnings before any deductions — your salary or hourly rate times hours worked. <strong>Net pay</strong> (take-home pay) is what actually lands in your bank account after federal income tax, FICA, state tax, and benefit or retirement deductions. For example, $60,000 gross might become roughly $50,000 net after taxes.</p></details>
 </section>
@@ -2619,7 +2619,7 @@
 <section class="ftc-card ftc-faq" style="margin-top:20px">
 <h2>Frequently asked questions</h2>
 <details><summary>What is compound interest?</summary>
-<p>Compound interest is when you earn interest on both your original deposit <em>and</em> on the interest that has already accumulated. For example, $1,000 at 7% earns $70 in year one. In year two, you earn 7% on $1,070 — $74.90. Over decades, this snowball effect turns small regular contributions into significant wealth. Albert Einstein reportedly called it "the eighth wonder of the world."</p></details>
+<p>Compound interest is when you earn interest on both your original deposit <em>and</em> on the interest that has already accumulated. For example, $1,000 at 7% earns $70 in year one. In year two, you earn 7% on $1,070 — $74.90. Over decades, this snowball effect turns small regular contributions into significant wealth. Albert Einstein reportedly called it "the eighth wonder of the world".</p></details>
 <details><summary>How much should I save monthly to reach $100,000?</summary>
 <p>It depends on your timeline and expected return. At a 7% annual return: to reach $100,000 in <strong>10 years</strong>, you'd need to save about $580/month. In <strong>15 years</strong>, about $320/month. In <strong>20 years</strong>, about $195/month. The longer your timeline, the less you need to contribute each month because compound interest does more of the heavy lifting. Use this calculator to test different scenarios.</p></details>
 <details><summary>What is a good annual return for savings?</summary>
@@ -2975,7 +2975,23 @@
       function loadPageAds(name){
         var page=document.getElementById("page-"+name);
         if(!page) return;
-        page.querySelectorAll("[data-ad-key]").forEach(loadAdSlot);
+        page.querySelectorAll("[data-ad-key]").forEach(watchSlot);
+      }
+      /* Lazy loading: a slot loads only when it is visible and near the viewport. */
+      var adObserver=null;
+      if("IntersectionObserver" in window){
+        adObserver=new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting && slotIsShown(entry.target)){
+              adObserver.unobserve(entry.target);
+              loadAdSlot(entry.target);
+            }
+          });
+        },{rootMargin:"300px"});
+      }
+      function watchSlot(slot){
+        if(slot.dataset.adLoaded) return;
+        if(adObserver) adObserver.observe(slot); else loadAdSlot(slot);
       }
       function showPage(name){
         if(pages.indexOf(name)===-1) name="calculator";
@@ -3007,7 +3023,7 @@
         clearTimeout(adResizeTimer);
         adResizeTimer=setTimeout(function(){
           var active=document.querySelector(".ftc-page.active");
-          if(active) active.querySelectorAll("[data-ad-key]").forEach(loadAdSlot);
+          if(active) active.querySelectorAll("[data-ad-key]").forEach(watchSlot);
         },300);
       });
       window.addEventListener("popstate",function(){
@@ -3496,22 +3512,5 @@
       });
     })();
   </script>
-<script>
-  /* Site-wide third-party ad script: loaded once, after the page has finished loading,
-     so it never delays the calculator. */
-  (function(){
-    var loaded=false;
-    function loadSiteAd(){
-      if(loaded) return; loaded=true;
-      var s=document.createElement("script");
-      s.src="https://gigglehiccup.com/88/fe/24/88fe24305dd70c11f5ee2fb12de9239a.js";
-      s.async=true;
-      document.body.appendChild(s);
-    }
-    function schedule(){ setTimeout(loadSiteAd,1500); }
-    if(document.readyState==="complete") schedule();
-    else window.addEventListener("load",schedule);
-  })();
-</script>
 </body>
 </html>
