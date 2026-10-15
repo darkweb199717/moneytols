@@ -2929,13 +2929,19 @@
         privacy:"Privacy Policy | MoneyTols",
         terms:"Terms of Use | MoneyTols"
       };
+      function slotIsShown(slot){
+        return slot.getClientRects().length>0 && window.getComputedStyle(slot).visibility!=="hidden";
+      }
       function loadAdSlot(slot){
         if(slot.dataset.adLoaded) return;
+        if(!slotIsShown(slot)) return;
         slot.dataset.adLoaded="1";
         var key=slot.getAttribute("data-ad-key");
         if(!key) return;
         if(slot.hasAttribute("data-ad-native")){
           var container=slot.querySelector(".tols-native-container");
+          /* The network script finds its container with getElementById("container-"+key), so the id must exist on exactly one element at a time. Release it from any other page's slot first. */
+          document.querySelectorAll('[id="container-'+key+'"]').forEach(function(o){ if(o!==container) o.removeAttribute("id"); });
           if(container) container.id="container-"+key;
           var s=document.createElement("script");
           s.async=true; s.dataset.cfasync="false";
@@ -2943,14 +2949,28 @@
           slot.appendChild(s);
           return;
         }
+        adQueue.push(slot);
+        runAdQueue();
+      }
+      var adQueue=[], adBusy=false;
+      function runAdQueue(){
+        if(adBusy) return;
+        var slot=adQueue.shift();
+        if(!slot) return;
+        adBusy=true;
+        var key=slot.getAttribute("data-ad-key");
         var w=slot.id.indexOf("728")>-1?728:slot.id.indexOf("320")>-1?320:slot.id.indexOf("160")>-1?160:300;
         var h=slot.id.indexOf("728")>-1?90:slot.id.indexOf("320")>-1?50:slot.id.indexOf("160")>-1?600:250;
+        var done=false;
+        function next(){ if(done) return; done=true; adBusy=false; runAdQueue(); }
         var sOpts=document.createElement("script");
         sOpts.text="window.atOptions={key:'"+key+"',format:'iframe',height:"+h+",width:"+w+",params:{}};";
         slot.appendChild(sOpts);
         var s2=document.createElement("script");
         s2.src="https://gigglehiccup.com/"+key+"/invoke.js";
+        s2.onload=s2.onerror=function(){ setTimeout(next,50); };
         slot.appendChild(s2);
+        setTimeout(next,4000);
       }
       function loadPageAds(name){
         var page=document.getElementById("page-"+name);
@@ -2981,6 +3001,14 @@
           history.pushState(null,"","#"+name);
           showPage(name);
         });
+      });
+      var adResizeTimer;
+      window.addEventListener("resize",function(){
+        clearTimeout(adResizeTimer);
+        adResizeTimer=setTimeout(function(){
+          var active=document.querySelector(".ftc-page.active");
+          if(active) active.querySelectorAll("[data-ad-key]").forEach(loadAdSlot);
+        },300);
       });
       window.addEventListener("popstate",function(){
         showPage(location.hash.replace("#",""));
@@ -3468,6 +3496,22 @@
       });
     })();
   </script>
-<script src="https://gigglehiccup.com/88/fe/24/88fe24305dd70c11f5ee2fb12de9239a.js"></script>
+<script>
+  /* Site-wide third-party ad script: loaded once, after the page has finished loading,
+     so it never delays the calculator. */
+  (function(){
+    var loaded=false;
+    function loadSiteAd(){
+      if(loaded) return; loaded=true;
+      var s=document.createElement("script");
+      s.src="https://gigglehiccup.com/88/fe/24/88fe24305dd70c11f5ee2fb12de9239a.js";
+      s.async=true;
+      document.body.appendChild(s);
+    }
+    function schedule(){ setTimeout(loadSiteAd,1500); }
+    if(document.readyState==="complete") schedule();
+    else window.addEventListener("load",schedule);
+  })();
+</script>
 </body>
 </html>
