@@ -1477,12 +1477,7 @@
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 1100px) {
       .ftc-calculator-layout { grid-template-columns: 1fr; }
-      .tols-ad-slot--sidebar {
-        width: 100%;
-        min-height: 100px;
-        justify-self: center;
-        max-width: 320px;
-      }
+      .tols-ad-slot--sidebar { display: none !important; }
     }
 
     @media (max-width: 860px) {
@@ -1857,6 +1852,8 @@
 <!-- MoneyTols MANUAL AD LOCATION: 160x600 SIDEBAR BANNER -->
 <div aria-label="Advertisement" class="tols-ad-slot tols-ad-slot--sidebar" data-ad-key="91fe44c7cb2c17c7064d4ae43a011385" id="tols-ad-160x600" style="width:160px;min-height:600px;"></div>
 </div>
+<!-- MoneyTols EXTRA MAIN-PAGE AD 1: 320x50 mobile banner -->
+<div aria-label="Advertisement" class="tols-ad-slot tols-ad-slot--mobile" data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" id="tols-ad-320x50-calculator-extra-1" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 <section class="ftc-card" id="ftc-brackets-section" style="margin-top:20px">
 <h2>Bracket-by-bracket breakdown</h2>
 <div class="ftc-scroll">
@@ -1867,12 +1864,16 @@
 </div>
 <p class="ftc-note" style="margin-top:12px">Highlighted row = your marginal (top) bracket. Figures use 2026 federal brackets; Social Security wage base $184,500.</p>
 </section>
+<!-- MoneyTols EXTRA MAIN-PAGE AD 2: 320x50 mobile banner -->
+<div aria-label="Advertisement" class="tols-ad-slot tols-ad-slot--mobile" data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" id="tols-ad-320x50-calculator-extra-2" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 <div class="ftc-content">
 <section class="ftc-card">
 <h2>What this federal income tax calculator does</h2>
 <p>This free calculator estimates what you will owe the IRS for the <strong>2026 tax year</strong> (returns filed in early 2027). Enter your filing status, gross wages, pre-tax retirement or HSA contributions, qualifying children and optionally your state, and it instantly shows your taxable income, federal tax bill, Social Security and Medicare (FICA) withholding, an estimated state income tax, and what actually lands in your bank account each month. A bracket table shows exactly how each slice of your income is taxed, and the chart breaks your paycheck into take-home pay versus each tax.</p>
 </section>
 <!-- ===== F. KEYWORD-RICH CONTENT BLOCK ===== -->
+<!-- MoneyTols EXTRA MAIN-PAGE AD 3: 320x50 mobile banner -->
+<div aria-label="Advertisement" class="tols-ad-slot tols-ad-slot--mobile" data-ad-key="ee7f5e00133cc62a2f77e100ab29de83" id="tols-ad-320x50-calculator-extra-3" style="width:320px;min-height:50px;max-width:100%;margin:12px auto;"></div>
 <section class="ftc-card">
 <h2>Federal income tax calculator: what you can estimate</h2>
 <p>This free 2026 federal income tax calculator helps you answer the questions people search for most often:</p>
@@ -2077,6 +2078,7 @@
 </section>
 <div aria-label="Advertisement" class="tols-ad-slot tols-ad-slot--content" data-ad-key="49f15ac241a2d133f49290fcb4e7fef0" id="tols-ad-300x250-calculator"></div>
 <div aria-label="Advertisement" class="tols-ad-slot" data-ad-key="fbb9b329ee7b2d4250e4a39a44b8fd66" data-ad-native="1" id="tols-ad-native-calculator" style="max-width:100%;margin:16px auto;"><div class="tols-native-container"></div></div>
+
 </div>
 <!-- ===== HOURLY PAGE ===== -->
 <div class="ftc-page" id="page-hourly">
@@ -2977,7 +2979,11 @@
         if(!page) return;
         page.querySelectorAll("[data-ad-key]").forEach(watchSlot);
       }
-      /* Lazy loading: a slot loads only when it is visible and near the viewport. */
+      /* Ad loading strategy:
+         - Load slots already inside the viewport immediately on page open/switch.
+         - Start loading off-screen slots early, before visitors scroll to them.
+         - Only inspect the currently active page, avoiding requests for hidden sections.
+      */
       var adObserver=null;
       if("IntersectionObserver" in window){
         adObserver=new IntersectionObserver(function(entries){
@@ -2987,11 +2993,23 @@
               loadAdSlot(entry.target);
             }
           });
-        },{rootMargin:"300px"});
+        },{rootMargin:"800px 0px"});
+      }
+      function isInViewport(slot){
+        var rect=slot.getBoundingClientRect();
+        return rect.bottom>0 && rect.top<=(window.innerHeight || document.documentElement.clientHeight);
       }
       function watchSlot(slot){
         if(slot.dataset.adLoaded) return;
-        if(adObserver) adObserver.observe(slot); else loadAdSlot(slot);
+        if(!slotIsShown(slot)) return;
+        /* Don't wait for an observer callback for ads visible on the first screen. */
+        if(isInViewport(slot)){
+          if(adObserver) adObserver.unobserve(slot);
+          loadAdSlot(slot);
+          return;
+        }
+        if(adObserver) adObserver.observe(slot);
+        else loadAdSlot(slot);
       }
       function showPage(name){
         if(pages.indexOf(name)===-1) name="calculator";
