@@ -1,0 +1,49 @@
+name: MoneyTols Daily Website Audit
+
+on:
+  schedule:
+    - cron: '15 4 * * *' # 08:15 UAE (UTC+4); GitHub schedule timing may vary
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: moneytols-daily-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Audit site without modifying HTML or ads
+        run: python scripts/daily_audit.py
+
+      - name: Prepare findings pull request for manual approval
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          add-paths: audit/daily-findings.md
+          branch: automation/daily-audit-findings
+          delete-branch: true
+          commit-message: 'docs: update website audit findings'
+          title: 'Daily website audit: review findings'
+          body: |
+            Automated findings from daily static and public-URL checks.
+
+            **No advertising scripts, sponsored links, calculator logic, or live HTML have been changed.**
+            Review the findings and decide whether a separate fix is needed.
+            This pull request is never auto-merged.
+          labels: maintenance
