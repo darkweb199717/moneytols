@@ -46,4 +46,3 @@ jobs:
             **No advertising scripts, sponsored links, calculator logic, or live HTML have been changed.**
             Review the findings and decide whether a separate fix is needed.
             This pull request is never auto-merged.
-          labels: maintenance
