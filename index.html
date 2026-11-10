@@ -390,7 +390,7 @@
   ]
 }
   </script>
-<!-- ===== LIQUID GLASS DESIGN SYSTEM ===== -->
+<!-- ===== LIQUID GLASS DESIGN SYSTEM (V4 REFINED) ===== -->
 <style>
     /* ---------- RESET & BASE ---------- */
     *,
@@ -2100,6 +2100,79 @@
         -webkit-backdrop-filter:none !important; backdrop-filter:none !important;
       }
     }
+
+/* ===== MoneyTols Premium Glass v4 — performance + usability refinement =====
+   Advertising units, sponsor links, their dimensions and their loading code are unchanged. */
+:root {
+  --v4-focus-ring: #3730a3;
+  --v4-card-divider: rgba(99,102,241,.13);
+}
+html[data-theme="dark"] {
+  --v4-focus-ring: #c4b5fd;
+  --v4-card-divider: rgba(199,210,254,.16);
+}
+/* Keep the existing premium glass language, but improve text legibility. */
+.ftc-topnav-brand {font-family: 'Manrope',var(--font-sans);letter-spacing:-.045em;font-weight:800;}
+.ftc-hero h1, .ftc-hero h2 {text-wrap:balance;letter-spacing:-.045em;}
+.ftc-content h2, .ftc-card h2 {text-wrap:balance;}
+.ftc-card, .ftc-sponsored-bar, .ftc-disclaimer {transition:box-shadow .22s ease,transform .22s ease,background-color .22s ease;}
+.ftc-wrap input[type="number"], .ftc-wrap input[type="text"], .ftc-wrap select {min-height:46px;}
+.ftc-wrap input[type="number"], .ftc-wrap select {font-variant-numeric:tabular-nums;}
+.ftc-wrap input[type="number"]:focus-visible, .ftc-wrap select:focus-visible,
+.ftc-topnav a:focus-visible, .ftc-topnav button:focus-visible,
+.ftc-hero-chips a:focus-visible, .ftc-calc-tile:focus-visible,
+.ftc-btn:focus-visible, .ftc-seg button:focus-visible,
+.ftc-faq summary:focus-visible, .ftc-sponsored-bar a:focus-visible,
+.ftc-wrap a:focus-visible, .ftc-wrap button:focus-visible {
+  outline:3px solid var(--v4-focus-ring);outline-offset:3px;
+}
+.ftc-faq details {scroll-margin-top:120px;}
+.ftc-wrap td, .ftc-wrap th {font-variant-numeric:tabular-nums;}
+.ftc-kpi strong {overflow-wrap:anywhere;line-height:1.25;}
+.ftc-lines li span:last-child {text-align:right;overflow-wrap:anywhere;}
+.ftc-card > :last-child {margin-bottom:0;}
+/* Ad containers remain visible and reserve their original dimensions. */
+.tols-ad-slot {contain:layout style;max-width:100%;}
+/* Prevent animation from consuming resources for visitors who request less motion. */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto !important;}
+  body,body::before,body::after,.ftc-hero::after,.ftc-card,.ftc-calc-tile,.ftc-kpi,
+  .ftc-topnav a,.ftc-btn,.ftc-hero-chips a{animation:none !important;transition:none !important;transform:none !important;}
+}
+/* More predictable, comfortable small-screen layout and lighter visual effects. */
+@media (max-width:768px){
+  body {background-attachment:scroll;}
+  body::before,body::after {filter:blur(64px);opacity:.32;animation:none;}
+  .ftc-wrap {padding-left:16px;padding-right:16px;}
+  .ftc-topnav {border-radius:22px;gap:8px;padding:12px;}
+  .ftc-topnav-brand {flex-basis:100%;padding:3px 7px;}
+  .ftc-topnav a {padding:10px 12px;min-height:42px;display:inline-flex;align-items:center;justify-content:center;}
+  .ftc-hero {padding:clamp(24px,6vw,38px);border-radius:26px;}
+  .ftc-hero p {font-size:.98rem;line-height:1.7;}
+  .ftc-card {padding:clamp(18px,4vw,24px);border-radius:22px;}
+  .ftc-hero-chips a {min-height:40px;display:inline-flex;align-items:center;}
+  .ftc-topnav,.ftc-card,.ftc-hero {backdrop-filter:blur(12px) saturate(135%) !important;-webkit-backdrop-filter:blur(12px) saturate(135%) !important;}
+}
+@media (max-width:420px){
+  .ftc-wrap {padding-left:12px;padding-right:12px;}
+  .ftc-topnav a {flex:1 1 auto;font-size:.8rem;padding:9px 10px;}
+  .tols-theme-toggle{margin-left:0;min-height:42px;}
+  .ftc-kpi {padding:14px;min-width:0;}
+  .ftc-kpi strong{font-size:clamp(1rem,4.5vw,1.35rem);}
+  .ftc-hero-chips{gap:7px;}
+  .ftc-hero-chips a{padding:8px 12px;font-size:.79rem;}
+  .ftc-lines li{align-items:baseline;}
+}
+/* Print the financial estimate without frosted backgrounds or ads. Does not change on-screen ad delivery. */
+@media print {
+  body{background:#fff !important;color:#111 !important;}
+  body::before,body::after{display:none !important;}
+  .ftc-wrap{max-width:none;padding:0;}
+  .ftc-card,.ftc-hero,.ftc-disclaimer{box-shadow:none !important;background:#fff !important;color:#111 !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;break-inside:avoid;}
+  .ftc-topnav,.ftc-sponsored-bar,.tols-ad-slot,.tols-theme-toggle{display:none !important;}
+  .ftc-page:not(.active){display:none !important;}
+}
+
 </style>
 <meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
 <meta content="#4f46e5" media="(prefers-color-scheme: light)" name="theme-color"/>
