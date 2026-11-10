@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Mortgage Payment — MoneyTols</title><desc id="desc">Understand the full payment. Premium financial dashboard illustration.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101d3a"/><stop offset=".58" stop-color="#182952"/><stop offset="1" stop-color="#263964"/></linearGradient><linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff" stop-opacity=".15"/><stop offset="1" stop-color="#fff" stop-opacity=".04"/></linearGradient><radialGradient id="glow"><stop stop-color="#ffd18c" stop-opacity=".23"/><stop offset="1" stop-color="#ffd18c" stop-opacity="0"/></radialGradient></defs>
+<rect width="1200" height="630" fill="url(#bg)"/><circle cx="1084" cy="87" r="350" fill="url(#glow)"/><circle cx="15" cy="625" r="260" fill="#6c75e6" opacity=".11"/>
+<g fill="none" stroke="#fff" stroke-opacity=".075"><path d="M0 545h1200M0 475h1200M0 405h1200"/><path d="M90 0v630M190 0v630M290 0v630M390 0v630M490 0v630M590 0v630M690 0v630M790 0v630M890 0v630M990 0v630M1090 0v630"/></g>
+<rect x="58" y="54" width="1084" height="522" rx="34" fill="url(#panel)" stroke="#dce6ff" stroke-opacity=".22" stroke-width="2"/>
+<g font-family="Inter,Arial,sans-serif">
+<rect x="96" y="102" width="173" height="35" rx="17.5" fill="#ffd18c" fill-opacity=".18" stroke="#ffd18c" stroke-opacity=".5"/><text x="182" y="125" text-anchor="middle" font-size="15" font-weight="800" letter-spacing="2" fill="#ffd18c">HOME FINANCE</text>
+<text x="96" y="215" font-size="51" font-weight="800" letter-spacing="-2" fill="#f6f9ff">Mortgage Payment</text><text x="98" y="257" font-size="24" fill="#b8c8e5">Understand the full payment</text>
+<rect x="96" y="327" width="394" height="165" rx="24" fill="#07152b" fill-opacity=".53" stroke="#f4f8ff" stroke-opacity=".23"/>
+<text x="129" y="373" font-size="16" font-weight="700" letter-spacing="2" fill="#bfd0e9">MONTHLY</text><text x="129" y="448" font-size="56" font-weight="800" fill="#f6f9ff">$2,180</text><circle cx="448" cy="367" r="16" fill="#ffd18c"/><path d="M442 367l4 4 9-10" stroke="#0e203c" fill="none" stroke-width="4" stroke-linecap="round"/>
+<rect x="540" y="297" width="542" height="227" rx="28" fill="#091a36" fill-opacity=".52" stroke="#f4f8ff" stroke-opacity=".22"/>
+<text x="578" y="341" font-size="19" font-weight="700" fill="#d7e4ff">Financial outlook</text><path d="M803 444h249" stroke="#a6b6d5" stroke-opacity=".4" stroke-width="2"/><rect x="810" y="370" width="43" height="65" rx="12" fill="#ffd18c" opacity="0.39"/><rect x="882" y="325" width="43" height="110" rx="12" fill="#ffd18c" opacity="0.56"/><rect x="954" y="275" width="43" height="160" rx="12" fill="#ffd18c" opacity="0.73"/><rect x="1026" y="221" width="43" height="214" rx="12" fill="#ffd18c" opacity="0.9"/><path d="M619 441l78-65 80 65v79H619z" fill="#2d426f" stroke="#ffd18c" stroke-width="7" stroke-linejoin="round"/><path d="M672 518v-61h47v61" fill="#6c8bb7"/>
+<text x="97" y="546" font-size="18" fill="#b6c8e7">MoneyTols</text><text x="1080" y="546" text-anchor="end" font-size="15" fill="#b6c8e7">FREE FINANCIAL CALCULATORS</text></g>
+</svg>
