@@ -2,11 +2,7 @@
 
 Automated static checks and basic live-URL checks. No website code, advertisements, sponsored links, or calculator calculations are changed by this job.
 
-- **Medium:** Local image referenced but absent from repository: `/images/federal-income-tax-calculator-2026.webp`
-- **Medium:** Local image referenced but absent from repository: `/images/hourly-to-salary-calculator.webp`
-- **Medium:** Local image referenced but absent from repository: `/images/loan-payment-calculator.webp`
-- **Medium:** Local image referenced but absent from repository: `/images/mortgage-payment-calculator.webp`
-- **Medium:** Local image referenced but absent from repository: `/images/savings-growth-calculator.webp`
+No issues detected by these limited checks.
 
 ## Manual review still required
 
