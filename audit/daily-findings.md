@@ -2,7 +2,7 @@
 
 Automated static checks and basic live-URL checks. No website code, advertisements, sponsored links, or calculator calculations are changed by this job.
 
-No issues detected by these limited checks.
+- **Info:** Review JavaScript-routed hash links: #about, #contact, #privacy, #terms
 
 ## Manual review still required
 
